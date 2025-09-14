@@ -10,24 +10,30 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    :root { --ink:#1d1d1d; --paper:#f7f6f2; }
-    body { color: var(--ink); background: var(--paper); font-family: Inter, system-ui, sans-serif; }
+    :root { --ink:#1d1d1d; --paper:#f7f6f2; --overlay: rgba(247,246,242,0.85); --border: #e6e3db; }
+    html, body { height: 100%; }
+    /* Make body transparent so the background layer shows through */
+    body { color: var(--ink); background: transparent; font-family: Inter, system-ui, sans-serif; position: relative; }
     .serif { font-family: "Crimson Text", serif; }
 
-    /* Full-page background with overlay */
+    /* Full-page background layer (now above the default body background) */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
-      background: 
-        linear-gradient(rgba(247,246,242,0.85), rgba(247,246,242,0.85)),
-        url('orchard-blossom.jpeg') center/cover no-repeat;
-      z-index: -1;
+      background:
+        linear-gradient(var(--overlay), var(--overlay)),
+        url('/orchard-blossom.jpeg?v=1') center/cover no-repeat;
+      z-index: 0; /* background layer */
     }
+
+    /* Ensure page content sits above the background */
+    .page { position: relative; z-index: 1; }
 
     .card {
       background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(3px);
+      border: 1px solid var(--border);
       border-radius: 1.25rem;
       padding: 1.25rem;
       box-shadow: 0 1px 2px rgba(0,0,0,.06);
@@ -42,54 +48,56 @@
     .btn:hover { background:#000; transform:translateY(-1px); }
   </style>
 </head>
-<body class="min-h-screen flex flex-col">
-  <header class="py-6 text-center">
-    <a href="index.html" class="serif text-2xl font-semibold hover:underline">← Back to Pause</a>
-  </header>
+<body class="min-h-screen">
+  <div class="page flex flex-col min-h-screen">
+    <header class="py-6 text-center">
+      <a href="/" class="serif text-2xl font-semibold hover:underline">← Back to Pause</a>
+    </header>
 
-  <main class="flex-grow mx-auto max-w-4xl px-4 space-y-10">
-    <section class="card">
-      <h1 class="serif text-4xl mb-4">Reflection Board</h1>
-      <p class="text-lg mb-6">You are not alone. Others have left notes here — not for advice, but to be with you in this moment. Read gently.</p>
+    <main class="flex-grow mx-auto max-w-4xl px-4 space-y-10">
+      <section class="card">
+        <h1 class="serif text-4xl mb-4">Reflection Board</h1>
+        <p class="text-lg mb-6">You are not alone. Others have left notes here — not for advice, but to be with you in this moment. Read gently.</p>
 
-      <ul class="space-y-3">
-        <li class="p-4 rounded-2xl bg-white/80 border border-black/5"><p>“I’m still here. One slow breath at a time.”</p></li>
-        <li class="p-4 rounded-2xl bg-white/80 border border-black/5"><p>“Called a friend today. It helped.”</p></li>
-        <li class="p-4 rounded-2xl bg-white/80 border border-black/5"><p>“I don’t know what tomorrow brings, but I’m willing to see it.”</p></li>
-      </ul>
-    </section>
+        <ul class="space-y-3">
+          <li class="p-4 rounded-2xl bg-white/80 border border-black/5"><p>“I’m still here. One slow breath at a time.”</p></li>
+          <li class="p-4 rounded-2xl bg-white/80 border border-black/5"><p>“Called a friend today. It helped.”</p></li>
+          <li class="p-4 rounded-2xl bg-white/80 border border-black/5"><p>“I don’t know what tomorrow brings, but I’m willing to see it.”</p></li>
+        </ul>
+      </section>
 
-    <section class="card">
-      <h2 class="serif text-3xl mb-4">Share a Reflection</h2>
-      <p class="mb-3">Write whatever you want. It can be one line. It can be a page. No names or emails are needed.</p>
+      <section class="card">
+        <h2 class="serif text-3xl mb-4">Share a Reflection</h2>
+        <p class="mb-3">Write whatever you want. It can be one line. It can be a page. No names or emails are needed.</p>
 
-      <form id="reflection-form" class="space-y-4" action="https://formspree.io/f/xzzaqpoy" method="POST">
-        <textarea id="message" name="message" rows="6" required
-          class="w-full rounded-2xl border border-black/10 p-3 focus:outline-none focus:ring-2 focus:ring-black/20"
-          placeholder="Write freely… no names needed."></textarea>
+        <form id="reflection-form" class="space-y-4" action="https://formspree.io/f/xzzaqpoy" method="POST">
+          <textarea id="message" name="message" rows="6" required
+            class="w-full rounded-2xl border border-black/10 p-3 focus:outline-none focus:ring-2 focus:ring-black/20"
+            placeholder="Write freely… no names needed."></textarea>
 
-        <label class="block text-sm font-medium" for="consent">
-          <input id="consent" name="consent" type="checkbox" required class="align-middle mr-2">
-          I give permission for my words (without my name) to be published on the Reflection Board.
-        </label>
+          <label class="block text-sm font-medium" for="consent">
+            <input id="consent" name="consent" type="checkbox" required class="align-middle mr-2">
+            I give permission for my words (without my name) to be published on the Reflection Board.
+          </label>
 
-        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-        <input type="hidden" name="timestamp_utc" id="timestamp_utc" value="">
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+          <input type="hidden" name="timestamp_utc" id="timestamp_utc" value="">
 
-        <button class="btn" type="submit">Send Reflection</button>
-        <p class="text-xs text-black/60">Submissions aren’t monitored constantly. If you need immediate help, use the resources on the main page.</p>
-      </form>
+          <button class="btn" type="submit">Send Reflection</button>
+          <p class="text-xs text-black/60">Submissions aren’t monitored constantly. If you need immediate help, use the resources on the main page.</p>
+        </form>
 
-      <div id="thanks-message" style="display:none; background:#f0fdf4; border:1px solid #bbf7d0; color:#065f46; padding:1rem; border-radius:0.75rem; margin-top:1rem; opacity:0; transition:opacity .35s ease; text-align:center;">
-        <strong>Thank you.</strong> Never underestimate the power your words have to help someone.
-        You’ve just taken a moment to help others feel less alone.
-      </div>
-    </section>
-  </main>
+        <div id="thanks-message" style="display:none; background:#f0fdf4; border:1px solid #bbf7d0; color:#065f46; padding:1rem; border-radius:0.75rem; margin-top:1rem; opacity:0; transition:opacity .35s ease; text-align:center;">
+          <strong>Thank you.</strong> Never underestimate the power your words have to help someone.
+          You’ve just taken a moment to help others feel less alone.
+        </div>
+      </section>
+    </main>
 
-  <footer class="py-6 text-center text-sm text-black/60">
-    <p>© 2024 PAUSE</p>
-  </footer>
+    <footer class="py-6 text-center text-sm text-black/60">
+      <p>© 2024 PAUSE</p>
+    </footer>
+  </div>
 
   <script>
     const ts = document.getElementById('timestamp_utc');
@@ -119,7 +127,7 @@
           } else {
             alert('Sorry—there was a problem sending your reflection. Please try again.');
           }
-        } catch (err) {
+        } catch {
           alert('Network error—please try again in a moment.');
         }
       });
