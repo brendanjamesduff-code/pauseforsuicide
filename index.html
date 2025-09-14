@@ -108,19 +108,56 @@
     </div>
   </section>
 
-  <!-- Reflection Board -->
-  <section id="reflections" class="py-14 bg-white/60">
-    <div class="mx-auto max-w-5xl px-4">
-      <div class="grid md:grid-cols-2 gap-8 items-start">
-        <div class="card">
-          <h2 class="serif text-3xl">Reflection Board</h2>
-          <p class="mt-3 text-[1.05rem]">You are not alone. Others have left notes here — not for advice, but to be with you in this moment. Read gently.</p>
-          <ul class="mt-5 space-y-3">
-            <li class="p-4 rounded-2xl bg-white border border-black/5"><p>“I’m still here. One slow breath at a time.”</p></li>
-            <li class="p-4 rounded-2xl bg-white border border-black/5"><p>“Called a friend today. It helped.”</p></li>
-            <li class="p-4 rounded-2xl bg-white border border-black/5"><p>“I don’t know what tomorrow brings, but I’m willing to see it.”</p></li>
-          </ul>
+ <!-- Reflection Board -->
+<section id="reflections" class="py-14 bg-white/60">
+  <div class="mx-auto max-w-5xl px-4">
+    <div class="grid md:grid-cols-2 gap-8 items-start">
+      <div class="card">
+        <h2 class="serif text-3xl">Reflection Board</h2>
+        <p class="mt-3 text-[1.05rem]">
+          You are not alone. Others have left notes here — not for advice, but to be with you in this moment. Read gently.
+        </p>
+        <ul class="mt-5 space-y-3">
+          <li class="p-4 rounded-2xl bg-white border border-black/5"><p>“I’m still here. One slow breath at a time.”</p></li>
+          <li class="p-4 rounded-2xl bg-white border border-black/5"><p>“Called a friend today. It helped.”</p></li>
+          <li class="p-4 rounded-2xl bg-white border border-black/5"><p>“I don’t know what tomorrow brings, but I’m willing to see it.”</p></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3 class="serif text-2xl">Share a Reflection</h3>
+        <p class="mt-2">Write whatever you want. It can be one line. It can be a page. No names or emails are needed.</p>
+
+        <form id="reflection-form" class="mt-4 space-y-4" action="https://formspree.io/f/xzzaqpoy" method="POST">
+          <label class="block text-sm font-medium" for="message">Your Reflection</label>
+          <textarea id="message" name="message" rows="6" required 
+            class="w-full rounded-2xl border border-black/10 p-3 focus:outline-none focus:ring-2 focus:ring-black/20" 
+            placeholder="Write freely… no names needed."></textarea>
+
+          <label class="block text-sm font-medium" for="consent">
+            <input id="consent" name="consent" type="checkbox" required class="align-middle mr-2">
+            I give permission for my words (without my name) to be published on the Reflection Board.
+          </label>
+
+          <!-- Honeypot + timestamp -->
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+          <input type="hidden" name="timestamp_utc" id="timestamp_utc" value="">
+          <!-- Redirect back to this site with thank-you hash -->
+          <input type="hidden" name="_next" value="https://pauseforsuicide.vercel.app/#thanks">
+
+          <button class="btn" type="submit">Send Reflection</button>
+          <p class="text-xs text-black/60">Submissions aren’t monitored constantly. If you need immediate help, see Resources below.</p>
+        </form>
+
+        <div id="thanks-message">
+          <strong>Thank you.</strong> Never underestimate the power your words have to help someone.
+          You’ve just taken a moment to help others feel less alone.
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
         <div class="card">
           <h3 class="serif text-2xl">Share a Reflection</h3>
