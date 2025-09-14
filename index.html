@@ -92,14 +92,17 @@
     /* Hero with image + soft overlay */
     .hero {
       position: relative;
-      height: clamp(56vh, 64vh, 72vh);
-      display:grid; place-items:center; text-align:center; color:white;
+      height: clamp(60vh, 70vh, 80vh);
+      display:flex; flex-direction:column;
+      justify-content:space-between;
+      text-align:center; color:white;
+      padding: 1.25rem 0 1.25rem;
     }
     .hero::before{
       content:"";
       position:absolute; inset:0; z-index:0;
       background:
-        linear-gradient(180deg, rgba(0,0,0,.36), rgba(0,0,0,.36)),
+        linear-gradient(180deg, rgba(0,0,0,.28), rgba(0,0,0,.44)),
         url('/hero-orchard.jpg') center/cover no-repeat;
     }
     .hero > * { position:relative; z-index:1; }
@@ -137,16 +140,18 @@
 
   <!-- Hero -->
   <section id="home" class="hero">
-    <div class="max-w-2xl px-6">
-      <h1 class="serif text-4xl md:text-5xl font-semibold drop-shadow-sm">Pause.</h1>
-      <p class="mt-4 text-lg md:text-xl leading-relaxed drop-shadow">
+    <!-- Top content (closer to the top) -->
+    <div class="mt-2">
+      <h1 class="serif text-5xl md:text-6xl font-semibold drop-shadow-sm">Pause.</h1>
+      <p class="mt-4 text-lg md:text-xl leading-relaxed drop-shadow max-w-xl mx-auto">
         If you have come this far, come a little further. You are not alone. Stay a moment. Breathe. This is a quiet place.
       </p>
-      <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
-        <a href="#booklet" class="btn">Read the Booklet</a>
-        <a href="#audio" class="btn">Listen</a>
-        <a href="/reflections.html" class="btn">Reflection Board</a>
-      </div>
+    </div>
+    <!-- Buttons anchored near the bottom -->
+    <div class="mb-6 flex flex-wrap items-center justify-center gap-3">
+      <a href="#booklet" class="btn">Read the Booklet</a>
+      <a href="#audio" class="btn">Listen</a>
+      <a href="/reflections.html" class="btn">Reflection Board</a>
     </div>
   </section>
 
