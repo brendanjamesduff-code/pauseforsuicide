@@ -10,23 +10,36 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    :root { --ink:#1d1d1d; --paper:#f7f6f2; --overlay: rgba(247,246,242,0.85); --border:#e6e3db; }
-    html, body { height: 100%; }
-    body { color: var(--ink); font-family: Inter, system-ui, sans-serif; margin:0; }
-
-    /* Fixed background layer with the blossom photo (.jpg) */
-    .bg-layer{
-      position: fixed; inset: 0; z-index: 0;
+    :root {
+      --ink:#1d1d1d;
+      --overlay: rgba(247, 246, 242, 0.45);
+      --border:#e6e3db;
+    }
+    html, body { height: 100%; margin: 0; }
+    body {
+      font-family: Inter, system-ui, sans-serif;
+      color: var(--ink);
+      background: var(--overlay);
+    }
+    /* Background layer with orchard-blossom image */
+    .bg-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
       background:
         linear-gradient(var(--overlay), var(--overlay)),
         url('/orchard-blossom.jpg?v=1') center/cover no-repeat;
     }
-    /* Content wrapper sits above the background */
-    .page{ position: relative; z-index: 1; min-height:100svh; display:flex; flex-direction:column; }
-
+    .page {
+      position: relative;
+      z-index: 1;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+    }
     .serif { font-family: "Crimson Text", serif; }
     .card {
-      background: rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.86);
       backdrop-filter: blur(3px);
       border: 1px solid var(--border);
       border-radius: 1.25rem;
@@ -46,7 +59,6 @@
   <!-- Background image layer -->
   <div class="bg-layer" aria-hidden="true"></div>
 
-  <!-- Page content -->
   <div class="page">
     <header class="py-6 text-center">
       <a href="/" class="serif text-2xl font-semibold hover:underline">← Back to Pause</a>
@@ -55,8 +67,9 @@
     <main class="flex-grow mx-auto max-w-4xl px-4 space-y-10">
       <section class="card">
         <h1 class="serif text-4xl mb-4">Reflection Board</h1>
-        <p class="text-lg mb-6">You are not alone. Others have left notes here — not for advice, but to be with you in this moment. Read gently.</p>
-
+        <p class="text-lg mb-6">
+          You are not alone. Others have left notes here — not for advice, but to be with you in this moment. Read gently.
+        </p>
         <ul class="space-y-3">
           <li class="p-4 rounded-2xl bg-white/80 border border-black/5"><p>“I’m still here. One slow breath at a time.”</p></li>
           <li class="p-4 rounded-2xl bg-white/80 border border-black/5"><p>“Called a friend today. It helped.”</p></li>
@@ -66,7 +79,9 @@
 
       <section class="card">
         <h2 class="serif text-3xl mb-4">Share a Reflection</h2>
-        <p class="mb-3">Write whatever you want. It can be one line. It can be a page. No names or emails are needed.</p>
+        <p class="mb-3">
+          Write whatever you want. It can be one line. It can be a page. No names or emails are needed.
+        </p>
 
         <form id="reflection-form" class="space-y-4" action="https://formspree.io/f/xzzaqpoy" method="POST">
           <textarea id="message" name="message" rows="6" required
@@ -82,7 +97,9 @@
           <input type="hidden" name="timestamp_utc" id="timestamp_utc" value="">
 
           <button class="btn" type="submit">Send Reflection</button>
-          <p class="text-xs text-black/60">Submissions aren’t monitored constantly. If you need immediate help, use the resources on the main page.</p>
+          <p class="text-xs text-black/60">
+            Submissions aren’t monitored constantly. If you need immediate help, use the resources on the main page.
+          </p>
         </form>
 
         <div id="thanks-message" style="display:none; background:#f0fdf4; border:1px solid #bbf7d0; color:#065f46; padding:1rem; border-radius:0.75rem; margin-top:1rem; opacity:0; transition:opacity .35s ease; text-align:center;">
