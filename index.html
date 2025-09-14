@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -19,14 +18,12 @@
     .btn-ghost{ @apply inline-flex items-center justify-center rounded-2xl px-5 py-3 font-semibold transition; color: var(--ink); border:1px solid #d8d6d0; }
     .ring-soft{ box-shadow: 0 0 0 8px rgb(0 0 0 / 0.04); }
     .card { @apply rounded-3xl p-6 shadow-sm bg-white/70 backdrop-blur; }
-    .prose p{ @apply leading-7;
-    }
-    /* Fallback hero background color if image fails */
+    .prose p{ @apply leading-7; }
     .hero-fallback{ background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.35)), url('/assets/hero-orchard.jpg') center/cover no-repeat; }
   </style>
 </head>
 <body>
-  <!-- Header / Navigation (no personal bio links) -->
+  <!-- Header / Navigation -->
   <header class="sticky top-0 z-50 backdrop-blur bg-white/60 border-b border-black/5">
     <div class="mx-auto max-w-5xl px-4 py-3 flex items-center gap-3">
       <a href="#home" class="serif text-xl font-semibold">PAUSE</a>
@@ -38,7 +35,10 @@
         <a href="#resources" class="btn-ghost">Resources</a>
       </nav>
     </div>
-  </header>  <!-- Hero / Landing -->  <section id="home" class="relative">
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="relative">
     <div class="h-[64vh] md:h-[72vh] hero-fallback grid place-items-center text-center text-white">
       <div class="max-w-2xl px-6">
         <h1 class="serif text-4xl md:text-5xl font-semibold drop-shadow-sm">Pause.</h1>
@@ -51,30 +51,33 @@
         </div>
       </div>
     </div>
-  </section>  <!-- Booklet -->  <section id="booklet" class="py-14">
+  </section>
+
+  <!-- Booklet Section -->
+  <section id="booklet" class="py-14">
     <div class="mx-auto max-w-5xl px-4 grid md:grid-cols-2 gap-8 items-center">
       <div class="card">
         <h2 class="serif text-3xl">The Pause Booklet</h2>
         <p class="mt-3 text-[1.05rem]">A small, honest invitation to stop, feel, and remember that you are here. There is time. There are choices. There is help.</p>
         <div class="mt-5 flex gap-3 flex-wrap">
-          <!-- Replace /assets/pause-booklet.pdf with your real path -->
           <a class="btn" href="/assets/pause-for-website.pdf" target="_blank" rel="noopener">Read Online</a>
           <a class="btn-ghost" href="/assets/pause-for-website.pdf" download>Download PDF</a>
         </div>
         <p class="mt-4 text-sm text-black/60">Use it however you need. It’s yours now.</p>
       </div>
       <div class="rounded-3xl overflow-hidden ring-soft">
-        <!-- Optional image of booklet / orchard -->
         <img src="/assets/orchard-soft.jpg" alt="Soft morning light in an orchard" class="w-full h-full object-cover" />
       </div>
     </div>
-  </section>  <!-- Reflection Board (read) -->  <section id="reflections" class="py-14 bg-white/60">
+  </section>
+
+  <!-- Reflection Board -->
+  <section id="reflections" class="py-14 bg-white/60">
     <div class="mx-auto max-w-5xl px-4">
       <div class="grid md:grid-cols-2 gap-8 items-start">
         <div class="card">
           <h2 class="serif text-3xl">Reflection Board</h2>
           <p class="mt-3 text-[1.05rem]">You are not alone. Others have left notes here — not for advice, but to be with you in this moment. Read gently.</p>
-          <!-- Placeholder list; replace with static or generated entries you approve and publish -->
           <ul class="mt-5 space-y-3" aria-live="polite">
             <li class="p-4 rounded-2xl bg-white border border-black/5"><p>“I’m still here. One slow breath at a time.”</p></li>
             <li class="p-4 rounded-2xl bg-white border border-black/5"><p>“Called a friend today. It helped.”</p></li>
@@ -82,37 +85,39 @@
           </ul>
           <p class="mt-4 text-sm text-black/60">Notes are moderated for care and safety. No names required.</p>
         </div>
-        <!-- Submission form (routes to your inbox or backend for approval) -->
         <div class="card">
           <h3 class="serif text-2xl">Share a Reflection</h3>
           <p class="mt-2">Write whatever you want. It can be one line. It can be a page. No names or emails are needed.</p>
-          <!--
-            ACTION OPTIONS:
-            1) Formspree/Basin: replace action with your endpoint (recommended)
-            2) Email fallback: action="mailto:you@example.com" method="post" enctype="text/plain"
-          -->
           <div id="reflections-success" class="hidden mb-4 p-4 rounded-2xl bg-green-50 border border-green-200 text-green-900">
-  Thank you for sharing. Your reflection has been sent.
-</div><form id="reflection-form" class="mt-4 space-y-4" action="https://formspree.io/f/REPLACE_ME" method="POST">
-  <label class="block text-sm font-medium" for="message">Your Reflection</label>
-  <textarea id="message" name="message" rows="6" required class="w-full rounded-2xl border border-black/10 p-3 focus:outline-none focus:ring-2 focus:ring-black/20" placeholder="Write freely… no names needed."></textarea>  <label class="block text-sm font-medium" for="consent">
-    <input id="consent" name="consent" type="checkbox" required class="align-middle mr-2">
-    I give permission for my words (without my name) to be published on the Reflection Board.
-  </label>  <!-- Anti-spam honeypot (bots will fill this; humans won’t) -->  <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">  <!-- Email subject line you'll see in your inbox -->  <input type="hidden" name="_subject" value="New Reflection from PauseForSuicide">  <!-- Timestamp (UTC) auto-filled by script below) -->  <input type="hidden" name="timestamp_utc" id="timestamp_utc" value="">  <!-- Redirect back to this page with a thank-you anchor -->  <input type="hidden" name="_redirect" value="#thanks"><button class="btn" type="submit">Send Reflection</button>
-
-  <p class="text-xs text-black/60">Submissions aren’t monitored constantly. If you need immediate help, see Resources below.</p>
-  <p class="text-xs text-black/60 mt-1">We store your words only so they can be reviewed and (optionally) published anonymously. No accounts. No tracking. You can ask for your words to be removed at any time.</p>
-</form>
+            Thank you for sharing. Your reflection has been sent.
+          </div>
+          <form id="reflection-form" class="mt-4 space-y-4" action="https://formspree.io/f/REPLACE_ME" method="POST">
+            <label class="block text-sm font-medium" for="message">Your Reflection</label>
+            <textarea id="message" name="message" rows="6" required class="w-full rounded-2xl border border-black/10 p-3 focus:outline-none focus:ring-2 focus:ring-black/20" placeholder="Write freely… no names needed."></textarea>
+            <label class="block text-sm font-medium" for="consent">
+              <input id="consent" name="consent" type="checkbox" required class="align-middle mr-2">
+              I give permission for my words (without my name) to be published on the Reflection Board.
+            </label>
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+            <input type="hidden" name="_subject" value="New Reflection from PauseForSuicide">
+            <input type="hidden" name="timestamp_utc" id="timestamp_utc" value="">
+            <input type="hidden" name="_redirect" value="#thanks">
+            <button class="btn" type="submit">Send Reflection</button>
+            <p class="text-xs text-black/60">Submissions aren’t monitored constantly. If you need immediate help, see Resources below.</p>
+            <p class="text-xs text-black/60 mt-1">We store your words only so they can be reviewed and (optionally) published anonymously. No accounts. No tracking. You can ask for your words to be removed at any time.</p>
+          </form>
         </div>
       </div>
     </div>
-  </section>  <!-- Audio page/section -->  <section id="audio" class="py-14">
+  </section>
+
+  <!-- Audio Section -->
+  <section id="audio" class="py-14">
     <div class="mx-auto max-w-5xl px-4 grid md:grid-cols-2 gap-8 items-center">
       <div class="card">
         <h2 class="serif text-3xl">Listen</h2>
         <p class="mt-3">Play the audio version of <em>Pause</em> here. Take it for a walk. Let it keep you company for a while.</p>
         <audio controls class="mt-4 w-full">
-          <!-- Replace with your audio file path -->
           <source src="/assets/pause-audio.mp3" type="audio/mpeg">
           Your browser does not support the audio element.
         </audio>
@@ -125,12 +130,14 @@
         <img src="/assets/orchard-light.jpg" alt="A quiet path through an orchard" class="w-full h-full object-cover" />
       </div>
     </div>
-  </section>  <!-- Video page/section (placeholder) -->  <section id="video" class="py-14 bg-white/60">
+  </section>
+
+  <!-- Video Section -->
+  <section id="video" class="py-14 bg-white/60">
     <div class="mx-auto max-w-5xl px-4 grid md:grid-cols-2 gap-8 items-center">
       <div class="card">
         <h2 class="serif text-3xl">Video (coming soon)</h2>
         <p class="mt-3">A gentle video version of <em>Pause</em> is on the way. When it’s ready, it will live here.</p>
-        <!-- Embed placeholder; swap when Steve’s video is published -->
         <div class="mt-4 aspect-video rounded-2xl bg-black/5 grid place-items-center text-black/50">
           <span>Video placeholder</span>
         </div>
@@ -139,7 +146,10 @@
         <img src="/assets/orchard-close.jpg" alt="Leaves and soft light" class="w-full h-full object-cover" />
       </div>
     </div>
-  </section>  <!-- Resources -->  <section id="resources" class="py-14">
+  </section>
+
+  <!-- Resources Section -->
+  <section id="resources" class="py-14">
     <div class="mx-auto max-w-5xl px-4">
       <div class="card">
         <h2 class="serif text-3xl">Helpful Places</h2>
@@ -165,40 +175,34 @@
         <p class="mt-4 text-sm text-black/60">This site doesn’t track you with accounts or comments. No profiles. No pressure.</p>
       </div>
     </div>
-  </section>  <!-- Footer -->  <footer class="py-10 border-t border-black/5 text-center text-sm text-black/60">
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-10 border-t border-black/5 text-center text-sm text-black/60">
     <div class="mx-auto max-w-5xl px-4">
       <p class="serif text-lg text-black/80">This place is for everyone. Linked to nothing and everything.</p>
       <p class="mt-2">If you need urgent help, please use the resources above.</p>
       <p class="mt-6">© <span id="y"></span> PAUSE</p>
     </div>
-  </footer>  <script>
-    // Set current year
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>  <script>
-    // Set current year
-    document.getElementById('y').textContent = new Date().getFullYear();
+  </footer>
 
-    // Reflection form helpers
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
     (function(){
       const f = document.getElementById('reflection-form');
       const success = document.getElementById('reflections-success');
       const ts = document.getElementById('timestamp_utc');
       if (ts) { ts.value = new Date().toISOString(); }
-
-      // Show success message if redirected with #thanks
       if (location.hash === '#thanks') {
         if (success) success.classList.remove('hidden');
-        // Clean up the hash after showing the message
         history.replaceState('', document.title, window.location.pathname + window.location.search + '#reflections');
       }
-
-      // Optional: keep keyboard focus friendly
       if (f) {
         f.addEventListener('submit', function(){
-          // refresh timestamp on submit
           if (ts) { ts.value = new Date().toISOString(); }
         });
       }
     })();
-  </script></body>
+  </script>
+</body>
 </html>
