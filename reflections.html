@@ -4,18 +4,24 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Reflections — PAUSE</title>
-  <meta name="description" content="Read gentle notes from others and share your own reflection." />
+  <meta name="description" content="Read gentle notes from others and share your own reflection. No names needed." />
 
-  <!-- Canonical (update to .com at cutover) -->
+  <!-- Canonical (update to pauseforsuicide.com after cutover) -->
   <link rel="canonical" href="https://pauseforsuicide.vercel.app/reflections.html">
 
-  <!-- Robots + social -->
+  <!-- Robots + UI color -->
   <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#f7f6f2">
+
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Reflections — PAUSE">
   <meta property="og:description" content="Read gentle notes from others and share your own reflection.">
   <meta property="og:url" content="https://pauseforsuicide.vercel.app/reflections.html">
   <meta property="og:image" content="https://pauseforsuicide.vercel.app/hero-orchard.jpg">
+  <meta property="og:image:alt" content="Soft morning light over stone walls in an orchard">
+
+  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Reflections — PAUSE">
   <meta name="twitter:description" content="Read gentle notes from others and share your own reflection.">
@@ -37,23 +43,78 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- Performance -->
+  <link rel="preload" as="image" href="hero-orchard.jpg">
+
   <style>
-    :root { --ink:#1d1d1d; --paper:#f7f6f2; --reflection-bg:#fdfaf6; }
-    body { color:var(--ink); background:var(--paper); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial; }
+    :root{
+      --ink:#1b1b1b;
+      --ink-soft:#4a4a4a;
+      --paper:#f8f7f4;
+      --border:#e6e3db;
+      --overlay: rgba(0,0,0,.36);
+      --reflection-bg:#fcfaf6;
+    }
+    html,body{ height:100%; }
+    body{
+      color:var(--ink);
+      background:var(--paper);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size:17px; line-height:1.65;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
     .serif{ font-family:"Crimson Text", Georgia, Cambria, "Times New Roman", Times, serif; }
-    .btn{ display:inline-flex; align-items:center; justify-content:center; padding:.75rem 1.25rem; border-radius:1rem; font-weight:600; background:#1d1d1d; color:#fff; text-decoration:none; }
-    .btn-ghost{ display:inline-flex; align-items:center; justify-content:center; padding:.75rem 1.25rem; border-radius:1rem; font-weight:600; border:1px solid #d8d6d0; background:#fff; color:#1d1d1d; text-decoration:none; }
-    .card{ background:rgba(255,255,255,.75); backdrop-filter:saturate(1.2) blur(2px); border-radius:1.25rem; padding:1.25rem; box-shadow:0 1px 2px rgba(0,0,0,.06); }
-    .ring-soft{ box-shadow:0 0 0 8px rgba(0,0,0,.04); }
-    .hero{ background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.35)), url('hero-orchard.jpg') center/cover no-repeat; }
+
+    /* Buttons */
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:.75rem 1.25rem; border-radius:1rem; font-weight:600;
+      background:#1b1b1b; color:#fff; text-decoration:none;
+      box-shadow:0 1px 2px rgba(0,0,0,.06);
+      transition:transform .12s ease, background .12s ease, box-shadow .12s ease;
+    }
+    .btn:hover{ background:#000; transform:translateY(-1px); box-shadow:0 2px 8px rgba(0,0,0,.08); }
+    .btn-ghost{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:.75rem 1.25rem; border-radius:1rem; font-weight:600;
+      color:#1b1b1b; background:#fff; border:1px solid var(--border); text-decoration:none;
+      transition:transform .12s ease, background .12s ease, box-shadow .12s ease;
+    }
+    .btn-ghost:hover{ background:#fbfaf8; transform:translateY(-1px); box-shadow:0 1px 6px rgba(0,0,0,.05); }
+
+    /* Cards */
+    .card{
+      background:rgba(255,255,255,.78);
+      backdrop-filter:saturate(1.1) blur(2px);
+      border:1px solid var(--border);
+      border-radius:1.25rem;
+      padding:1.25rem;
+      box-shadow:0 1px 2px rgba(0,0,0,.04);
+    }
+    .ring-soft{ box-shadow:0 0 0 8px rgba(0,0,0,.035); }
+
+    /* Header */
+    .header{ backdrop-filter: blur(8px); background: rgba(255,255,255,.7); border-bottom:1px solid var(--border); }
+    .nav a{ border-radius:.75rem; padding:.5rem .8rem; }
+    .nav a:hover{ background:#fff; box-shadow: inset 0 0 0 1px var(--border); }
+
+    /* Hero */
+    .hero{
+      background:
+        linear-gradient(180deg, var(--overlay), var(--overlay)),
+        url('hero-orchard.jpg') center/cover no-repeat;
+    }
+
+    .muted{ color:var(--ink-soft); }
+    img{ border:1px solid var(--border); }
   </style>
 </head>
 <body>
   <!-- Header -->
-  <header class="sticky top-0 z-50 backdrop-blur bg-white/60 border-b border-black/5">
+  <header class="header sticky top-0 z-50">
     <div class="mx-auto max-w-5xl px-4 py-3 flex items-center gap-3">
       <a href="/" class="serif text-xl font-semibold">PAUSE</a>
-      <nav class="ml-auto flex items-center gap-2 text-sm" aria-label="Primary">
+      <nav class="nav ml-auto flex items-center gap-2 text-sm" aria-label="Primary">
         <a href="/#booklet" class="btn-ghost">Booklet</a>
         <a href="/#audio" class="btn-ghost">Audio</a>
         <a href="/#resources" class="btn-ghost">Resources</a>
@@ -74,7 +135,7 @@
   </section>
 
   <!-- Main content -->
-  <main class="py-14" style="background-color: var(--reflection-bg);">
+  <main class="py-16" style="background-color: var(--reflection-bg);">
     <div class="mx-auto max-w-5xl px-4 grid md:grid-cols-2 gap-8 items-start">
       <!-- Existing reflections -->
       <section aria-labelledby="board-title" class="card">
@@ -84,7 +145,7 @@
           <li class="p-4 rounded-2xl bg-white border border-black/5"><p>“I’m still here. One slow breath at a time.”</p></li>
           <li class="p-4 rounded-2xl bg-white border border-black/5"><p>“Called a friend today. It helped.”</p></li>
           <li class="p-4 rounded-2xl bg-white border border-black/5"><p>“I don’t know what tomorrow brings, but I’m willing to see it.”</p></li>
-          <!-- In the future, we can generate these from a JSON file you update manually -->
+          <!-- In the future, we can move these into a JSON file to update without editing HTML -->
         </ul>
       </section>
 
@@ -104,14 +165,14 @@
             I give permission for my words (without my name) to be published on the Reflection Board.
           </label>
 
-          <p class="text-xs text-black/60">Please don’t include names, emails, phone numbers, or other identifying details.</p>
+          <p class="text-xs muted">Please don’t include names, emails, phone numbers, or other identifying details.</p>
 
           <!-- Anti-spam + moderation help -->
           <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
           <input type="hidden" name="timestamp_utc" id="timestamp_utc" value="">
 
           <button class="btn" type="submit">Send Reflection</button>
-          <p class="text-xs text-black/60">Submissions aren’t monitored constantly. If you need immediate help, see Resources.</p>
+          <p class="text-xs muted">Submissions aren’t monitored constantly. If you need immediate help, see Resources.</p>
         </form>
 
         <!-- Thank-You -->
@@ -121,19 +182,26 @@
         </div>
       </section>
     </div>
+
+    <!-- Optional side image strip -->
+    <div class="mx-auto max-w-5xl mt-10 px-4">
+      <div class="rounded-3xl overflow-hidden ring-soft">
+        <img src="orchard-close.jpg" loading="lazy" alt="Leaves and soft light in the orchard" class="w-full h-full object-cover">
+      </div>
+    </div>
   </main>
 
   <!-- Footer -->
-  <footer class="py-10 border-t border-black/5 text-center text-sm text-black/60">
-    <div class="mx-auto max-w-5xl px-4">
+  <footer class="py-12 border-t" style="border-color: var(--border);">
+    <div class="mx-auto max-w-5xl px-4 text-center text-sm muted">
       <p class="serif text-lg text-black/80">This place is for everyone. Linked to nothing and everything.</p>
-      <p class="mt-2">If you need urgent help, please use the resources on the <a href="/" class="underline">home page</a>.</p>
+      <p class="mt-2">If you need urgent help, please use the resources on the <a class="underline" href="/">home page</a>.</p>
       <p class="mt-6">© 2024 PAUSE</p>
     </div>
   </footer>
 
   <script>
-    // AJAX submit (stays on this page)
+    // AJAX submit (stay on page with thank-you)
     const ts = document.getElementById('timestamp_utc');
     const form = document.getElementById('reflection-form');
     const thanks = document.getElementById('thanks-message');
