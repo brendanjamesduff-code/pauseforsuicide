@@ -4,13 +4,52 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PAUSE — A Quiet Place</title>
-  <meta name="description" content="Pause. A quiet, human space for anyone feeling overwhelmed or thinking about suicide. Read, listen, reflect." />
+  <meta name="description" content="A quiet, human space for anyone feeling overwhelmed or thinking about suicide. Read, listen, reflect." />
+
+  <!-- Canonical (update to pauseforsuicide.com after cutover) -->
+  <link rel="canonical" href="https://pauseforsuicide.vercel.app/">
+
+  <!-- Robots + UI color -->
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#f7f6f2">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="PAUSE — A Quiet Place">
+  <meta property="og:description" content="A quiet, human space for anyone feeling overwhelmed or thinking about suicide. Read, listen, reflect.">
+  <meta property="og:url" content="https://pauseforsuicide.vercel.app/">
+  <meta property="og:image" content="https://pauseforsuicide.vercel.app/hero-orchard.jpg">
+  <meta property="og:image:alt" content="Soft morning light over stone walls in an orchard">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PAUSE — A Quiet Place">
+  <meta name="twitter:description" content="A quiet, human space for anyone feeling overwhelmed or thinking about suicide. Read, listen, reflect.">
+  <meta name="twitter:image" content="https://pauseforsuicide.vercel.app/hero-orchard.jpg">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "PAUSE",
+    "url": "https://pauseforsuicide.vercel.app/",
+    "inLanguage": "en-GB",
+    "description": "A quiet, human space for anyone feeling overwhelmed or thinking about suicide. Read, listen, reflect."
+  }
+  </script>
+
+  <!-- Fonts + Tailwind -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Performance -->
+  <link rel="preload" as="image" href="hero-orchard.jpg">
+
   <style>
-    :root { --ink:#1d1d1d; --paper:#f7f6f2; --accent:#d4a373; }
+    :root { --ink:#1d1d1d; --paper:#f7f6f2; --accent:#d4a373; --reflection-bg:#fdfaf6; }
     body { color: var(--ink); background: var(--paper); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
 
     /* Typography helpers */
@@ -54,12 +93,11 @@
   <header class="sticky top-0 z-50 backdrop-blur bg-white/60 border-b border-black/5">
     <div class="mx-auto max-w-5xl px-4 py-3 flex items-center gap-3">
       <a href="#home" class="serif text-xl font-semibold">PAUSE</a>
-      <nav class="ml-auto flex items-center gap-2 text-sm">
+      <nav class="ml-auto flex items-center gap-2 text-sm" aria-label="Primary">
         <a href="#booklet" class="btn-ghost">Booklet</a>
-        <a href="#reflections" class="btn-ghost">Reflection Board</a>
         <a href="#audio" class="btn-ghost">Audio</a>
-        <a href="#video" class="btn-ghost">Video</a>
         <a href="#resources" class="btn-ghost">Resources</a>
+        <a href="#reflections" class="btn-ghost">Reflection Board</a>
       </nav>
     </div>
   </header>
@@ -74,7 +112,6 @@
         </p>
         <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
           <a href="#booklet" class="btn">Read the Booklet</a>
-          <a href="#reflections" class="btn-ghost">Visit Reflection Board</a>
         </div>
       </div>
     </div>
@@ -93,13 +130,63 @@
         <p class="mt-4 text-sm text-black/60">Use it however you need. It’s yours now.</p>
       </div>
       <div class="rounded-3xl overflow-hidden ring-soft">
-        <img src="orchard-soft.jpg" alt="Soft morning light in an orchard" class="w-full h-full object-cover" />
+        <img src="orchard-soft.jpg" loading="lazy" alt="Soft morning light in an orchard" class="w-full h-full object-cover" />
       </div>
     </div>
   </section>
 
-  <!-- Reflection Board (single, correct) -->
-  <section id="reflections" class="py-14 bg-white/60">
+  <!-- Audio Section -->
+  <section id="audio" class="py-14">
+    <div class="mx-auto max-w-5xl px-4 grid md:grid-cols-2 gap-8 items-center">
+      <div class="card">
+        <h2 class="serif text-3xl">Listen</h2>
+        <p class="mt-3">Play the audio version of <em>Pause</em> here. Take it for a walk. Let it keep you company for a while.</p>
+        <audio controls preload="metadata" class="mt-4 w-full">
+          <source src="./pause-audio.mp3?v=1" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+        <div class="mt-5">
+          <a class="btn-ghost" href="pause-audio.mp3" download>Download Audio</a>
+        </div>
+        <p class="mt-3 text-sm text-black/60">Headphones recommended. Walk if you can. Breathe as you listen.</p>
+      </div>
+      <div class="rounded-3xl overflow-hidden ring-soft">
+        <img src="orchard-light.jpg" loading="lazy" alt="A quiet path through an orchard" class="w-full h-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Resources Section -->
+  <section id="resources" class="py-14">
+    <div class="mx-auto max-w-5xl px-4">
+      <div class="card">
+        <h2 class="serif text-3xl">Helpful Places</h2>
+        <p class="mt-3">If you’re feeling isolated or thinking about suicide, these may help. Pick one small step.</p>
+        <ul class="mt-5 grid md:grid-cols-2 gap-4 text-[1.05rem]">
+          <li class="p-4 rounded-2xl bg-white border border-black/5">
+            <strong>Emergency (UK & Ireland)</strong><br/>
+            If you’re in immediate danger: <u>call 999 / 112</u>.
+          </li>
+          <li class="p-4 rounded-2xl bg-white border border-black/5">
+            <strong>Samaritans (UK & ROI)</strong><br/>
+            24/7 listening support. Call <u>116 123</u> or visit <a href="https://www.samaritans.org/" target="_blank" rel="noopener" class="underline">samaritans.org</a>.
+          </li>
+          <li class="p-4 rounded-2xl bg-white border border-black/5">
+            <strong>Befrienders Worldwide</strong><br/>
+            Find help in many countries: <a href="https://www.befrienders.org/" target="_blank" rel="noopener" class="underline">befrienders.org</a>.
+          </li>
+          <li class="p-4 rounded-2xl bg-white border border-black/5">
+            <strong>Grounding Music & Books</strong><br/>
+            <em>(You’ll add your curated list here — songs, playlists, books that steady the breath.)</em>
+          </li>
+        </ul>
+        <p class="mt-4 text-sm text-black/60">This site doesn’t track you with accounts or comments. No profiles. No pressure.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reflection Board (moved to bottom, warm background) -->
+  <section id="reflections" class="py-14" style="background-color: var(--reflection-bg);">
     <div class="mx-auto max-w-5xl px-4">
       <div class="grid md:grid-cols-2 gap-8 items-start">
         <!-- Existing reflections -->
@@ -138,7 +225,7 @@
             <input type="hidden" name="timestamp_utc" id="timestamp_utc" value="">
 
             <button class="btn" type="submit">Send Reflection</button>
-            <p class="text-xs text-black/60">Submissions aren’t monitored constantly. If you need immediate help, see Resources below.</p>
+            <p class="text-xs text-black/60">Submissions aren’t monitored constantly. If you need immediate help, see Resources above.</p>
           </form>
 
           <!-- Thank-You -->
@@ -151,85 +238,16 @@
     </div>
   </section>
 
-  <!-- Audio Section -->
-  <section id="audio" class="py-14">
-    <div class="mx-auto max-w-5xl px-4 grid md:grid-cols-2 gap-8 items-center">
-      <div class="card">
-        <h2 class="serif text-3xl">Listen</h2>
-        <p class="mt-3">Play the audio version of <em>Pause</em> here. Take it for a walk. Let it keep you company for a while.</p>
-        <audio controls preload="metadata" class="mt-4 w-full">
-          <source src="./pause-audio.mp3?v=1" type="audio/mpeg">
-          Your browser does not support the audio element.
-        </audio>
-        <div class="mt-5">
-          <a class="btn-ghost" href="pause-audio.mp3" download>Download Audio</a>
-        </div>
-        <p class="mt-3 text-sm text-black/60">Headphones recommended. Walk if you can. Breathe as you listen.</p>
-      </div>
-      <div class="rounded-3xl overflow-hidden ring-soft">
-        <img src="orchard-light.jpg" alt="A quiet path through an orchard" class="w-full h-full object-cover" />
-      </div>
-    </div>
-  </section>
-
-  <!-- Video Section -->
-  <section id="video" class="py-14 bg-white/60">
-    <div class="mx-auto max-w-5xl px-4 grid md:grid-cols-2 gap-8 items-center">
-      <div class="card">
-        <h2 class="serif text-3xl">Video (coming soon)</h2>
-        <p class="mt-3">A gentle video version of <em>Pause</em> is on the way. When it’s ready, it will live here.</p>
-        <div class="mt-4 aspect-video rounded-2xl bg-black/5 grid place-items-center text-black/50">
-          <span>Video placeholder</span>
-        </div>
-      </div>
-      <div class="rounded-3xl overflow-hidden ring-soft">
-        <img src="orchard-close.jpg" alt="Leaves and soft light" class="w-full h-full object-cover" />
-      </div>
-    </div>
-  </section>
-
-  <!-- Resources Section -->
-  <section id="resources" class="py-14">
-    <div class="mx-auto max-w-5xl px-4">
-      <div class="card">
-        <h2 class="serif text-3xl">Helpful Places</h2>
-        <p class="mt-3">If you’re feeling isolated or thinking about suicide, these may help. Pick one small step.</p>
-        <ul class="mt-5 grid md:grid-cols-2 gap-4 text-[1.05rem]">
-          <li class="p-4 rounded-2xl bg-white border border-black/5">
-            <strong>Emergency (UK & Ireland)</strong><br/>
-            If you’re in immediate danger: <u>call 999 / 112</u>.
-          </li>
-          <li class="p-4 rounded-2xl bg-white border border-black/5">
-            <strong>Samaritans (UK & ROI)</strong><br/>
-            24/7 listening support. Call <u>116 123</u> or visit <a href="https://www.samaritans.org/" target="_blank" rel="noopener" class="underline">samaritans.org</a>.
-          </li>
-          <li class="p-4 rounded-2xl bg-white border border-black/5">
-            <strong>Befrienders Worldwide</strong><br/>
-            Find help in many countries: <a href="https://www.befrienders.org/" target="_blank" rel="noopener" class="underline">befrienders.org</a>.
-          </li>
-          <li class="p-4 rounded-2xl bg-white border border-black/5">
-            <strong>Grounding Music & Books</strong><br/>
-            <em>(You’ll add your curated list here — songs, playlists, books that steady the breath.)</em>
-          </li>
-        </ul>
-        <p class="mt-4 text-sm text-black/60">This site doesn’t track you with accounts or comments. No profiles. No pressure.</p>
-      </div>
-    </div>
-  </section>
-
   <!-- Footer -->
   <footer class="py-10 border-t border-black/5 text-center text-sm text-black/60">
     <div class="mx-auto max-w-5xl px-4">
       <p class="serif text-lg text-black/80">This place is for everyone. Linked to nothing and everything.</p>
       <p class="mt-2">If you need urgent help, please use the resources above.</p>
-      <p class="mt-6">© <span id="y"></span> PAUSE</p>
+      <p class="mt-6">© 2024 PAUSE</p>
     </div>
   </footer>
 
   <script>
-    // footer year
-    document.getElementById('y').textContent = new Date().getFullYear();
-
     // timestamp for moderation
     const ts = document.getElementById('timestamp_utc');
 
