@@ -14,18 +14,17 @@
     html, body { height: 100%; }
     body { color: var(--ink); font-family: Inter, system-ui, sans-serif; margin:0; }
 
-    /* Fixed background layer with the blossom photo */
+    /* Fixed background layer with the blossom photo (.jpg) */
     .bg-layer{
       position: fixed; inset: 0; z-index: 0;
       background:
         linear-gradient(var(--overlay), var(--overlay)),
-        url('/orchard-blossom.jpeg?v=3') center/cover no-repeat;
+        url('/orchard-blossom.jpg?v=1') center/cover no-repeat;
     }
     /* Content wrapper sits above the background */
     .page{ position: relative; z-index: 1; min-height:100svh; display:flex; flex-direction:column; }
 
     .serif { font-family: "Crimson Text", serif; }
-
     .card {
       background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(3px);
@@ -34,7 +33,6 @@
       padding: 1.25rem;
       box-shadow: 0 1px 2px rgba(0,0,0,.06);
     }
-
     .btn {
       display:inline-flex; align-items:center; justify-content:center;
       padding:0.75rem 1.25rem; border-radius:1rem; font-weight:600;
@@ -128,12 +126,10 @@
             alert('Sorry—there was a problem sending your reflection. Please try again.');
           }
         } catch {
-            alert('Network error—please try again in a moment.');
+          alert('Network error—please try again in a moment.');
         }
       });
     }
   </script>
-</body>
-</html>
 </body>
 </html>
