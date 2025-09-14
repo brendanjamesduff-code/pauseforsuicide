@@ -19,7 +19,8 @@
     .ring-soft{ box-shadow: 0 0 0 8px rgb(0 0 0 / 0.04); }
     .card { @apply rounded-3xl p-6 shadow-sm bg-white/70 backdrop-blur; }
     .prose p{ @apply leading-7; }
-    .hero-fallback{ background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.35)), url('/assets/hero-orchard.jpg') center/cover no-repeat; }
+    /* hero uses root-level image */
+    .hero-fallback{ background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.35)), url('/hero-orchard.jpg') center/cover no-repeat; }
   </style>
 </head>
 <body>
@@ -60,13 +61,13 @@
         <h2 class="serif text-3xl">The Pause Booklet</h2>
         <p class="mt-3 text-[1.05rem]">A small, honest invitation to stop, feel, and remember that you are here. There is time. There are choices. There is help.</p>
         <div class="mt-5 flex gap-3 flex-wrap">
-          <a class="btn" href="/assets/pause-for-website.pdf" target="_blank" rel="noopener">Read Online</a>
-          <a class="btn-ghost" href="/assets/pause-for-website.pdf" download>Download PDF</a>
+          <a class="btn" href="/pause-for-website.pdf" target="_blank" rel="noopener">Read Online</a>
+          <a class="btn-ghost" href="/pause-for-website.pdf" download>Download PDF</a>
         </div>
         <p class="mt-4 text-sm text-black/60">Use it however you need. It’s yours now.</p>
       </div>
       <div class="rounded-3xl overflow-hidden ring-soft">
-        <img src="/assets/orchard-soft.jpg" alt="Soft morning light in an orchard" class="w-full h-full object-cover" />
+        <img src="/orchard-soft.jpg" alt="Soft morning light in an orchard" class="w-full h-full object-cover" />
       </div>
     </div>
   </section>
@@ -118,16 +119,16 @@
         <h2 class="serif text-3xl">Listen</h2>
         <p class="mt-3">Play the audio version of <em>Pause</em> here. Take it for a walk. Let it keep you company for a while.</p>
         <audio controls class="mt-4 w-full">
-          <source src="/assets/pause-audio.mp3" type="audio/mpeg">
+          <source src="/pause-audio.mp3" type="audio/mpeg">
           Your browser does not support the audio element.
         </audio>
         <div class="mt-5 flex gap-3">
-          <a class="btn-ghost" href="/assets/pause-audio.mp3" download>Download Audio</a>
+          <a class="btn-ghost" href="/pause-audio.mp3" download>Download Audio</a>
         </div>
         <p class="mt-3 text-sm text-black/60">Headphones recommended. Walk if you can. Breathe as you listen.</p>
       </div>
       <div class="rounded-3xl overflow-hidden ring-soft">
-        <img src="/assets/orchard-light.jpg" alt="A quiet path through an orchard" class="w-full h-full object-cover" />
+        <img src="/orchard-light.jpg" alt="A quiet path through an orchard" class="w-full h-full object-cover" />
       </div>
     </div>
   </section>
@@ -143,7 +144,7 @@
         </div>
       </div>
       <div class="rounded-3xl overflow-hidden ring-soft">
-        <img src="/assets/orchard-close.jpg" alt="Leaves and soft light" class="w-full h-full object-cover" />
+        <img src="/orchard-close.jpg" alt="Leaves and soft light" class="w-full h-full object-cover" />
       </div>
     </div>
   </section>
