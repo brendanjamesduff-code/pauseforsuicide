@@ -108,10 +108,12 @@
     </div>
   </section>
 
- <!-- Reflection Board -->
+<!-- Reflection Board -->
 <section id="reflections" class="py-14 bg-white/60">
   <div class="mx-auto max-w-5xl px-4">
     <div class="grid md:grid-cols-2 gap-8 items-start">
+
+      <!-- Existing Reflections -->
       <div class="card">
         <h2 class="serif text-3xl">Reflection Board</h2>
         <p class="mt-3 text-[1.05rem]">
@@ -124,14 +126,15 @@
         </ul>
       </div>
 
+      <!-- Submission Form -->
       <div class="card">
         <h3 class="serif text-2xl">Share a Reflection</h3>
         <p class="mt-2">Write whatever you want. It can be one line. It can be a page. No names or emails are needed.</p>
 
         <form id="reflection-form" class="mt-4 space-y-4" action="https://formspree.io/f/xzzaqpoy" method="POST">
           <label class="block text-sm font-medium" for="message">Your Reflection</label>
-          <textarea id="message" name="message" rows="6" required 
-            class="w-full rounded-2xl border border-black/10 p-3 focus:outline-none focus:ring-2 focus:ring-black/20" 
+          <textarea id="message" name="message" rows="6" required
+            class="w-full rounded-2xl border border-black/10 p-3 focus:outline-none focus:ring-2 focus:ring-black/20"
             placeholder="Write freely… no names needed."></textarea>
 
           <label class="block text-sm font-medium" for="consent">
@@ -139,17 +142,20 @@
             I give permission for my words (without my name) to be published on the Reflection Board.
           </label>
 
-          <!-- Honeypot + timestamp -->
+          <!-- Keep things anonymous -->
+          <p class="text-xs text-black/60">Please don’t include names, emails, phone numbers, or other identifying details.</p>
+
+          <!-- Honeypot + timestamp (anti-spam & moderation help) -->
           <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
           <input type="hidden" name="timestamp_utc" id="timestamp_utc" value="">
-          <!-- Redirect back to this site with thank-you hash -->
-          <input type="hidden" name="_next" value="https://pauseforsuicide.vercel.app/#thanks">
+          <!-- No _next / _redirect here; JS handles the thank-you on-page -->
 
           <button class="btn" type="submit">Send Reflection</button>
           <p class="text-xs text-black/60">Submissions aren’t monitored constantly. If you need immediate help, see Resources below.</p>
         </form>
 
-        <div id="thanks-message">
+        <!-- Thank-You Message -->
+        <div id="thanks-message" style="display:none; background:#f0fdf4; border:1px solid #bbf7d0; color:#065f46; padding:1rem; border-radius:0.75rem; margin-top:1rem; opacity:0; transition:opacity .35s ease; text-align:center;">
           <strong>Thank you.</strong> Never underestimate the power your words have to help someone.
           You’ve just taken a moment to help others feel less alone.
         </div>
