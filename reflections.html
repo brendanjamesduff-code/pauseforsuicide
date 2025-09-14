@@ -10,25 +10,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    :root { --ink:#1d1d1d; --paper:#f7f6f2; --overlay: rgba(247,246,242,0.85); --border: #e6e3db; }
+    :root { --ink:#1d1d1d; --paper:#f7f6f2; --overlay: rgba(247,246,242,0.85); --border:#e6e3db; }
     html, body { height: 100%; }
-    /* Make body transparent so the background layer shows through */
-    body { color: var(--ink); background: transparent; font-family: Inter, system-ui, sans-serif; position: relative; }
-    .serif { font-family: "Crimson Text", serif; }
+    body { color: var(--ink); font-family: Inter, system-ui, sans-serif; margin:0; }
 
-    /* Full-page background layer (now above the default body background) */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
+    /* Fixed background layer with the blossom photo */
+    .bg-layer{
+      position: fixed; inset: 0; z-index: 0;
       background:
         linear-gradient(var(--overlay), var(--overlay)),
-        url('/orchard-blossom.jpeg?v=1') center/cover no-repeat;
-      z-index: 0; /* background layer */
+        url('/orchard-blossom.jpeg?v=3') center/cover no-repeat;
     }
+    /* Content wrapper sits above the background */
+    .page{ position: relative; z-index: 1; min-height:100svh; display:flex; flex-direction:column; }
 
-    /* Ensure page content sits above the background */
-    .page { position: relative; z-index: 1; }
+    .serif { font-family: "Crimson Text", serif; }
 
     .card {
       background: rgba(255, 255, 255, 0.85);
@@ -48,8 +44,12 @@
     .btn:hover { background:#000; transform:translateY(-1px); }
   </style>
 </head>
-<body class="min-h-screen">
-  <div class="page flex flex-col min-h-screen">
+<body>
+  <!-- Background image layer -->
+  <div class="bg-layer" aria-hidden="true"></div>
+
+  <!-- Page content -->
+  <div class="page">
     <header class="py-6 text-center">
       <a href="/" class="serif text-2xl font-semibold hover:underline">← Back to Pause</a>
     </header>
@@ -128,10 +128,12 @@
             alert('Sorry—there was a problem sending your reflection. Please try again.');
           }
         } catch {
-          alert('Network error—please try again in a moment.');
+            alert('Network error—please try again in a moment.');
         }
       });
     }
   </script>
+</body>
+</html>
 </body>
 </html>
