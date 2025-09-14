@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reflections — PAUSE</title>
+  <meta name="description" content="Read gentle notes from others and share your own reflection." />
+
+  <!-- Canonical (update to .com at cutover) -->
+  <link rel="canonical" href="https://pauseforsuicide.vercel.app/reflections.html">
+
+  <!-- Robots + social -->
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Reflections — PAUSE">
+  <meta property="og:description" content="Read gentle notes from others and share your own reflection.">
+  <meta property="og:url" content="https://pauseforsuicide.vercel.app/reflections.html">
+  <meta property="og:image" content="https://pauseforsuicide.vercel.app/hero-orchard.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Reflections — PAUSE">
+  <meta name="twitter:description" content="Read gentle notes from others and share your own reflection.">
+  <meta name="twitter:image" content="https://pauseforsuicide.vercel.app/hero-orchard.jpg">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  { "@context": "https://schema.org", "@type": "WebPage",
+    "name": "Reflections — PAUSE",
+    "url": "https://pauseforsuicide.vercel.app/reflections.html",
+    "inLanguage": "en-GB",
+    "description": "Read gentle notes from others and share your own reflection."
+  }
+  </script>
+
+  <!-- Fonts + Tailwind -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root { --ink:#1d1d1d; --paper:#f7f6f2; --reflection-bg:#fdfaf6; }
+    body { color:var(--ink); background:var(--paper); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial; }
+    .serif{ font-family:"Crimson Text", Georgia, Cambria, "Times New Roman", Times, serif; }
+    .btn{ display:inline-flex; align-items:center; justify-content:center; padding:.75rem 1.25rem; border-radius:1rem; font-weight:600; background:#1d1d1d; color:#fff; text-decoration:none; }
+    .btn-ghost{ display:inline-flex; align-items:center; justify-content:center; padding:.75rem 1.25rem; border-radius:1rem; font-weight:600; border:1px solid #d8d6d0; background:#fff; color:#1d1d1d; text-decoration:none; }
+    .card{ background:rgba(255,255,255,.75); backdrop-filter:saturate(1.2) blur(2px); border-radius:1.25rem; padding:1.25rem; box-shadow:0 1px 2px rgba(0,0,0,.06); }
+    .ring-soft{ box-shadow:0 0 0 8px rgba(0,0,0,.04); }
+    .hero{ background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.35)), url('hero-orchard.jpg') center/cover no-repeat; }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="sticky top-0 z-50 backdrop-blur bg-white/60 border-b border-black/5">
+    <div class="mx-auto max-w-5xl px-4 py-3 flex items-center gap-3">
+      <a href="/" class="serif text-xl font-semibold">PAUSE</a>
+      <nav class="ml-auto flex items-center gap-2 text-sm" aria-label="Primary">
+        <a href="/#booklet" class="btn-ghost">Booklet</a>
+        <a href="/#audio" class="btn-ghost">Audio</a>
+        <a href="/#resources" class="btn-ghost">Resources</a>
+        <a href="/reflections.html" class="btn-ghost">Reflection Board</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page hero (short) -->
+  <section class="hero h-[36vh] grid place-items-center text-center text-white">
+    <div class="px-6 max-w-2xl">
+      <h1 class="serif text-4xl font-semibold drop-shadow-sm">Reflection Board</h1>
+      <p class="mt-3 text-lg drop-shadow">Read gently. Share only what you want. No names needed.</p>
+      <div class="mt-5">
+        <a href="#share" class="btn">Share a Reflection</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main content -->
+  <main class="py-14" style="background-color: var(--reflection-bg);">
+    <div class="mx-auto max-w-5xl px-4 grid md:grid-cols-2 gap-8 items-start">
+      <!-- Existing reflections -->
+      <section aria-labelledby="board-title" class="card">
+        <h2 id="board-title" class="serif text-3xl">Notes from others</h2>
+        <p class="mt-3">You are not alone. These are small lights; read gently.</p>
+        <ul class="mt-5 space-y-3">
+          <li class="p-4 rounded-2xl bg-white border border-black/5"><p>“I’m still here. One slow breath at a time.”</p></li>
+          <li class="p-4 rounded-2xl bg-white border border-black/5"><p>“Called a friend today. It helped.”</p></li>
+          <li class="p-4 rounded-2xl bg-white border border-black/5"><p>“I don’t know what tomorrow brings, but I’m willing to see it.”</p></li>
+          <!-- In the future, we can generate these from a JSON file you update manually -->
+        </ul>
+      </section>
+
+      <!-- Share a reflection -->
+      <section id="share" aria-labelledby="share-title" class="card">
+        <h2 id="share-title" class="serif text-3xl">Share a Reflection</h2>
+        <p class="mt-2">Write whatever you want. It can be one line. It can be a page. No names or emails are needed.</p>
+
+        <form id="reflection-form" class="mt-4 space-y-4" action="https://formspree.io/f/xzzaqpoy" method="POST">
+          <label class="block text-sm font-medium" for="message">Your Reflection</label>
+          <textarea id="message" name="message" rows="6" required
+            class="w-full rounded-2xl border border-black/10 p-3 focus:outline-none focus:ring-2 focus:ring-black/20"
+            placeholder="Write freely… no names needed."></textarea>
+
+          <label class="block text-sm font-medium" for="consent">
+            <input id="consent" name="consent" type="checkbox" required class="align-middle mr-2">
+            I give permission for my words (without my name) to be published on the Reflection Board.
+          </label>
+
+          <p class="text-xs text-black/60">Please don’t include names, emails, phone numbers, or other identifying details.</p>
+
+          <!-- Anti-spam + moderation help -->
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+          <input type="hidden" name="timestamp_utc" id="timestamp_utc" value="">
+
+          <button class="btn" type="submit">Send Reflection</button>
+          <p class="text-xs text-black/60">Submissions aren’t monitored constantly. If you need immediate help, see Resources.</p>
+        </form>
+
+        <!-- Thank-You -->
+        <div id="thanks-message" style="display:none; background:#f0fdf4; border:1px solid #bbf7d0; color:#065f46; padding:1rem; border-radius:0.75rem; margin-top:1rem; opacity:0; transition:opacity .35s ease; text-align:center;">
+          <strong>Thank you.</strong> Never underestimate the power your words have to help someone.
+          You’ve just taken a moment to help others feel less alone.
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-10 border-t border-black/5 text-center text-sm text-black/60">
+    <div class="mx-auto max-w-5xl px-4">
+      <p class="serif text-lg text-black/80">This place is for everyone. Linked to nothing and everything.</p>
+      <p class="mt-2">If you need urgent help, please use the resources on the <a href="/" class="underline">home page</a>.</p>
+      <p class="mt-6">© 2024 PAUSE</p>
+    </div>
+  </footer>
+
+  <script>
+    // AJAX submit (stays on this page)
+    const ts = document.getElementById('timestamp_utc');
+    const form = document.getElementById('reflection-form');
+    const thanks = document.getElementById('thanks-message');
+
+    if (form) {
+      if (ts) ts.value = new Date().toISOString();
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (ts) ts.value = new Date().toISOString();
+        try {
+          const data = new FormData(form);
+          const res = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+          if (res.ok) {
+            form.reset();
+            if (thanks) { thanks.style.display = 'block'; requestAnimationFrame(() => thanks.style.opacity = '1'); }
+            location.hash = '#share';
+          } else {
+            alert('Sorry—there was a problem sending your reflection. Please try again.');
+          }
+        } catch (err) {
+          alert('Network error—please try again in a moment.');
+        }
+      });
+    }
+  </script>
+</body>
+</html>
