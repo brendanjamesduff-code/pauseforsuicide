@@ -16,7 +16,7 @@
     /* Typography helpers */
     .serif { font-family: "Crimson Text", Georgia, Cambria, "Times New Roman", Times, serif; }
 
-    /* Buttons (no @apply; pure CSS so Tailwind CDN is fine) */
+    /* Buttons */
     .btn {
       display:inline-flex; align-items:center; justify-content:center;
       padding:0.75rem 1.25rem; border-radius:1rem; font-weight:600;
@@ -24,7 +24,6 @@
       transition:transform .12s ease, background .12s ease;
     }
     .btn:hover { background:#000; transform:translateY(-1px); }
-
     .btn-ghost {
       display:inline-flex; align-items:center; justify-content:center;
       padding:0.75rem 1.25rem; border-radius:1rem; font-weight:600;
@@ -40,7 +39,6 @@
       border-radius:1.25rem; padding:1.25rem; box-shadow:0 1px 2px rgba(0,0,0,.06);
     }
 
-    /* Gentle ring */
     .ring-soft { box-shadow:0 0 0 8px rgba(0,0,0,0.04); }
 
     /* Hero */
@@ -49,14 +47,6 @@
         linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.35)),
         url('hero-orchard.jpg') center/cover no-repeat;
     }
-
-    /* Thank-you message */
-    #thanks-message {
-      display:none; background:#f0fdf4; border:1px solid #bbf7d0; color:#065f46;
-      padding:1rem; border-radius:0.75rem; margin-top:1rem; opacity:0; transition:opacity .35s ease;
-      text-align:center;
-    }
-    #thanks-message.show { opacity:1; }
   </style>
 </head>
 <body>
@@ -108,87 +98,51 @@
     </div>
   </section>
 
-<!-- Reflection Board -->
-<section id="reflections" class="py-14 bg-white/60">
-  <div class="mx-auto max-w-5xl px-4">
-    <div class="grid md:grid-cols-2 gap-8 items-start">
-
-      <!-- Existing Reflections -->
-      <div class="card">
-        <h2 class="serif text-3xl">Reflection Board</h2>
-        <p class="mt-3 text-[1.05rem]">
-          You are not alone. Others have left notes here — not for advice, but to be with you in this moment. Read gently.
-        </p>
-        <ul class="mt-5 space-y-3">
-          <li class="p-4 rounded-2xl bg-white border border-black/5"><p>“I’m still here. One slow breath at a time.”</p></li>
-          <li class="p-4 rounded-2xl bg-white border border-black/5"><p>“Called a friend today. It helped.”</p></li>
-          <li class="p-4 rounded-2xl bg-white border border-black/5"><p>“I don’t know what tomorrow brings, but I’m willing to see it.”</p></li>
-        </ul>
-      </div>
-
-      <!-- Submission Form -->
-      <div class="card">
-        <h3 class="serif text-2xl">Share a Reflection</h3>
-        <p class="mt-2">Write whatever you want. It can be one line. It can be a page. No names or emails are needed.</p>
-
-        <form id="reflection-form" class="mt-4 space-y-4" action="https://formspree.io/f/xzzaqpoy" method="POST">
-          <label class="block text-sm font-medium" for="message">Your Reflection</label>
-          <textarea id="message" name="message" rows="6" required
-            class="w-full rounded-2xl border border-black/10 p-3 focus:outline-none focus:ring-2 focus:ring-black/20"
-            placeholder="Write freely… no names needed."></textarea>
-
-          <label class="block text-sm font-medium" for="consent">
-            <input id="consent" name="consent" type="checkbox" required class="align-middle mr-2">
-            I give permission for my words (without my name) to be published on the Reflection Board.
-          </label>
-
-          <!-- Keep things anonymous -->
-          <p class="text-xs text-black/60">Please don’t include names, emails, phone numbers, or other identifying details.</p>
-
-          <!-- Honeypot + timestamp (anti-spam & moderation help) -->
-          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-          <input type="hidden" name="timestamp_utc" id="timestamp_utc" value="">
-          <!-- No _next / _redirect here; JS handles the thank-you on-page -->
-
-          <button class="btn" type="submit">Send Reflection</button>
-          <p class="text-xs text-black/60">Submissions aren’t monitored constantly. If you need immediate help, see Resources below.</p>
-        </form>
-
-        <!-- Thank-You Message -->
-        <div id="thanks-message" style="display:none; background:#f0fdf4; border:1px solid #bbf7d0; color:#065f46; padding:1rem; border-radius:0.75rem; margin-top:1rem; opacity:0; transition:opacity .35s ease; text-align:center;">
-          <strong>Thank you.</strong> Never underestimate the power your words have to help someone.
-          You’ve just taken a moment to help others feel less alone.
+  <!-- Reflection Board (single, correct) -->
+  <section id="reflections" class="py-14 bg-white/60">
+    <div class="mx-auto max-w-5xl px-4">
+      <div class="grid md:grid-cols-2 gap-8 items-start">
+        <!-- Existing reflections -->
+        <div class="card">
+          <h2 class="serif text-3xl">Reflection Board</h2>
+          <p class="mt-3 text-[1.05rem]">
+            You are not alone. Others have left notes here — not for advice, but to be with you in this moment. Read gently.
+          </p>
+          <ul class="mt-5 space-y-3">
+            <li class="p-4 rounded-2xl bg-white border border-black/5"><p>“I’m still here. One slow breath at a time.”</p></li>
+            <li class="p-4 rounded-2xl bg-white border border-black/5"><p>“Called a friend today. It helped.”</p></li>
+            <li class="p-4 rounded-2xl bg-white border border-black/5"><p>“I don’t know what tomorrow brings, but I’m willing to see it.”</p></li>
+          </ul>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-
+        <!-- Submission form -->
         <div class="card">
           <h3 class="serif text-2xl">Share a Reflection</h3>
           <p class="mt-2">Write whatever you want. It can be one line. It can be a page. No names or emails are needed.</p>
 
           <form id="reflection-form" class="mt-4 space-y-4" action="https://formspree.io/f/xzzaqpoy" method="POST">
             <label class="block text-sm font-medium" for="message">Your Reflection</label>
-            <textarea id="message" name="message" rows="6" required class="w-full rounded-2xl border border-black/10 p-3 focus:outline-none focus:ring-2 focus:ring-black/20" placeholder="Write freely… no names needed."></textarea>
+            <textarea id="message" name="message" rows="6" required
+              class="w-full rounded-2xl border border-black/10 p-3 focus:outline-none focus:ring-2 focus:ring-black/20"
+              placeholder="Write freely… no names needed."></textarea>
 
             <label class="block text-sm font-medium" for="consent">
               <input id="consent" name="consent" type="checkbox" required class="align-middle mr-2">
               I give permission for my words (without my name) to be published on the Reflection Board.
             </label>
 
-            <!-- Honeypot + timestamp -->
+            <p class="text-xs text-black/60">Please don’t include names, emails, phone numbers, or other identifying details.</p>
+
+            <!-- Anti-spam + moderation help -->
             <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
             <input type="hidden" name="timestamp_utc" id="timestamp_utc" value="">
-            <!-- Redirect shows thank-you message -->
-            <input type="hidden" name="_redirect" value="#thanks">
 
             <button class="btn" type="submit">Send Reflection</button>
             <p class="text-xs text-black/60">Submissions aren’t monitored constantly. If you need immediate help, see Resources below.</p>
           </form>
 
-          <div id="thanks-message">
+          <!-- Thank-You -->
+          <div id="thanks-message" style="display:none; background:#f0fdf4; border:1px solid #bbf7d0; color:#065f46; padding:1rem; border-radius:0.75rem; margin-top:1rem; opacity:0; transition:opacity .35s ease; text-align:center;">
             <strong>Thank you.</strong> Never underestimate the power your words have to help someone.
             You’ve just taken a moment to help others feel less alone.
           </div>
@@ -273,53 +227,54 @@
   </footer>
 
   <script>
-  // footer year
-  document.getElementById('y').textContent = new Date().getFullYear();
+    // footer year
+    document.getElementById('y').textContent = new Date().getFullYear();
 
-  // timestamp for moderation (set on load and refresh at submit time)
-  const ts = document.getElementById('timestamp_utc');
-  if (ts) ts.value = new Date().toISOString();
+    // timestamp for moderation
+    const ts = document.getElementById('timestamp_utc');
 
-  // Intercept form submit and send via Fetch so we don't leave the page
-  const form = document.getElementById('reflection-form');
-  const thanks = document.getElementById('thanks-message');
+    // Intercept form submit and send via Fetch so we don't leave the page
+    const form = document.getElementById('reflection-form');
+    const thanks = document.getElementById('thanks-message');
 
-  if (form) {
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      if (ts) ts.value = new Date().toISOString(); // refresh timestamp
+    if (form) {
+      // set timestamp on load
+      if (ts) ts.value = new Date().toISOString();
 
-      try {
-        const data = new FormData(form);
-        const res = await fetch(form.action, {
-          method: 'POST',
-          body: data,
-          headers: { 'Accept': 'application/json' }
-        });
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (ts) ts.value = new Date().toISOString(); // refresh timestamp at submit
 
-        if (res.ok) {
-          form.reset();
-          if (thanks) {
-            thanks.style.display = 'block';
-            requestAnimationFrame(() => thanks.style.opacity = '1');
+        try {
+          const data = new FormData(form);
+          const res = await fetch(form.action, {
+            method: 'POST',
+            body: data,
+            headers: { 'Accept': 'application/json' }
+          });
+
+          if (res.ok) {
+            form.reset();
+            if (thanks) {
+              thanks.style.display = 'block';
+              requestAnimationFrame(() => thanks.style.opacity = '1');
+            }
+            location.hash = '#reflections';
+          } else {
+            alert('Sorry—there was a problem sending your reflection. Please try again.');
           }
-          // Bring user view back to the reflections section
-          location.hash = '#reflections';
-        } else {
-          alert('Sorry—there was a problem sending your reflection. Please try again.');
+        } catch (err) {
+          alert('Network error—please try again in a moment.');
         }
-      } catch (err) {
-        alert('Network error—please try again in a moment.');
-      }
-    });
-  }
+      });
+    }
 
-  // Back-compat: if someone arrives with #thanks in the URL, still show the message
-  if (window.location.hash === '#thanks' && thanks) {
-    thanks.style.display = 'block';
-    requestAnimationFrame(() => thanks.style.opacity = '1');
-    window.location.hash = '#reflections';
-  }
-</script>
+    // Back-compat if someone arrives with #thanks
+    if (window.location.hash === '#thanks' && thanks) {
+      thanks.style.display = 'block';
+      requestAnimationFrame(() => thanks.style.opacity = '1');
+      window.location.hash = '#reflections';
+    }
+  </script>
 </body>
 </html>
