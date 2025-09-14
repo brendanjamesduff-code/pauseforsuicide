@@ -4,204 +4,94 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Reflections — PAUSE</title>
-  <meta name="description" content="Read gentle notes from others and share your own reflection. No names needed." />
-
-  <!-- Canonical (update to pauseforsuicide.com after cutover) -->
-  <link rel="canonical" href="https://pauseforsuicide.vercel.app/reflections.html">
-
-  <!-- Robots + UI color -->
-  <meta name="robots" content="index,follow,max-image-preview:large">
-  <meta name="theme-color" content="#f7f6f2">
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Reflections — PAUSE">
-  <meta property="og:description" content="Read gentle notes from others and share your own reflection.">
-  <meta property="og:url" content="https://pauseforsuicide.vercel.app/reflections.html">
-  <meta property="og:image" content="https://pauseforsuicide.vercel.app/hero-orchard.jpg">
-  <meta property="og:image:alt" content="Soft morning light over stone walls in an orchard">
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Reflections — PAUSE">
-  <meta name="twitter:description" content="Read gentle notes from others and share your own reflection.">
-  <meta name="twitter:image" content="https://pauseforsuicide.vercel.app/hero-orchard.jpg">
-
-  <!-- JSON-LD -->
-  <script type="application/ld+json">
-  { "@context": "https://schema.org", "@type": "WebPage",
-    "name": "Reflections — PAUSE",
-    "url": "https://pauseforsuicide.vercel.app/reflections.html",
-    "inLanguage": "en-GB",
-    "description": "Read gentle notes from others and share your own reflection."
-  }
-  </script>
-
-  <!-- Fonts + Tailwind -->
+  <meta name="description" content="A quiet space to read or share reflections left by others. You are not alone." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Performance -->
-  <link rel="preload" as="image" href="hero-orchard.jpg">
-
   <style>
-    :root{
-      --ink:#1b1b1b;
-      --ink-soft:#4a4a4a;
-      --paper:#f8f7f4;
-      --border:#e6e3db;
-      --overlay: rgba(0,0,0,.36);
-      --reflection-bg:#fcfaf6;
-    }
-    html,body{ height:100%; }
-    body{
-      color:var(--ink);
-      background:var(--paper);
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      font-size:17px; line-height:1.65;
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-    }
-    .serif{ font-family:"Crimson Text", Georgia, Cambria, "Times New Roman", Times, serif; }
+    :root { --ink:#1d1d1d; --paper:#f7f6f2; }
+    body { color: var(--ink); background: var(--paper); font-family: Inter, system-ui, sans-serif; }
+    .serif { font-family: "Crimson Text", serif; }
 
-    /* Buttons */
-    .btn{
+    /* Full-page background with overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: 
+        linear-gradient(rgba(247,246,242,0.85), rgba(247,246,242,0.85)),
+        url('orchard-blossom.jpeg') center/cover no-repeat;
+      z-index: -1;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(3px);
+      border-radius: 1.25rem;
+      padding: 1.25rem;
+      box-shadow: 0 1px 2px rgba(0,0,0,.06);
+    }
+
+    .btn {
       display:inline-flex; align-items:center; justify-content:center;
-      padding:.75rem 1.25rem; border-radius:1rem; font-weight:600;
-      background:#1b1b1b; color:#fff; text-decoration:none;
-      box-shadow:0 1px 2px rgba(0,0,0,.06);
-      transition:transform .12s ease, background .12s ease, box-shadow .12s ease;
+      padding:0.75rem 1.25rem; border-radius:1rem; font-weight:600;
+      background:var(--ink); color:#fff; text-decoration:none;
+      transition:transform .12s ease, background .12s ease;
     }
-    .btn:hover{ background:#000; transform:translateY(-1px); box-shadow:0 2px 8px rgba(0,0,0,.08); }
-    .btn-ghost{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:.75rem 1.25rem; border-radius:1rem; font-weight:600;
-      color:#1b1b1b; background:#fff; border:1px solid var(--border); text-decoration:none;
-      transition:transform .12s ease, background .12s ease, box-shadow .12s ease;
-    }
-    .btn-ghost:hover{ background:#fbfaf8; transform:translateY(-1px); box-shadow:0 1px 6px rgba(0,0,0,.05); }
-
-    /* Cards */
-    .card{
-      background:rgba(255,255,255,.78);
-      backdrop-filter:saturate(1.1) blur(2px);
-      border:1px solid var(--border);
-      border-radius:1.25rem;
-      padding:1.25rem;
-      box-shadow:0 1px 2px rgba(0,0,0,.04);
-    }
-    .ring-soft{ box-shadow:0 0 0 8px rgba(0,0,0,.035); }
-
-    /* Header */
-    .header{ backdrop-filter: blur(8px); background: rgba(255,255,255,.7); border-bottom:1px solid var(--border); }
-    .nav a{ border-radius:.75rem; padding:.5rem .8rem; }
-    .nav a:hover{ background:#fff; box-shadow: inset 0 0 0 1px var(--border); }
-
-    /* Hero */
-    .hero{
-      background:
-        linear-gradient(180deg, var(--overlay), var(--overlay)),
-        url('hero-orchard.jpg') center/cover no-repeat;
-    }
-
-    .muted{ color:var(--ink-soft); }
-    img{ border:1px solid var(--border); }
+    .btn:hover { background:#000; transform:translateY(-1px); }
   </style>
 </head>
-<body>
-  <!-- Header -->
-  <header class="header sticky top-0 z-50">
-    <div class="mx-auto max-w-5xl px-4 py-3 flex items-center gap-3">
-      <a href="/" class="serif text-xl font-semibold">PAUSE</a>
-      <nav class="nav ml-auto flex items-center gap-2 text-sm" aria-label="Primary">
-        <a href="/#booklet" class="btn-ghost">Booklet</a>
-        <a href="/#audio" class="btn-ghost">Audio</a>
-        <a href="/#resources" class="btn-ghost">Resources</a>
-        <a href="/reflections.html" class="btn-ghost">Reflection Board</a>
-      </nav>
-    </div>
+<body class="min-h-screen flex flex-col">
+  <header class="py-6 text-center">
+    <a href="index.html" class="serif text-2xl font-semibold hover:underline">← Back to Pause</a>
   </header>
 
-  <!-- Page hero (short) -->
-  <section class="hero h-[36vh] grid place-items-center text-center text-white">
-    <div class="px-6 max-w-2xl">
-      <h1 class="serif text-4xl font-semibold drop-shadow-sm">Reflection Board</h1>
-      <p class="mt-3 text-lg drop-shadow">Read gently. Share only what you want. No names needed.</p>
-      <div class="mt-5">
-        <a href="#share" class="btn">Share a Reflection</a>
+  <main class="flex-grow mx-auto max-w-4xl px-4 space-y-10">
+    <section class="card">
+      <h1 class="serif text-4xl mb-4">Reflection Board</h1>
+      <p class="text-lg mb-6">You are not alone. Others have left notes here — not for advice, but to be with you in this moment. Read gently.</p>
+
+      <ul class="space-y-3">
+        <li class="p-4 rounded-2xl bg-white/80 border border-black/5"><p>“I’m still here. One slow breath at a time.”</p></li>
+        <li class="p-4 rounded-2xl bg-white/80 border border-black/5"><p>“Called a friend today. It helped.”</p></li>
+        <li class="p-4 rounded-2xl bg-white/80 border border-black/5"><p>“I don’t know what tomorrow brings, but I’m willing to see it.”</p></li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2 class="serif text-3xl mb-4">Share a Reflection</h2>
+      <p class="mb-3">Write whatever you want. It can be one line. It can be a page. No names or emails are needed.</p>
+
+      <form id="reflection-form" class="space-y-4" action="https://formspree.io/f/xzzaqpoy" method="POST">
+        <textarea id="message" name="message" rows="6" required
+          class="w-full rounded-2xl border border-black/10 p-3 focus:outline-none focus:ring-2 focus:ring-black/20"
+          placeholder="Write freely… no names needed."></textarea>
+
+        <label class="block text-sm font-medium" for="consent">
+          <input id="consent" name="consent" type="checkbox" required class="align-middle mr-2">
+          I give permission for my words (without my name) to be published on the Reflection Board.
+        </label>
+
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+        <input type="hidden" name="timestamp_utc" id="timestamp_utc" value="">
+
+        <button class="btn" type="submit">Send Reflection</button>
+        <p class="text-xs text-black/60">Submissions aren’t monitored constantly. If you need immediate help, use the resources on the main page.</p>
+      </form>
+
+      <div id="thanks-message" style="display:none; background:#f0fdf4; border:1px solid #bbf7d0; color:#065f46; padding:1rem; border-radius:0.75rem; margin-top:1rem; opacity:0; transition:opacity .35s ease; text-align:center;">
+        <strong>Thank you.</strong> Never underestimate the power your words have to help someone.
+        You’ve just taken a moment to help others feel less alone.
       </div>
-    </div>
-  </section>
-
-  <!-- Main content -->
-  <main class="py-16" style="background-color: var(--reflection-bg);">
-    <div class="mx-auto max-w-5xl px-4 grid md:grid-cols-2 gap-8 items-start">
-      <!-- Existing reflections -->
-      <section aria-labelledby="board-title" class="card">
-        <h2 id="board-title" class="serif text-3xl">Notes from others</h2>
-        <p class="mt-3">You are not alone. These are small lights; read gently.</p>
-        <ul class="mt-5 space-y-3">
-          <li class="p-4 rounded-2xl bg-white border border-black/5"><p>“I’m still here. One slow breath at a time.”</p></li>
-          <li class="p-4 rounded-2xl bg-white border border-black/5"><p>“Called a friend today. It helped.”</p></li>
-          <li class="p-4 rounded-2xl bg-white border border-black/5"><p>“I don’t know what tomorrow brings, but I’m willing to see it.”</p></li>
-          <!-- In the future, we can move these into a JSON file to update without editing HTML -->
-        </ul>
-      </section>
-
-      <!-- Share a reflection -->
-      <section id="share" aria-labelledby="share-title" class="card">
-        <h2 id="share-title" class="serif text-3xl">Share a Reflection</h2>
-        <p class="mt-2">Write whatever you want. It can be one line. It can be a page. No names or emails are needed.</p>
-
-        <form id="reflection-form" class="mt-4 space-y-4" action="https://formspree.io/f/xzzaqpoy" method="POST">
-          <label class="block text-sm font-medium" for="message">Your Reflection</label>
-          <textarea id="message" name="message" rows="6" required
-            class="w-full rounded-2xl border border-black/10 p-3 focus:outline-none focus:ring-2 focus:ring-black/20"
-            placeholder="Write freely… no names needed."></textarea>
-
-          <label class="block text-sm font-medium" for="consent">
-            <input id="consent" name="consent" type="checkbox" required class="align-middle mr-2">
-            I give permission for my words (without my name) to be published on the Reflection Board.
-          </label>
-
-          <p class="text-xs muted">Please don’t include names, emails, phone numbers, or other identifying details.</p>
-
-          <!-- Anti-spam + moderation help -->
-          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-          <input type="hidden" name="timestamp_utc" id="timestamp_utc" value="">
-
-          <button class="btn" type="submit">Send Reflection</button>
-          <p class="text-xs muted">Submissions aren’t monitored constantly. If you need immediate help, see Resources.</p>
-        </form>
-
-        <!-- Thank-You -->
-        <div id="thanks-message" style="display:none; background:#f0fdf4; border:1px solid #bbf7d0; color:#065f46; padding:1rem; border-radius:0.75rem; margin-top:1rem; opacity:0; transition:opacity .35s ease; text-align:center;">
-          <strong>Thank you.</strong> Never underestimate the power your words have to help someone.
-          You’ve just taken a moment to help others feel less alone.
-        </div>
-      </section>
-    </div>
-
-    <!-- Optional side image strip -->
-    <div class="mx-auto max-w-5xl mt-10 px-4">
-      <div class="rounded-3xl overflow-hidden ring-soft">
-        <img src="orchard-close.jpg" loading="lazy" alt="Leaves and soft light in the orchard" class="w-full h-full object-cover">
-      </div>
-    </div>
+    </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="py-12 border-t" style="border-color: var(--border);">
-    <div class="mx-auto max-w-5xl px-4 text-center text-sm muted">
-      <p class="serif text-lg text-black/80">This place is for everyone. Linked to nothing and everything.</p>
-      <p class="mt-2">If you need urgent help, please use the resources on the <a class="underline" href="/">home page</a>.</p>
-      <p class="mt-6">© 2024 PAUSE</p>
-    </div>
+  <footer class="py-6 text-center text-sm text-black/60">
+    <p>© 2024 PAUSE</p>
   </footer>
 
   <script>
-    // AJAX submit (stay on page with thank-you)
     const ts = document.getElementById('timestamp_utc');
     const form = document.getElementById('reflection-form');
     const thanks = document.getElementById('thanks-message');
@@ -211,13 +101,21 @@
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
         if (ts) ts.value = new Date().toISOString();
+
         try {
           const data = new FormData(form);
-          const res = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+          const res = await fetch(form.action, {
+            method: 'POST',
+            body: data,
+            headers: { 'Accept': 'application/json' }
+          });
+
           if (res.ok) {
             form.reset();
-            if (thanks) { thanks.style.display = 'block'; requestAnimationFrame(() => thanks.style.opacity = '1'); }
-            location.hash = '#share';
+            if (thanks) {
+              thanks.style.display = 'block';
+              requestAnimationFrame(() => thanks.style.opacity = '1');
+            }
           } else {
             alert('Sorry—there was a problem sending your reflection. Please try again.');
           }
