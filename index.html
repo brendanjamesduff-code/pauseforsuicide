@@ -10,17 +10,53 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    :root { --ink:#1d1d1d; --paper:#f7f6f2; --accent:#d4a373; --accent-2:#b07d47; }
+    :root { --ink:#1d1d1d; --paper:#f7f6f2; --accent:#d4a373; }
     body { color: var(--ink); background: var(--paper); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
+
+    /* Typography helpers */
     .serif { font-family: "Crimson Text", Georgia, Cambria, "Times New Roman", Times, serif; }
-    .btn { @apply inline-flex items-center justify-center rounded-2xl px-5 py-3 font-semibold shadow-sm transition; background: var(--ink); color: white; }
-    .btn:hover { background: #000; transform: translateY(-1px); }
-    .btn-ghost{ @apply inline-flex items-center justify-center rounded-2xl px-5 py-3 font-semibold transition; color: var(--ink); border:1px solid #d8d6d0; }
-    .ring-soft{ box-shadow: 0 0 0 8px rgb(0 0 0 / 0.04); }
-    .card { @apply rounded-3xl p-6 shadow-sm bg-white/70 backdrop-blur; }
-    .prose p{ @apply leading-7; }
-    /* hero uses root-level image */
-    .hero-fallback{ background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.35)), url('/hero-orchard.jpg') center/cover no-repeat; }
+
+    /* Buttons (no @apply; pure CSS so Tailwind CDN is fine) */
+    .btn {
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:0.75rem 1.25rem; border-radius:1rem; font-weight:600;
+      background:var(--ink); color:#fff; text-decoration:none; box-shadow:0 1px 2px rgba(0,0,0,.06);
+      transition:transform .12s ease, background .12s ease;
+    }
+    .btn:hover { background:#000; transform:translateY(-1px); }
+
+    .btn-ghost {
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:0.75rem 1.25rem; border-radius:1rem; font-weight:600;
+      color:var(--ink); text-decoration:none; border:1px solid #d8d6d0; background:#fff;
+      transition:transform .12s ease, background .12s ease;
+    }
+    .btn-ghost:hover { background:#faf9f7; transform:translateY(-1px); }
+
+    /* Cards */
+    .card {
+      background:rgba(255,255,255,0.75);
+      backdrop-filter:saturate(1.2) blur(2px);
+      border-radius:1.25rem; padding:1.25rem; box-shadow:0 1px 2px rgba(0,0,0,.06);
+    }
+
+    /* Gentle ring */
+    .ring-soft { box-shadow:0 0 0 8px rgba(0,0,0,0.04); }
+
+    /* Hero */
+    .hero-fallback{
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.35)),
+        url('hero-orchard.jpg') center/cover no-repeat;
+    }
+
+    /* Thank-you message */
+    #thanks-message {
+      display:none; background:#f0fdf4; border:1px solid #bbf7d0; color:#065f46;
+      padding:1rem; border-radius:0.75rem; margin-top:1rem; opacity:0; transition:opacity .35s ease;
+      text-align:center;
+    }
+    #thanks-message.show { opacity:1; }
   </style>
 </head>
 <body>
@@ -61,13 +97,13 @@
         <h2 class="serif text-3xl">The Pause Booklet</h2>
         <p class="mt-3 text-[1.05rem]">A small, honest invitation to stop, feel, and remember that you are here. There is time. There are choices. There is help.</p>
         <div class="mt-5 flex gap-3 flex-wrap">
-          <a class="btn" href="/pause-for-website.pdf" target="_blank" rel="noopener">Read Online</a>
-          <a class="btn-ghost" href="/pause-for-website.pdf" download>Download PDF</a>
+          <a class="btn" href="pause-for-website.pdf" target="_blank" rel="noopener">Read Here</a>
+          <a class="btn-ghost" href="pause-for-website.pdf" download>Take it with You</a>
         </div>
         <p class="mt-4 text-sm text-black/60">Use it however you need. It’s yours now.</p>
       </div>
       <div class="rounded-3xl overflow-hidden ring-soft">
-        <img src="/orchard-soft.jpg" alt="Soft morning light in an orchard" class="w-full h-full object-cover" />
+        <img src="orchard-soft.jpg" alt="Soft morning light in an orchard" class="w-full h-full object-cover" />
       </div>
     </div>
   </section>
@@ -79,34 +115,40 @@
         <div class="card">
           <h2 class="serif text-3xl">Reflection Board</h2>
           <p class="mt-3 text-[1.05rem]">You are not alone. Others have left notes here — not for advice, but to be with you in this moment. Read gently.</p>
-          <ul class="mt-5 space-y-3" aria-live="polite">
+          <ul class="mt-5 space-y-3">
             <li class="p-4 rounded-2xl bg-white border border-black/5"><p>“I’m still here. One slow breath at a time.”</p></li>
             <li class="p-4 rounded-2xl bg-white border border-black/5"><p>“Called a friend today. It helped.”</p></li>
             <li class="p-4 rounded-2xl bg-white border border-black/5"><p>“I don’t know what tomorrow brings, but I’m willing to see it.”</p></li>
           </ul>
-          <p class="mt-4 text-sm text-black/60">Notes are moderated for care and safety. No names required.</p>
         </div>
+
         <div class="card">
           <h3 class="serif text-2xl">Share a Reflection</h3>
           <p class="mt-2">Write whatever you want. It can be one line. It can be a page. No names or emails are needed.</p>
-          <div id="reflections-success" class="hidden mb-4 p-4 rounded-2xl bg-green-50 border border-green-200 text-green-900">
-            Thank you for sharing. Your reflection has been sent.
-          </div>
+
           <form id="reflection-form" class="mt-4 space-y-4" action="https://formspree.io/f/REPLACE_ME" method="POST">
             <label class="block text-sm font-medium" for="message">Your Reflection</label>
             <textarea id="message" name="message" rows="6" required class="w-full rounded-2xl border border-black/10 p-3 focus:outline-none focus:ring-2 focus:ring-black/20" placeholder="Write freely… no names needed."></textarea>
+
             <label class="block text-sm font-medium" for="consent">
               <input id="consent" name="consent" type="checkbox" required class="align-middle mr-2">
               I give permission for my words (without my name) to be published on the Reflection Board.
             </label>
+
+            <!-- Honeypot + timestamp -->
             <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-            <input type="hidden" name="_subject" value="New Reflection from PauseForSuicide">
             <input type="hidden" name="timestamp_utc" id="timestamp_utc" value="">
+            <!-- Redirect shows thank-you message -->
             <input type="hidden" name="_redirect" value="#thanks">
+
             <button class="btn" type="submit">Send Reflection</button>
             <p class="text-xs text-black/60">Submissions aren’t monitored constantly. If you need immediate help, see Resources below.</p>
-            <p class="text-xs text-black/60 mt-1">We store your words only so they can be reviewed and (optionally) published anonymously. No accounts. No tracking. You can ask for your words to be removed at any time.</p>
           </form>
+
+          <div id="thanks-message">
+            <strong>Thank you.</strong> Never underestimate the power your words have to help someone.
+            You’ve just taken a moment to help others feel less alone.
+          </div>
         </div>
       </div>
     </div>
@@ -119,16 +161,16 @@
         <h2 class="serif text-3xl">Listen</h2>
         <p class="mt-3">Play the audio version of <em>Pause</em> here. Take it for a walk. Let it keep you company for a while.</p>
         <audio controls class="mt-4 w-full">
-          <source src="/pause-audio.mp3" type="audio/mpeg">
+          <source src="pause-audio.mp3" type="audio/mpeg">
           Your browser does not support the audio element.
         </audio>
-        <div class="mt-5 flex gap-3">
-          <a class="btn-ghost" href="/pause-audio.mp3" download>Download Audio</a>
+        <div class="mt-5">
+          <a class="btn-ghost" href="pause-audio.mp3" download>Download Audio</a>
         </div>
         <p class="mt-3 text-sm text-black/60">Headphones recommended. Walk if you can. Breathe as you listen.</p>
       </div>
       <div class="rounded-3xl overflow-hidden ring-soft">
-        <img src="/orchard-light.jpg" alt="A quiet path through an orchard" class="w-full h-full object-cover" />
+        <img src="orchard-light.jpg" alt="A quiet path through an orchard" class="w-full h-full object-cover" />
       </div>
     </div>
   </section>
@@ -144,7 +186,7 @@
         </div>
       </div>
       <div class="rounded-3xl overflow-hidden ring-soft">
-        <img src="/orchard-close.jpg" alt="Leaves and soft light" class="w-full h-full object-cover" />
+        <img src="orchard-close.jpg" alt="Leaves and soft light" class="w-full h-full object-cover" />
       </div>
     </div>
   </section>
@@ -188,22 +230,23 @@
   </footer>
 
   <script>
+    // year in footer
     document.getElementById('y').textContent = new Date().getFullYear();
-    (function(){
-      const f = document.getElementById('reflection-form');
-      const success = document.getElementById('reflections-success');
-      const ts = document.getElementById('timestamp_utc');
-      if (ts) { ts.value = new Date().toISOString(); }
-      if (location.hash === '#thanks') {
-        if (success) success.classList.remove('hidden');
-        history.replaceState('', document.title, window.location.pathname + window.location.search + '#reflections');
+
+    // timestamp for moderation
+    const ts = document.getElementById('timestamp_utc');
+    if (ts) ts.value = new Date().toISOString();
+
+    // thank-you message flow
+    if (window.location.hash === "#thanks") {
+      const box = document.getElementById("thanks-message");
+      if (box) {
+        box.style.display = "block";
+        requestAnimationFrame(() => box.classList.add("show"));
       }
-      if (f) {
-        f.addEventListener('submit', function(){
-          if (ts) { ts.value = new Date().toISOString(); }
-        });
-      }
-    })();
+      // return the user to the reflections section
+      window.location.hash = "#reflections";
+    }
   </script>
 </body>
 </html>
