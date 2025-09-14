@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pauseforsuicide.vercel.app/sitemap.xml
