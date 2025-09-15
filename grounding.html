@@ -4,14 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Grounding Music & Books — PAUSE</title>
-  <meta name="description" content="Songs, playlists, books and gentle places that steady the breath. Suggestions welcome." />
+  <meta name="description" content="Curated songs, playlists, and books that help you slow down, steady your breath, and reconnect to life. Suggest your own." />
 
-  <!-- Canonical -->
-  <link rel="canonical" href="https://pauseforsuicide.vercel.app/grounding.html">
-  <meta name="robots" content="index,follow,max-image-preview:large">
-  <meta name="theme-color" content="#f7f6f2">
-
-  <!-- Fonts + Tailwind -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -20,23 +14,13 @@
   <style>
     :root{
       --ink:#1d1d1d;
-      --overlay: rgba(247,246,242,0.30);
-      --card-bg: rgba(249,246,238,0.82);
+      --overlay: rgba(247,246,242,0.18);
+      --card-bg: rgba(249,246,238,0.85);
       --border:#e2ddd3;
     }
     body { color: var(--ink); background:#f7f6f2; font-family: Inter, system-ui, sans-serif; }
     .serif { font-family: "Crimson Text", Georgia, serif; }
 
-    /* Background underlay */
-    .bg-underlay{
-      position: fixed; inset: 0; z-index: -1;
-      background: url('/grounding.jpg') center/cover no-repeat;
-    }
-    .bg-underlay::after{
-      content:""; position:absolute; inset:0; background: var(--overlay);
-    }
-
-    /* Cards & buttons (match site) */
     .card{
       background: var(--card-bg);
       backdrop-filter: blur(3px);
@@ -52,145 +36,109 @@
       transition:transform .12s ease, background .12s ease;
     }
     .btn:hover{ background:#000; transform:translateY(-1px); }
-    .btn-ghost{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:.75rem 1.25rem; border-radius:1rem; font-weight:600;
-      color:#1d1d1d; text-decoration:none; border:1px solid var(--border); background:#fff;
-      transition:transform .12s ease, background .12s ease;
-    }
-    .btn-ghost:hover{ background:#faf9f7; transform:translateY(-1px); }
 
-    .section{ padding: 3rem 0; }
-    @media (min-width:768px){ .section{ padding: 3.75rem 0; } }
-
+    /* Hero/cover area */
     .hero {
-      text-align:center; color:#fff; padding: 3.5rem 1rem 1.5rem;
-      text-shadow: 0 1px 2px rgba(0,0,0,.35);
+      position: relative;
+      min-height: 52vh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: white;
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:0; z-index:0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.18)),
+        url('/grounding.jpg') center/cover no-repeat;
+    }
+    .hero > * { position: relative; z-index: 1; }
+
+    .hero-actions {
+      position: absolute; left: 0; right: 0; bottom: 1.25rem;
+      display: flex; justify-content: center;
     }
   </style>
 </head>
 <body>
-  <!-- Back to Pause Button -->
-  <div class="w-full bg-white/80 backdrop-blur sticky top-0 z-50 border-b border-black/10">
-    <div class="max-w-5xl mx-auto px-4 py-3 flex justify-start">
-      <a href="/" class="inline-block bg-black text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-900 transition">
-        ← Back to Pause
-      </a>
-    </div>
-  </div>
+  <!-- Hero with background image -->
+  <header class="hero">
+    <div class="absolute inset-0" style="background: var(--overlay); z-index:0;"></div>
 
-  <!-- Reflection Board Section -->
-  <section id="reflections" class="relative py-14">
-    <div class="absolute inset-0 z-0 bg-center bg-cover" style="background-image: url('/orchard-blossom.jpg'); opacity: 0.55;"></div>
-    <div class="relative z-10 mx-auto max-w-5xl px-4">
-      <!-- (rest of your reflection board content stays here) -->
+    <!-- Back button inside the hero, matching reflections.html -->
+    <div class="hero-actions">
+      <a href="/" class="btn">← Back to Pause</a>
+    </div>
   </header>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="mx-auto max-w-3xl">
-      <h1 class="serif text-4xl md:text-5xl font-semibold">Grounding Music & Books</h1>
-      <p class="mt-3 text-lg md:text-xl">Songs, books, and gentle places that help the breath steady. Suggestions welcome.</p>
-    </div>
-  </section>
-
-  <main class="mx-auto max-w-5xl px-4">
-    <!-- Curated lists -->
-    <section class="section grid md:grid-cols-3 gap-6">
+  <main class="mx-auto max-w-5xl px-4 py-10">
+    <div class="grid md:grid-cols-2 gap-8 items-start">
+      <!-- Left column: curated list -->
       <div class="card">
-        <h2 class="serif text-2xl">Music</h2>
-        <ul class="mt-3 list-disc pl-5 space-y-2">
-          <li><em>(Add your first few songs or a playlist link here.)</em></li>
+        <h1 class="serif text-3xl">Grounding Music & Books</h1>
+        <p class="mt-3 text-[1.05rem]">
+          Here are some ideas for music, playlists, and books that steady the breath and bring you back into the moment.
+        </p>
+        <ul class="mt-5 space-y-3">
+          <li class="p-4 rounded-2xl bg-white/75 border border-black/5"><p>“Weightless” – Marconi Union</p></li>
+          <li class="p-4 rounded-2xl bg-white/75 border border-black/5"><p>*The Boy, the Mole, the Fox and the Horse* – Charlie Mackesy</p></li>
+          <li class="p-4 rounded-2xl bg-white/75 border border-black/5"><p>Guided breathing playlists on Spotify / Apple Music</p></li>
         </ul>
       </div>
-      <div class="card">
-        <h2 class="serif text-2xl">Books</h2>
-        <ul class="mt-3 list-disc pl-5 space-y-2">
-          <li><em>(Add a short, kind note on why each book helps.)</em></li>
-        </ul>
-      </div>
-      <div class="card">
-        <h2 class="serif text-2xl">Websites & Podcasts</h2>
-        <ul class="mt-3 list-disc pl-5 space-y-2">
-          <li><a class="underline" href="https://www.samaritans.org/" target="_blank" rel="noopener">Samaritans</a></li>
-          <li><a class="underline" href="https://www.befrienders.org/" target="_blank" rel="noopener">Befrienders Worldwide</a></li>
-          <li><em>(Add supportive sites or episodes that feel safe.)</em></li>
-        </ul>
-      </div>
-    </section>
 
-    <!-- Suggestion form -->
-    <section class="section">
+      <!-- Right column: suggestion form -->
       <div class="card">
-        <h2 class="serif text-2xl">Suggest a Grounding Resource</h2>
-        <p class="mt-2 text-[1.05rem]">Share a song, a book, or a resource that feels grounded, safe, and meaningful. We’ll review suggestions with care.</p>
+        <h2 class="serif text-2xl">Suggest a Song or Book</h2>
+        <p class="mt-2">Share what has helped you stay grounded. Suggestions are reviewed before they are added to the list.</p>
 
-        <!-- Using the SAME Formspree endpoint as Reflection Board, per your request -->
         <form id="grounding-form" class="mt-4 space-y-4" action="https://formspree.io/f/xzzaqpoy" method="POST">
-          <label class="block text-sm font-medium" for="type">Type</label>
-          <select id="type" name="type" class="w-full rounded-xl border border-black/10 p-3" required>
-            <option value="">Select…</option>
-            <option>Music</option>
-            <option>Book</option>
-            <option>Website/Podcast</option>
-          </select>
-
-          <label class="block text-sm font-medium" for="title">Title or Link</label>
-          <input id="title" name="title" type="text" class="w-full rounded-xl border border-black/10 p-3" placeholder="Song/Book/Link" required />
-
-          <label class="block text-sm font-medium" for="note">Why this helps (optional)</label>
-          <textarea id="note" name="note" rows="4" class="w-full rounded-xl border border-black/10 p-3" placeholder="A few words to guide someone else…"></textarea>
-
-          <!-- Safety note -->
-          <p class="text-xs text-black/60">Please avoid names, emails, phone numbers, or identifying details. Suggestions are moderated gently for safety.</p>
-
-          <!-- Honeypot + timestamp -->
-          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-          <input type="hidden" name="timestamp_utc" id="timestamp_utc" value="">
-          <input type="hidden" name="_subject" value="New Grounding Suggestion (PauseForSuicide)">
+          <label class="block text-sm font-medium" for="suggestion">Your Suggestion</label>
+          <textarea id="suggestion" name="suggestion" rows="4" required
+            class="w-full rounded-2xl border border-black/10 p-3 focus:outline-none focus:ring-2 focus:ring-black/20"
+            placeholder="Song title, artist, or book…"></textarea>
 
           <button class="btn" type="submit">Send Suggestion</button>
-          <p class="text-xs text-black/60">Not monitored constantly. If you need immediate help, use the emergency numbers on the home page.</p>
+          <p class="text-xs text-black/60">Suggestions aren’t posted instantly. They’re reviewed to keep the list supportive and safe.</p>
         </form>
 
-        <div id="thanks" class="hidden mt-3 p-4 rounded-xl bg-green-50 border border-green-200 text-green-900">
-          Thank you. Your suggestion has been sent.
+        <div id="thanks-message" style="display:none; background:#f0fdf4; border:1px solid #bbf7d0; color:#065f46; padding:1rem; border-radius:0.75rem; margin-top:1rem; opacity:0; transition:opacity .35s ease; text-align:center;">
+          <strong>Thank you.</strong> Your suggestion has been sent for review.
         </div>
       </div>
-    </section>
+    </div>
   </main>
 
   <footer class="py-10 border-t border-black/5 text-center text-sm text-black/60">
     <div class="mx-auto max-w-5xl px-4">
       <p class="serif text-lg text-black/80">This place is for everyone. Linked to nothing and everything.</p>
-      <p class="mt-2">If you need urgent help, please use the resources above.</p>
+      <p class="mt-2">If you need urgent help, please use the resources on the home page.</p>
       <p class="mt-6">© 2024 PAUSE</p>
     </div>
   </footer>
 
   <script>
-    // timestamp on load
-    const ts = document.getElementById('timestamp_utc');
-    if (ts) ts.value = new Date().toISOString();
-
-    // submit via fetch to stay on the page
     const form = document.getElementById('grounding-form');
-    const thanks = document.getElementById('thanks');
+    const thanks = document.getElementById('thanks-message');
     if (form) {
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        if (ts) ts.value = new Date().toISOString();
         try {
           const data = new FormData(form);
-          const res = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept':'application/json' }});
+          const res = await fetch(form.action, {
+            method: 'POST',
+            body: data,
+            headers: { 'Accept':'application/json' }
+          });
           if (res.ok) {
             form.reset();
-            thanks.classList.remove('hidden');
+            thanks.style.display = 'block';
+            requestAnimationFrame(()=> thanks.style.opacity = '1');
           } else {
             alert('Sorry—there was a problem sending your suggestion. Please try again.');
           }
         } catch {
-            alert('Network error—please try again in a moment.');
+          alert('Network error—please try again in a moment.');
         }
       });
     }
