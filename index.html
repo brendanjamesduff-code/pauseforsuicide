@@ -49,17 +49,17 @@
   <link rel="preload" as="image" href="/hero-orchard.jpg">
   <link rel="preload" as="image" href="/orchard-soft.jpg">
   <link rel="preload" as="image" href="/orchard-light.jpg">
-  <link rel="preload" as="image" href="/helpful-places.jpg">
 
   <style>
-    :root{
+    :root {
       --ink:#1d1d1d;
-      --overlay: rgba(247,246,242,0.25); /* light overlay so photos shine */
-      --card-bg: rgba(249,246,238,0.78); /* warm beige card */
+      --overlay: rgba(247,246,242,0.25);
+      --card-bg: rgba(249,246,238,0.78);
       --border:#e2ddd3;
     }
 
     body { color: var(--ink); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
+
     .serif { font-family: "Crimson Text", Georgia, Cambria, "Times New Roman", Times, serif; }
 
     /* Buttons */
@@ -70,9 +70,10 @@
       transition:transform .12s ease, background .12s ease;
     }
     .btn:hover { background:#000; transform:translateY(-1px); }
+
     .btn-ghost {
       display:inline-flex; align-items:center; justify-content:center;
-      padding:0.55rem 1rem; border-radius:1rem; font-weight:600;
+      padding:0.75rem 1.25rem; border-radius:1rem; font-weight:600;
       color:var(--ink); text-decoration:none; border:1px solid var(--border); background:#fff;
       transition:transform .12s ease, background .12s ease;
     }
@@ -88,146 +89,119 @@
       box-shadow: 0 2px 4px rgba(0,0,0,.08);
     }
 
-    /* Hero with image + bright overlay */
+    /* Hero with image + soft overlay */
     .hero {
       position: relative;
-      height: clamp(60vh, 70vh, 80vh);
-      display:grid; place-items:center;
-      text-align:center; color:white; padding: 1.25rem 0;
+      height: clamp(56vh, 64vh, 72vh);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 2rem 1rem;
     }
-    .hero::before{
-      content:"";
-      position:absolute; inset:0; z-index:0;
-      /* lighter overlay so photo is brighter */
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.15)),
-        url('/hero-orchard.jpg') center/cover no-repeat;
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,.36), rgba(0,0,0,.36)), url('/hero-orchard.jpg') center/cover no-repeat;
     }
-    .hero > * { position:relative; z-index:1; }
-
-    /* Section background layers */
-    .section-with-bg { position: relative; }
-    .section-with-bg .bg-layer{
-      position: absolute; inset: 0; z-index: 0;
-      background-size: cover; background-position: center; background-repeat: no-repeat;
-    }
-    .section-with-bg .bg-layer::after{
-      content:""; position:absolute; inset:0; background: var(--overlay);
-    }
-    .section-with-bg .content { position: relative; z-index: 1; }
-
-    /* Gentle spacing */
-    .section { padding: 3.5rem 0; }
-    @media (min-width: 768px){ .section { padding: 4rem 0; } }
+    .hero > * { position: relative; z-index: 1; }
   </style>
 </head>
 <body>
-  <!-- Header / Navigation (centered) -->
+  <!-- Header / Navigation -->
   <header class="sticky top-0 z-50 backdrop-blur bg-white/70 border-b border-black/5">
-    <div class="mx-auto max-w-5xl px-4 py-3 flex flex-col items-center gap-3 text-center">
-      <a href="/" class="serif text-2xl font-semibold">PAUSE</a>
-      <nav class="flex flex-wrap justify-center gap-3 text-sm" aria-label="Primary">
+    <div class="mx-auto max-w-5xl px-4 py-3 flex items-center gap-3">
+      <a href="/" class="serif text-xl font-semibold">PAUSE</a>
+      <nav class="ml-auto flex items-center gap-2 text-sm" aria-label="Primary">
         <a href="#booklet" class="btn-ghost">Booklet</a>
         <a href="#audio" class="btn-ghost">Audio</a>
         <a href="#resources" class="btn-ghost">Resources</a>
-        <a href="/reflections.html" class="btn-ghost">Reflection Board</a>
+        <a href="/reflections.html" class="btn">Reflection Board</a>
       </nav>
     </div>
   </header>
 
-<!-- Hero -->
-<section id="home" class="hero">
-  <div class="max-w-2xl px-6 flex flex-col items-center justify-between h-full py-10">
+  <!-- Hero -->
+  <section id="home" class="hero">
     <h1 class="serif text-5xl md:text-6xl font-semibold drop-shadow-sm mt-4">Pause.</h1>
-    <div class="flex flex-col items-center justify-end flex-grow pb-6">
-      <p class="mt-4 text-lg md:text-xl leading-relaxed drop-shadow text-center">
-        If you have come this far, come a little further. You are not alone. Stay a moment. Breathe. This is a quiet place.
-      </p>
-      <div class="mt-10 flex flex-wrap items-center justify-center gap-3">
-        <a href="#booklet" class="btn">Read the Booklet</a>
-        <a href="#audio" class="btn">Listen</a>
-        <a href="/reflections.html" class="btn">Reflection Board</a>
-      </div>
+    <p class="mt-4 text-lg md:text-xl leading-relaxed drop-shadow max-w-2xl">
+      If you have come this far, come a little further. You are not alone. Stay a moment. Breathe. This is a quiet place.
+    </p>
+    <div class="mt-8 mb-4 flex flex-wrap items-center justify-center gap-3">
+      <a href="#booklet" class="btn">Read the Booklet</a>
+      <a href="#audio" class="btn">Listen</a>
+      <a href="/reflections.html" class="btn">Reflection Board</a>
     </div>
-  </div>
-</section>
+  </section>
 
-  <!-- Booklet — single centered card with orchard-soft background -->
-  <section id="booklet" class="section section-with-bg">
-    <div class="bg-layer" style="background-image: url('/orchard-soft.jpg');"></div>
-    <div class="content">
-      <div class="mx-auto max-w-3xl px-4">
-        <div class="card text-center">
-          <h2 class="serif text-3xl">The Pause Booklet</h2>
-          <p class="mt-3 text-[1.05rem]">
-            A small, honest invitation to stop, feel, and remember that you are here.
-            There is time. There are choices. There is help.
-          </p>
-          <div class="mt-5 flex gap-3 flex-wrap justify-center">
-            <a class="btn" href="/pause-for-website.pdf" target="_blank" rel="noopener">Read Here</a>
-            <a class="btn-ghost" href="/pause-for-website.pdf" download>Take it with You</a>
-          </div>
-          <p class="mt-4 text-sm text-black/70">Use it however you need. It’s yours now.</p>
+  <!-- Booklet Section -->
+  <section id="booklet" class="py-14">
+    <div class="mx-auto max-w-5xl px-4 grid md:grid-cols-2 gap-8 items-center">
+      <div class="card">
+        <h2 class="serif text-3xl">The Pause Booklet</h2>
+        <p class="mt-3 text-[1.05rem]">A small, honest invitation to stop, feel, and remember that you are here. There is time. There are choices. There is help.</p>
+        <div class="mt-5 flex gap-3 flex-wrap">
+          <a class="btn" href="/pause-for-website.pdf" target="_blank" rel="noopener">Read Here</a>
+          <a class="btn-ghost" href="/pause-for-website.pdf" download>Take it with You</a>
         </div>
+        <p class="mt-4 text-sm text-black/70">Use it however you need. It’s yours now.</p>
+      </div>
+      <div class="card">
+        <img src="/orchard-soft.jpg" alt="Soft morning light in an orchard" class="w-full h-full object-cover rounded-2xl" />
       </div>
     </div>
   </section>
 
-  <!-- Audio with orchard-light background -->
-  <section id="audio" class="section section-with-bg">
-    <div class="bg-layer" style="background-image: url('/orchard-light.jpg');"></div>
-    <div class="content">
-      <div class="mx-auto max-w-5xl px-4 grid md:grid-cols-2 gap-8 items-center">
-        <div class="card">
-          <h2 class="serif text-3xl">Listen</h2>
-          <p class="mt-3">Play the audio version of <em>Pause</em> here. Take it for a walk. Let it keep you company for a while.</p>
-          <audio controls preload="metadata" class="mt-4 w-full">
-            <source src="/pause-audio.mp3?v=1" type="audio/mpeg">
-            Your browser does not support the audio element.
-          </audio>
-          <div class="mt-5">
-            <a class="btn-ghost" href="/pause-audio.mp3" download>Download Audio</a>
-          </div>
-          <p class="mt-3 text-sm text-black/70">Headphones recommended. Walk if you can. Breathe as you listen.</p>
+  <!-- Audio Section -->
+  <section id="audio" class="py-14">
+    <div class="mx-auto max-w-5xl px-4 grid md:grid-cols-2 gap-8 items-center">
+      <div class="card">
+        <h2 class="serif text-3xl">Listen</h2>
+        <p class="mt-3">Play the audio version of <em>Pause</em> here. Take it for a walk. Let it keep you company for a while.</p>
+        <audio controls preload="metadata" class="mt-4 w-full">
+          <source src="/pause-audio.mp3?v=1" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+        <div class="mt-5">
+          <a class="btn-ghost" href="/pause-audio.mp3" download>Download Audio</a>
         </div>
-        <div class="card">
-          <p class="serif text-xl">“One slow breath at a time.”</p>
-          <p class="mt-2">You can pause the world a little by slowing your body. Let this be a companion on difficult days.</p>
-        </div>
+        <p class="mt-3 text-sm text-black/70">Headphones recommended. Walk if you can. Breathe as you listen.</p>
+      </div>
+      <div class="card">
+        <img src="/orchard-light.jpg" alt="A quiet path through an orchard" class="w-full h-full object-cover rounded-2xl" />
       </div>
     </div>
   </section>
 
-  <!-- Helpful Places with helpful-places.jpg background (extra transparent card) -->
-  <section id="resources" class="section section-with-bg">
-    <div class="bg-layer" style="background-image: url('/helpful-places.jpg');"></div>
-    <div class="content">
-      <div class="mx-auto max-w-5xl px-4">
-        <div class="card" style="background: rgba(255, 255, 255, 0.40); border: 1px solid rgba(0,0,0,0.03); box-shadow:none;">
-          <h2 class="serif text-3xl">Helpful Places</h2>
-          <p class="mt-3">If you’re feeling isolated or thinking about suicide, these may help. Pick one small step.</p>
-          <ul class="mt-5 grid md:grid-cols-2 gap-4 text-[1.05rem]">
-            <li class="p-4 rounded-2xl bg-white/50 border border-black/5">
-              <strong>Emergency (UK & Ireland)</strong><br/>
-              If you’re in immediate danger: <u>call 999 / 112</u>.
-            </li>
-            <li class="p-4 rounded-2xl bg-white/50 border border-black/5">
-              <strong>Samaritans (UK & ROI)</strong><br/>
-              24/7 listening support. Call <u>116 123</u> or visit
-              <a href="https://www.samaritans.org/" target="_blank" rel="noopener" class="underline">samaritans.org</a>.
-            </li>
-            <li class="p-4 rounded-2xl bg-white/50 border border-black/5">
-              <strong>Befrienders Worldwide</strong><br/>
-              Find help in many countries:
-              <a href="https://www.befrienders.org/" target="_blank" rel="noopener" class="underline">befrienders.org</a>.
-            </li>
-            <li class="p-4 rounded-2xl bg-white/50 border border-black/5">
-              <strong>Grounding Music & Books</strong><br/>
-              <em>(You’ll add your curated list here — songs, playlists, books that steady the breath.)</em>
-            </li>
-          </ul>
-          <p class="mt-4 text-sm text-black/70">This site doesn’t track you with accounts or comments. No profiles. No pressure.</p>
-        </div>
+  <!-- Resources Section -->
+  <section id="resources" class="py-14">
+    <div class="mx-auto max-w-5xl px-4">
+      <div class="card">
+        <h2 class="serif text-3xl">Helpful Places</h2>
+        <p class="mt-3">If you’re feeling isolated or thinking about suicide, these may help. Pick one small step.</p>
+        <ul class="mt-5 grid md:grid-cols-2 gap-4 text-[1.05rem]">
+          <li class="p-4 rounded-2xl bg-white/70 border border-black/5">
+            <strong>Emergency (UK & Ireland)</strong><br/>
+            If you’re in immediate danger: <u>call 999 / 112</u>.
+          </li>
+          <li class="p-4 rounded-2xl bg-white/70 border border-black/5">
+            <strong>Samaritans (UK & ROI)</strong><br/>
+            24/7 listening support. Call <u>116 123</u> or visit <a href="https://www.samaritans.org/" target="_blank" rel="noopener" class="underline">samaritans.org</a>.
+          </li>
+          <li class="p-4 rounded-2xl bg-white/70 border border-black/5">
+            <strong>Befrienders Worldwide</strong><br/>
+            Find help in many countries: <a href="https://www.befrienders.org/" target="_blank" rel="noopener" class="underline">befrienders.org</a>.
+          </li>
+          <li class="p-4 rounded-2xl bg-white/70 border border-black/5">
+            <strong>Grounding Music & Books</strong><br/>
+            <em>(You’ll add your curated list here — songs, playlists, books that steady the breath.)</em>
+          </li>
+        </ul>
+        <p class="mt-4 text-sm text-black/70">This site doesn’t track you with accounts or comments. No profiles. No pressure.</p>
       </div>
     </div>
   </section>
