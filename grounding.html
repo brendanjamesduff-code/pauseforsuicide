@@ -3,142 +3,123 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Grounding Music & Books — PAUSE</title>
-  <meta name="description" content="Curated songs, playlists, and books that help you slow down, steady your breath, and reconnect to life. Suggest your own." />
-
+  <title>Grounding Music & Books — Pause</title>
+  <meta name="description" content="A gentle space to find music, books, and words that steady the breath and ground you." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-
   <style>
-    :root{
-      --ink:#1d1d1d;
-      --overlay: rgba(247,246,242,0.18);
-      --card-bg: rgba(249,246,238,0.85);
-      --border:#e2ddd3;
+    :root {
+      --ink: #1d1d1d;
+      --overlay: rgba(247, 246, 242, 0.3);
+      --card-bg: rgba(255, 255, 255, 0.75);
     }
-    body { color: var(--ink); background:#f7f6f2; font-family: Inter, system-ui, sans-serif; }
-    .serif { font-family: "Crimson Text", Georgia, serif; }
-
-    .card{
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, sans-serif;
+      color: var(--ink);
+      background: url('grounding.jpg') center/cover fixed no-repeat;
+      position: relative;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: var(--overlay);
+      z-index: 0;
+    }
+    main {
+      position: relative;
+      z-index: 1;
+    }
+    .btn {
+      background: var(--ink);
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: 0.75rem;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn:hover { background: #000; }
+    .card {
       background: var(--card-bg);
       backdrop-filter: blur(3px);
-      border: 1px solid var(--border);
-      border-radius: 1.25rem;
+      border-radius: 1rem;
       padding: 1.25rem;
-      box-shadow: 0 2px 4px rgba(0,0,0,.08);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:.75rem 1.25rem; border-radius:1rem; font-weight:600;
-      background:#1d1d1d; color:#fff; text-decoration:none; box-shadow:0 1px 2px rgba(0,0,0,.06);
-      transition:transform .12s ease, background .12s ease;
-    }
-    .btn:hover{ background:#000; transform:translateY(-1px); }
-
-    /* Hero/cover area */
-    .hero {
-      position: relative;
-      min-height: 52vh;
-      display: grid;
-      place-items: center;
+    #thanks-message {
+      display: none;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      color: #065f46;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      margin-top: 1rem;
+      opacity: 0;
+      transition: opacity .35s ease;
       text-align: center;
-      color: white;
     }
-    .hero::before{
-      content:"";
-      position:absolute; inset:0; z-index:0;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.18)),
-        url('/grounding.jpg') center/cover no-repeat;
-    }
-    .hero > * { position: relative; z-index: 1; }
-
-    .hero-actions {
-      position: absolute; left: 0; right: 0; bottom: 1.25rem;
-      display: flex; justify-content: center;
-    }
+    #thanks-message.show { opacity: 1; }
   </style>
 </head>
 <body>
-  <!-- Hero with background image -->
-  <header class="hero">
-    <div class="absolute inset-0" style="background: var(--overlay); z-index:0;"></div>
-
-    <!-- Back button inside the hero, matching reflections.html -->
-    <div class="hero-actions">
+  <main class="min-h-screen flex flex-col items-center justify-start p-6">
+    <!-- Back Button -->
+    <div class="w-full max-w-5xl text-left mb-6">
       <a href="/" class="btn">← Back to Pause</a>
     </div>
-  </header>
 
-  <main class="mx-auto max-w-5xl px-4 py-10">
-    <div class="grid md:grid-cols-2 gap-8 items-start">
-      <!-- Left column: curated list -->
+    <!-- Content -->
+    <div class="w-full max-w-5xl grid md:grid-cols-2 gap-8">
       <div class="card">
         <h1 class="serif text-3xl">Grounding Music & Books</h1>
-        <p class="mt-3 text-[1.05rem]">
-          Here are some ideas for music, playlists, and books that steady the breath and bring you back into the moment.
-        </p>
-        <ul class="mt-5 space-y-3">
-          <li class="p-4 rounded-2xl bg-white/75 border border-black/5"><p>“Weightless” – Marconi Union</p></li>
-          <li class="p-4 rounded-2xl bg-white/75 border border-black/5"><p>*The Boy, the Mole, the Fox and the Horse* – Charlie Mackesy</p></li>
-          <li class="p-4 rounded-2xl bg-white/75 border border-black/5"><p>Guided breathing playlists on Spotify / Apple Music</p></li>
+        <p class="mt-3">A place for music, books, and words that steady the breath and keep you grounded.</p>
+        <ul class="mt-4 list-disc list-inside space-y-2">
+          <li><em>Weightless</em> – Marconi Union (scientifically shown to reduce anxiety)</li>
+          <li><em>Wherever You Go, There You Are</em> – Jon Kabat-Zinn</li>
+          <li>Daily meditation playlists (coming soon)</li>
         </ul>
       </div>
 
-      <!-- Right column: suggestion form -->
       <div class="card">
-        <h2 class="serif text-2xl">Suggest a Song or Book</h2>
-        <p class="mt-2">Share what has helped you stay grounded. Suggestions are reviewed before they are added to the list.</p>
-
+        <h2 class="serif text-2xl">Suggest Something</h2>
+        <p class="mt-2">Share music, books, or other grounding material that has helped you or others.</p>
         <form id="grounding-form" class="mt-4 space-y-4" action="https://formspree.io/f/xzzaqpoy" method="POST">
-          <label class="block text-sm font-medium" for="suggestion">Your Suggestion</label>
-          <textarea id="suggestion" name="suggestion" rows="4" required
-            class="w-full rounded-2xl border border-black/10 p-3 focus:outline-none focus:ring-2 focus:ring-black/20"
-            placeholder="Song title, artist, or book…"></textarea>
-
-          <button class="btn" type="submit">Send Suggestion</button>
-          <p class="text-xs text-black/60">Suggestions aren’t posted instantly. They’re reviewed to keep the list supportive and safe.</p>
+          <label class="block text-sm font-medium" for="message">Your Suggestion</label>
+          <textarea id="message" name="message" rows="6" required class="w-full rounded-xl border border-black/10 p-3 focus:outline-none focus:ring-2 focus:ring-black/20" placeholder="Share something grounding…"></textarea>
+          <input type="text" name="_gotcha" style="display:none">
+          <input type="hidden" name="timestamp_utc" id="timestamp_utc">
+          <button class="btn" type="submit">Send</button>
+          <p class="text-xs text-black/60">Suggestions are moderated before publishing. Thank you for sharing.</p>
         </form>
-
-        <div id="thanks-message" style="display:none; background:#f0fdf4; border:1px solid #bbf7d0; color:#065f46; padding:1rem; border-radius:0.75rem; margin-top:1rem; opacity:0; transition:opacity .35s ease; text-align:center;">
-          <strong>Thank you.</strong> Your suggestion has been sent for review.
+        <div id="thanks-message">
+          <strong>Thank you.</strong> Your suggestion has been sent and will be reviewed soon.
         </div>
       </div>
     </div>
   </main>
 
-  <footer class="py-10 border-t border-black/5 text-center text-sm text-black/60">
-    <div class="mx-auto max-w-5xl px-4">
-      <p class="serif text-lg text-black/80">This place is for everyone. Linked to nothing and everything.</p>
-      <p class="mt-2">If you need urgent help, please use the resources on the home page.</p>
-      <p class="mt-6">© 2024 PAUSE</p>
-    </div>
-  </footer>
-
   <script>
+    const ts = document.getElementById('timestamp_utc');
     const form = document.getElementById('grounding-form');
     const thanks = document.getElementById('thanks-message');
     if (form) {
+      if (ts) ts.value = new Date().toISOString();
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
+        if (ts) ts.value = new Date().toISOString();
         try {
           const data = new FormData(form);
-          const res = await fetch(form.action, {
-            method: 'POST',
-            body: data,
-            headers: { 'Accept':'application/json' }
-          });
+          const res = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
           if (res.ok) {
             form.reset();
             thanks.style.display = 'block';
-            requestAnimationFrame(()=> thanks.style.opacity = '1');
-          } else {
-            alert('Sorry—there was a problem sending your suggestion. Please try again.');
-          }
-        } catch {
-          alert('Network error—please try again in a moment.');
+            requestAnimationFrame(() => thanks.classList.add('show'));
+          } else alert('Error sending suggestion. Please try again.');
+        } catch (err) {
+          alert('Network error — please try again.');
         }
       });
     }
