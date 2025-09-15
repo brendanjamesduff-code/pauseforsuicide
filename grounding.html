@@ -4,58 +4,71 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Grounding Music & Books — Pause</title>
-  <meta name="description" content="A gentle space to find music, books, and words that steady the breath and ground you." />
+  <meta name="description" content="Curated music, books, and words that help steady the breath and keep you grounded." />
+
+  <link rel="canonical" href="https://pauseforsuicide.vercel.app/grounding.html">
+  <meta name="robots" content="index,follow">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
     :root {
-      --ink: #1d1d1d;
-      --overlay: rgba(247, 246, 242, 0.3);
-      --card-bg: rgba(255, 255, 255, 0.75);
+      --overlay: rgba(247,246,242,0.35);
+      --card-bg: rgba(249,246,238,0.75);
+      --border: #e2ddd3;
     }
     body {
-      margin: 0;
-      font-family: Inter, system-ui, sans-serif;
-      color: var(--ink);
-      background: url('grounding.jpg') center/cover fixed no-repeat;
-      position: relative;
+      color: #1d1d1d;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial;
+      background: #f7f6f2;
     }
-    body::before {
-      content: "";
+    .bg-layer {
       position: fixed;
       inset: 0;
+      background: url('/grounding.jpg') center/cover no-repeat;
+      z-index: -1;
+    }
+    .bg-layer::after {
+      content: "";
+      position: absolute;
+      inset: 0;
       background: var(--overlay);
-      z-index: 0;
     }
-    main {
-      position: relative;
-      z-index: 1;
-    }
-    .btn {
-      background: var(--ink);
-      color: white;
-      padding: 0.6rem 1.2rem;
-      border-radius: 0.75rem;
-      text-decoration: none;
-      display: inline-block;
-      font-weight: 600;
-    }
-    .btn:hover { background: #000; }
     .card {
       background: var(--card-bg);
       backdrop-filter: blur(3px);
-      border-radius: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 1.25rem;
       padding: 1.25rem;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 4px rgba(0,0,0,.08);
+    }
+    .btn-back {
+      display:inline-block;
+      background:#1d1d1d;
+      color:#fff;
+      padding:0.6rem 1.2rem;
+      border-radius:0.75rem;
+      text-decoration:none;
+      font-weight:600;
+      transition:background .15s ease;
+    }
+    .btn-back:hover { background:#000; }
+    textarea {
+      width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 0.75rem;
+      padding: 0.75rem;
+      resize: vertical;
     }
     #thanks-message {
       display: none;
-      background: #f0fdf4;
+      background: #f0fdf4; /* soft green */
       border: 1px solid #bbf7d0;
       color: #065f46;
-      padding: 1rem;
+      padding: 0.75rem;
       border-radius: 0.75rem;
       margin-top: 1rem;
       opacity: 0;
@@ -66,72 +79,75 @@
   </style>
 </head>
 <body>
-  <main class="min-h-screen flex flex-col items-center justify-start p-6">
-    <!-- Back Button -->
-    <div class="w-full max-w-5xl text-left mb-6">
-      <a href="/" class="btn">← Back to Pause</a>
+  <div class="bg-layer"></div>
+
+  <div class="mx-auto max-w-3xl px-4 py-10">
+    <a href="/" class="btn-back">← Back to Pause</a>
+
+    <div class="card mt-8">
+      <h1 class="serif text-3xl">Grounding Music & Books</h1>
+      <p class="mt-3">A place for music, books, and words that steady the breath and keep you grounded.</p>
+
+      <ul class="mt-4 list-disc list-inside space-y-3">
+        <li>
+          <strong>Song:</strong> 
+          <a href="https://open.spotify.com/track/1FEcYh7yeKjVcO57ZWsyp6?si=lsnZo5GRSWmrGec2NJGT2A"
+             target="_blank" rel="noopener" class="underline text-blue-700 hover:text-blue-900">
+            Listen on Spotify
+          </a>
+        </li>
+        <li>
+          <strong>Book:</strong> 
+          <a href="https://www.google.com/aclk?sa=L&ai=DChsSEwiGib6OtduPAxWelFAGHVcsHl8YACICCAEQExoCZGc&co=1&ase=2&gclid=Cj0KCQjw8p7GBhCjARIsAEhghZ0NHy6bqEuJH6vcif5tESt6ime39USVFDRcA1BoTVLP146pPcuonl4aAqkXEALw_wcB&cce=2&category=acrcp_v1_32&sig=AOD64_0Gu5SzeD1dO3zGdTi3TIKikCxMQA&ctype=5&q=&nis=4&ved=2ahUKEwjfgriOtduPAxVvVUEAHeovEasQ9aACKAB6BAgKEBQ&adurl="
+             target="_blank" rel="noopener" class="underline text-blue-700 hover:text-blue-900">
+            Wherever You Go, There You Are — Jon Kabat-Zinn
+          </a>
+        </li>
+      </ul>
     </div>
 
-    <!-- Content -->
-    <div class="w-full max-w-5xl grid md:grid-cols-2 gap-8">
-      <div class="card">
-        <h1 class="serif text-3xl">Grounding Music & Books</h1>
-        <p class="mt-3">A place for music, books, and words that steady the breath and keep you grounded.</p>
-        <ul class="mt-4 list-disc list-inside space-y-2">
-          <li><em>Weightless</em> – Marconi Union (scientifically shown to reduce anxiety)</li>
-          <li><em>Wherever You Go, There You Are</em> – Jon Kabat-Zinn</li>
-          <li>Daily meditation playlists (coming soon)</li>
-        </ul>
-      </div>
+    <div class="card mt-8">
+      <h2 class="serif text-2xl">Suggest Something Grounding</h2>
+      <p class="mt-2">Have a song, book, or piece of writing that helped you breathe easier? Share it here.</p>
 
-      <div class="card">
-        <h2 class="serif text-2xl">Suggest Something</h2>
-        <p class="mt-2">Share music, books, or other grounding material that has helped you or others.</p>
+      <form id="grounding-form" class="mt-4 space-y-4" action="https://formspree.io/f/xzzaqpoy" method="POST">
+        <textarea name="message" rows="4" required placeholder="Share your suggestion here..."></textarea>
+        <input type="hidden" name="category" value="Grounding Suggestion">
+        <button type="submit" class="btn-back">Send Suggestion</button>
+      </form>
 
-        <form id="grounding-form" class="mt-4 space-y-4" action="https://formspree.io/f/xzzaqpoy" method="POST">
-          <label class="block text-sm font-medium" for="message">Your Suggestion</label>
-          <textarea id="message" name="message" rows="6" required
-            class="w-full rounded-xl border border-black/10 p-3 focus:outline-none focus:ring-2 focus:ring-black/20"
-            placeholder="Share something grounding…"></textarea>
-
-          <label class="block text-sm font-medium" for="consent">
-            <input id="consent" name="consent" type="checkbox" required class="align-middle mr-2">
-            I give permission for this suggestion (without my name) to be shared on this page.
-          </label>
-
-          <input type="text" name="_gotcha" style="display:none">
-          <input type="hidden" name="timestamp_utc" id="timestamp_utc">
-
-          <button class="btn" type="submit">Send Suggestion</button>
-          <p class="text-xs text-black/70">Thanks for helping others find something helpful.</p>
-        </form>
-
-        <div id="thanks-message">
-          <strong>Thank you.</strong> Your suggestion has been sent and will be reviewed soon.
-        </div>
+      <div id="thanks-message">
+        <strong>Thank you!</strong> Thanks for helping others.
       </div>
     </div>
-  </main>
+  </div>
 
   <script>
-    const ts = document.getElementById('timestamp_utc');
     const form = document.getElementById('grounding-form');
     const thanks = document.getElementById('thanks-message');
+
     if (form) {
-      if (ts) ts.value = new Date().toISOString();
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        if (ts) ts.value = new Date().toISOString();
         try {
           const data = new FormData(form);
-          const res = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+          const res = await fetch(form.action, {
+            method: 'POST',
+            body: data,
+            headers: { 'Accept': 'application/json' }
+          });
+
           if (res.ok) {
             form.reset();
-            thanks.style.display = 'block';
-            requestAnimationFrame(() => thanks.classList.add('show'));
-          } else alert('Sorry — there was a problem sending your suggestion. Please try again.');
+            if (thanks) {
+              thanks.style.display = 'block';
+              requestAnimationFrame(() => thanks.classList.add('show'));
+            }
+          } else {
+            alert('Something went wrong. Please try again.');
+          }
         } catch (err) {
-          alert('Network error — please try again.');
+          alert('Network error — please try again later.');
         }
       });
     }
