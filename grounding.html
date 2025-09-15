@@ -36,7 +36,7 @@
       content:""; position:absolute; inset:0; background: var(--overlay);
     }
 
-    /* Cards & buttons */
+    /* Cards & buttons (match site) */
     .card{
       background: var(--card-bg);
       backdrop-filter: blur(3px);
@@ -73,7 +73,7 @@
   <!-- Page background -->
   <div class="bg-underlay"></div>
 
-  <!-- Header / Navigation -->
+  <!-- Header / Navigation (consistent with index) -->
   <header class="sticky top-0 z-50 backdrop-blur bg-white/70 border-b border-black/5">
     <div class="mx-auto max-w-5xl px-4 py-3 flex items-center gap-3">
       <a href="/" class="serif text-xl font-semibold">PAUSE</a>
@@ -125,6 +125,7 @@
         <h2 class="serif text-2xl">Suggest a Grounding Resource</h2>
         <p class="mt-2 text-[1.05rem]">Share a song, a book, or a resource that feels grounded, safe, and meaningful. We’ll review suggestions with care.</p>
 
+        <!-- Using the SAME Formspree endpoint as Reflection Board, per your request -->
         <form id="grounding-form" class="mt-4 space-y-4" action="https://formspree.io/f/xzzaqpoy" method="POST">
           <label class="block text-sm font-medium" for="type">Type</label>
           <select id="type" name="type" class="w-full rounded-xl border border-black/10 p-3" required>
@@ -172,6 +173,7 @@
     const ts = document.getElementById('timestamp_utc');
     if (ts) ts.value = new Date().toISOString();
 
+    // submit via fetch to stay on the page
     const form = document.getElementById('grounding-form');
     const thanks = document.getElementById('thanks');
     if (form) {
@@ -188,7 +190,7 @@
             alert('Sorry—there was a problem sending your suggestion. Please try again.');
           }
         } catch {
-          alert('Network error—please try again in a moment.');
+            alert('Network error—please try again in a moment.');
         }
       });
     }
