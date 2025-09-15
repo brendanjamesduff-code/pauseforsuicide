@@ -6,10 +6,8 @@
   <title>PAUSE — A Quiet Place</title>
   <meta name="description" content="A quiet, human space for anyone feeling overwhelmed or thinking about suicide. Read, listen, reflect." />
 
-  <!-- Canonical (update to pauseforsuicide.com after cutover) -->
+  <!-- Canonical -->
   <link rel="canonical" href="https://pauseforsuicide.vercel.app/">
-
-  <!-- Robots + UI color -->
   <meta name="robots" content="index,follow,max-image-preview:large">
   <meta name="theme-color" content="#f7f6f2">
 
@@ -45,22 +43,23 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Performance -->
+  <!-- Preload key images -->
   <link rel="preload" as="image" href="/hero-orchard.jpg">
   <link rel="preload" as="image" href="/orchard-soft.jpg">
   <link rel="preload" as="image" href="/orchard-light.jpg">
   <link rel="preload" as="image" href="/helpful-places.jpg">
 
   <style>
-    :root{
+    :root {
       --ink:#1d1d1d;
-      --overlay: rgba(247,246,242,0.25); /* light overlay so photos shine */
-      --card-bg: rgba(249,246,238,0.78); /* warm beige card */
+      --overlay: rgba(247,246,242,0.25);
+      --card-bg: rgba(249,246,238,0.78);
       --border:#e2ddd3;
     }
 
-    body { color: var(--ink); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
-    .serif { font-family: "Crimson Text", Georgia, Cambria, "Times New Roman", Times, serif; }
+    body { color: var(--ink); font-family: Inter, system-ui, sans-serif; }
+
+    .serif { font-family: "Crimson Text", Georgia, serif; }
 
     /* Buttons */
     .btn {
@@ -70,6 +69,7 @@
       transition:transform .12s ease, background .12s ease;
     }
     .btn:hover { background:#000; transform:translateY(-1px); }
+
     .btn-ghost {
       display:inline-flex; align-items:center; justify-content:center;
       padding:0.75rem 1.25rem; border-radius:1rem; font-weight:600;
@@ -88,34 +88,49 @@
       box-shadow: 0 2px 4px rgba(0,0,0,.08);
     }
 
-    /* Hero (underlay photo) */
+    /* Hero image section */
     .hero {
       position: relative;
-      min-height: clamp(56vh, 64vh, 72vh);
-      display:grid; place-items:center; text-align:center; color:white;
-      padding: 2rem 1rem;
+      height: clamp(56vh, 64vh, 72vh);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding-top: 3rem;
     }
-    .hero::before{
+    .hero::before {
       content:"";
       position:absolute; inset:0; z-index:0;
       background:
         linear-gradient(180deg, rgba(0,0,0,.32), rgba(0,0,0,.32)),
         url('/hero-orchard.jpg') center/cover no-repeat;
     }
-    .hero > * { position:relative; z-index:1; }
-
-    /* Section underlay helper */
-    .section-with-bg { position: relative; }
-    .section-with-bg .bg-layer{
-      position: absolute; inset: 0; z-index: 0;
-      background-size: cover; background-position: center; background-repeat: no-repeat;
+    .hero > * { position: relative; z-index: 1; }
+    .hero-buttons {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      justify-content: center;
     }
-    .section-with-bg .bg-layer::after{
+
+    /* Section backgrounds */
+    .section-with-bg { position: relative; }
+    .section-with-bg .bg-layer {
+      position: absolute; inset: 0; z-index: 0;
+      background-size: cover; background-position: center;
+      background-repeat: no-repeat;
+    }
+    .section-with-bg .bg-layer::after {
       content:""; position:absolute; inset:0; background: var(--overlay);
     }
     .section-with-bg .content { position: relative; z-index: 1; }
 
-    /* Section spacing */
     .section { padding: 3.5rem 0; }
     @media (min-width: 768px){ .section { padding: 4rem 0; } }
   </style>
@@ -128,43 +143,35 @@
       <nav class="ml-auto flex items-center gap-2 text-sm" aria-label="Primary">
         <a href="#booklet" class="btn-ghost">Booklet</a>
         <a href="#audio" class="btn-ghost">Audio</a>
-        <a href="#resources" class="btn-ghost">Resources</a>
-        <a href="/reflections.html" class="btn">Reflection Board</a>
+        <a href="/reflections.html" class="btn-ghost">Reflection Board</a>
       </nav>
     </div>
   </header>
 
-<!-- Hero -->
-<section id="home" class="hero relative">
-  <div class="max-w-3xl mx-auto px-6 text-center relative z-10 flex flex-col items-center h-full">
-    <!-- Top text -->
-    <div class="mt-6">
-      <h1 class="serif text-6xl md:text-7xl font-semibold drop-shadow-sm">Pause.</h1>
-      <p class="mt-3 text-lg md:text-xl leading-relaxed drop-shadow">
-        If you have come this far, come a little further. You are not alone. Stay a moment. Breathe. This is a quiet place.
-      </p>
-    </div>
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <h1 class="serif text-6xl md:text-7xl font-semibold drop-shadow-sm">Pause.</h1>
+    <p class="mt-3 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed drop-shadow">
+      If you have come this far, come a little further. You are not alone. Stay a moment. Breathe. This is a quiet place.
+    </p>
 
-    <!-- Bottom buttons closer to image edge -->
-    <div class="absolute bottom-3 md:bottom-6 left-1/2 transform -translate-x-1/2 flex flex-wrap justify-center gap-4">
+    <!-- Buttons anchored at bottom of hero image -->
+    <div class="hero-buttons">
       <a href="#booklet" class="btn">Read the Booklet</a>
       <a href="#audio" class="btn">Listen</a>
       <a href="/reflections.html" class="btn">Reflection Board</a>
     </div>
-  </div>
-</section>
-  <!-- Booklet — underlay orchard-soft -->
+  </section>
+
+  <!-- Booklet Section with background -->
   <section id="booklet" class="section section-with-bg">
     <div class="bg-layer" style="background-image: url('/orchard-soft.jpg');"></div>
     <div class="content">
-      <div class="mx-auto max-w-3xl px-4">
-        <div class="card text-center">
+      <div class="mx-auto max-w-5xl px-4 grid md:grid-cols-2 gap-8 items-center">
+        <div class="card">
           <h2 class="serif text-3xl">The Pause Booklet</h2>
-          <p class="mt-3 text-[1.05rem]">
-            A small, honest invitation to stop, feel, and remember that you are here.
-            There is time. There are choices. There is help.
-          </p>
-          <div class="mt-5 flex gap-3 flex-wrap justify-center">
+          <p class="mt-3 text-[1.05rem]">A small, honest invitation to stop, feel, and remember that you are here. There is time. There are choices. There is help.</p>
+          <div class="mt-5 flex gap-3 flex-wrap">
             <a class="btn" href="/pause-for-website.pdf" target="_blank" rel="noopener">Read Here</a>
             <a class="btn-ghost" href="/pause-for-website.pdf" download>Take it with You</a>
           </div>
@@ -174,7 +181,7 @@
     </div>
   </section>
 
-  <!-- Audio — underlay orchard-light -->
+  <!-- Audio Section -->
   <section id="audio" class="section section-with-bg">
     <div class="bg-layer" style="background-image: url('/orchard-light.jpg');"></div>
     <div class="content">
@@ -191,38 +198,32 @@
           </div>
           <p class="mt-3 text-sm text-black/70">Headphones recommended. Walk if you can. Breathe as you listen.</p>
         </div>
-        <div class="card">
-          <p class="serif text-xl">“One slow breath at a time.”</p>
-          <p class="mt-2">You can pause the world a little by slowing your body. Let this be a companion on difficult days.</p>
-        </div>
       </div>
     </div>
   </section>
 
-  <!-- Helpful Places — underlay helpful-places.jpg -->
+  <!-- Helpful Places Section with background -->
   <section id="resources" class="section section-with-bg">
     <div class="bg-layer" style="background-image: url('/helpful-places.jpg');"></div>
     <div class="content">
       <div class="mx-auto max-w-5xl px-4">
-        <div class="card" style="background: rgba(255, 255, 255, 0.40); border: 1px solid rgba(0,0,0,0.03); box-shadow:none;">
+        <div class="card" style="background: rgba(255,255,255,0.5);">
           <h2 class="serif text-3xl">Helpful Places</h2>
           <p class="mt-3">If you’re feeling isolated or thinking about suicide, these may help. Pick one small step.</p>
           <ul class="mt-5 grid md:grid-cols-2 gap-4 text-[1.05rem]">
-            <li class="p-4 rounded-2xl bg-white/50 border border-black/5">
+            <li class="p-4 rounded-2xl bg-white/70 border border-black/5">
               <strong>Emergency (UK & Ireland)</strong><br/>
               If you’re in immediate danger: <u>call 999 / 112</u>.
             </li>
-            <li class="p-4 rounded-2xl bg-white/50 border border-black/5">
+            <li class="p-4 rounded-2xl bg-white/70 border border-black/5">
               <strong>Samaritans (UK & ROI)</strong><br/>
-              24/7 listening support. Call <u>116 123</u> or visit
-              <a href="https://www.samaritans.org/" target="_blank" rel="noopener" class="underline">samaritans.org</a>.
+              24/7 listening support. Call <u>116 123</u> or visit <a href="https://www.samaritans.org/" target="_blank" rel="noopener" class="underline">samaritans.org</a>.
             </li>
-            <li class="p-4 rounded-2xl bg-white/50 border border-black/5">
+            <li class="p-4 rounded-2xl bg-white/70 border border-black/5">
               <strong>Befrienders Worldwide</strong><br/>
-              Find help in many countries:
-              <a href="https://www.befrienders.org/" target="_blank" rel="noopener" class="underline">befrienders.org</a>.
+              Find help in many countries: <a href="https://www.befrienders.org/" target="_blank" rel="noopener" class="underline">befrienders.org</a>.
             </li>
-            <li class="p-4 rounded-2xl bg-white/50 border border-black/5">
+            <li class="p-4 rounded-2xl bg-white/70 border border-black/5">
               <strong>Grounding Music & Books</strong><br/>
               <em>(You’ll add your curated list here — songs, playlists, books that steady the breath.)</em>
             </li>
