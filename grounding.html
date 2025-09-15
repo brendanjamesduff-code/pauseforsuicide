@@ -40,6 +40,7 @@
       border-radius: 0.75rem;
       text-decoration: none;
       display: inline-block;
+      font-weight: 600;
     }
     .btn:hover { background: #000; }
     .card {
@@ -86,14 +87,25 @@
       <div class="card">
         <h2 class="serif text-2xl">Suggest Something</h2>
         <p class="mt-2">Share music, books, or other grounding material that has helped you or others.</p>
+
         <form id="grounding-form" class="mt-4 space-y-4" action="https://formspree.io/f/xzzaqpoy" method="POST">
           <label class="block text-sm font-medium" for="message">Your Suggestion</label>
-          <textarea id="message" name="message" rows="6" required class="w-full rounded-xl border border-black/10 p-3 focus:outline-none focus:ring-2 focus:ring-black/20" placeholder="Share something grounding…"></textarea>
+          <textarea id="message" name="message" rows="6" required
+            class="w-full rounded-xl border border-black/10 p-3 focus:outline-none focus:ring-2 focus:ring-black/20"
+            placeholder="Share something grounding…"></textarea>
+
+          <label class="block text-sm font-medium" for="consent">
+            <input id="consent" name="consent" type="checkbox" required class="align-middle mr-2">
+            I give permission for this suggestion (without my name) to be shared on this page.
+          </label>
+
           <input type="text" name="_gotcha" style="display:none">
           <input type="hidden" name="timestamp_utc" id="timestamp_utc">
-          <button class="btn" type="submit">Send</button>
-          <p class="text-xs text-black/60">Suggestions are moderated before publishing. Thank you for sharing.</p>
+
+          <button class="btn" type="submit">Send Suggestion</button>
+          <p class="text-xs text-black/70">Thanks for helping others find something helpful.</p>
         </form>
+
         <div id="thanks-message">
           <strong>Thank you.</strong> Your suggestion has been sent and will be reviewed soon.
         </div>
@@ -117,7 +129,7 @@
             form.reset();
             thanks.style.display = 'block';
             requestAnimationFrame(() => thanks.classList.add('show'));
-          } else alert('Error sending suggestion. Please try again.');
+          } else alert('Sorry — there was a problem sending your suggestion. Please try again.');
         } catch (err) {
           alert('Network error — please try again.');
         }
