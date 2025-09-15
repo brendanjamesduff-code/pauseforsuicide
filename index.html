@@ -101,7 +101,7 @@
     }
     .hero > * { position:relative; z-index:1; }
 
-    /* Section background layers (auto overlay) */
+    /* Section background layers */
     .section { padding: 3.5rem 0; }
     @media (min-width:768px){ .section { padding: 4rem 0; } }
 
@@ -115,7 +115,7 @@
     }
     .section-with-bg .content { position: relative; z-index: 1; }
 
-    /* --- Get Help Bar Styles --- */
+    /* --- Get Help Bar + Skiplink --- */
     .helpbar {
       position: sticky;
       top: 0;
@@ -127,14 +127,8 @@
       line-height: 1.4;
       text-align: center;
     }
-    .helpbar a {
-      color: #fff;
-      text-decoration: underline;
-    }
-    .helpbar a:focus {
-      outline: 2px solid #fff;
-      outline-offset: 2px;
-    }
+    .helpbar a { color:#fff; text-decoration:underline; }
+    .helpbar a:focus { outline:2px solid #fff; outline-offset:2px; }
     .skiplink {
       position: absolute;
       left: -9999px;
@@ -288,28 +282,21 @@
   <script>
     (function(){
       const layers = document.querySelectorAll('.bg-layer[data-bg]');
-      const tryExts = ['jpg', 'jpeg']; // try .jpg first, then .jpeg
+      const tryExts = ['jpg', 'jpeg'];
 
       layers.forEach(layer => {
         const base = layer.getAttribute('data-bg');
-        let picked = null;
-
         function tryNext(i){
           if (i >= tryExts.length) return;
           const src = `/${base}.${tryExts[i]}`;
           const img = new Image();
-          img.onload = () => {
-            picked = src;
-            layer.style.backgroundImage = `url('${picked}')`;
-          };
+          img.onload = () => layer.style.backgroundImage = `url('${src}')`;
           img.onerror = () => tryNext(i+1);
           img.src = src;
         }
-
         layer.style.backgroundSize = 'cover';
         layer.style.backgroundPosition = 'center';
         layer.style.backgroundRepeat = 'no-repeat';
-
         tryNext(0);
       });
     })();
