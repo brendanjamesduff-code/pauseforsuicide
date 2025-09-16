@@ -78,17 +78,26 @@
     #thanks-message.show { opacity: 1; }
 
     /* --- Get Help Bar + Skiplink --- */
-    .helpbar {
-      position: sticky;
-      top: 0;
-      z-index: 60;
-      background: #0b0b0b;
-      color: #fff;
-      padding: .55rem .9rem;
-      font-size: .95rem;
-      line-height: 1.4;
-      text-align: center;
-    }
+  .helpbar {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: #f9f6ee; /* soft beige instead of black */
+  color: #1d1d1d;      /* dark text for good contrast */
+  padding: .55rem .9rem;
+  font-size: .95rem;
+  line-height: 1.4;
+  text-align: center;
+  border-bottom: 1px solid #e2ddd3; /* subtle divider */
+}
+.helpbar a {
+  color: #1d1d1d;
+  text-decoration: underline;
+}
+.helpbar a:focus {
+  outline: 2px solid #1d1d1d;
+  outline-offset: 2px;
+}
     .helpbar a {
       color: #fff;
       text-decoration: underline;
