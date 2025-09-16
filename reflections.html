@@ -5,15 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Reflections — PAUSE</title>
   <meta name="description" content="A quiet space to read or share reflections left by others. You are not alone." />
+
+  <!-- Fonts & Tailwind -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
     :root {
       --ink:#1d1d1d;
       --overlay: rgba(247, 246, 242, 0.25);
-      --card-bg: rgba(249, 246, 238, 0.78);
+      --card-bg: rgba(249, 246, 238, 0.78); /* warm beige instead of white */
       --border:#e2ddd3;
     }
     html, body { height: 100%; margin: 0; }
@@ -22,6 +25,7 @@
       color: var(--ink);
       background: var(--overlay);
     }
+    /* Background layer with orchard-blossom image */
     .bg-layer {
       position: fixed;
       inset: 0;
@@ -54,24 +58,31 @@
     }
     .btn:hover { background:#000; transform:translateY(-1px); }
 
-    /* --- Get Help Bar + Skiplink --- */
+    /* --- Get Help Bar + Skiplink (BEIGE) --- */
     .helpbar {
       position: sticky;
       top: 0;
       z-index: 60;
-      background: #0b0b0b;
-      color: #fff;
+      background: #f9f6ee; /* soft beige */
+      color: #1d1d1d;      /* dark text for contrast */
       padding: .55rem .9rem;
       font-size: .95rem;
       line-height: 1.4;
       text-align: center;
+      border-bottom: 1px solid #e2ddd3; /* subtle divider */
     }
-    .helpbar a { color:#fff; text-decoration:underline; }
-    .helpbar a:focus { outline:2px solid #fff; outline-offset:2px; }
-    .skiplink {
+    .helpbar a {
+      color: #1d1d1d;
+      text-decoration: underline;
+    }
+    .helpbar a:focus {
+      outline: 2px solid #1d1d1d;
+      outline-offset: 2px;
+    }
+    .skiplink{
       position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;
     }
-    .skiplink:focus {
+    .skiplink:focus{
       left:12px; top:12px; width:auto; height:auto; background:#fff; color:#000;
       padding:.5rem .75rem; border-radius:.5rem; z-index:70;
     }
@@ -127,6 +138,7 @@
             I give permission for my words (without my name) to be published on the Reflection Board.
           </label>
 
+          <!-- Honeypot + timestamp -->
           <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
           <input type="hidden" name="timestamp_utc" id="timestamp_utc" value="">
 
@@ -144,15 +156,14 @@
     </main>
 
     <footer class="py-6 text-center text-sm text-black/60">
-  <p>© 2024 PAUSE</p>
-</footer>
+      <p>© 2024 PAUSE</p>
+    </footer>
   </div>
 
   <script>
     const ts = document.getElementById('timestamp_utc');
     const form = document.getElementById('reflection-form');
     const thanks = document.getElementById('thanks-message');
-    document.getElementById('year').textContent = new Date().getFullYear();
 
     if (form) {
       if (ts) ts.value = new Date().toISOString();
@@ -178,7 +189,7 @@
             alert('Sorry—there was a problem sending your reflection. Please try again.');
           }
         } catch {
-          alert('Network error—please try again in a moment.');
+            alert('Network error—please try again in a moment.');
         }
       });
     }
