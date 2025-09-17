@@ -6,9 +6,10 @@
   <title>PAUSE — A Quiet Place</title>
   <meta name="description" content="A quiet, human space for anyone feeling overwhelmed or thinking about suicide. Read, listen, reflect." />
 
-  <!-- Canonical -->
+  <!-- Canonical (update to pauseforsuicide.com after cutover) -->
   <link rel="canonical" href="https://pauseforsuicide.vercel.app/">
 
+  <!-- Robots + UI color -->
   <meta name="robots" content="index,follow,max-image-preview:large">
   <meta name="theme-color" content="#f7f6f2">
 
@@ -26,23 +27,38 @@
   <meta name="twitter:description" content="A quiet, human space for anyone feeling overwhelmed or thinking about suicide. Read, listen, reflect.">
   <meta name="twitter:image" content="https://pauseforsuicide.vercel.app/hero-orchard.jpg">
 
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "PAUSE",
+    "url": "https://pauseforsuicide.vercel.app/",
+    "inLanguage": "en-GB",
+    "description": "A quiet, human space for anyone feeling overwhelmed or thinking about suicide. Read, listen, reflect."
+  }
+  </script>
+
   <!-- Fonts + Tailwind -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- Performance -->
+  <link rel="preload" as="image" href="/hero-orchard.jpg">
+
   <style>
     :root{
       --ink:#1d1d1d;
       --overlay: rgba(247,246,242,0.25);
-      --card-bg: rgba(249,246,238,0.15); /* lighter for all cards */
+      --card-bg: rgba(249,246,238,0.55);
       --border:#e2ddd3;
     }
 
     html, body { overflow-x: clip; }
 
-    body { color: var(--ink); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial; }
+    body { color: var(--ink); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
     .serif { font-family: "Crimson Text", Georgia, Cambria, "Times New Roman", Times, serif; }
 
     .btn {
@@ -70,6 +86,12 @@
       box-shadow: 0 2px 4px rgba(0,0,0,.08);
     }
 
+    /* Helpful Places - make nearly transparent */
+    #resources .card {
+      background: rgba(249, 246, 238, 0.15);
+    }
+
+    /* Hero */
     .hero {
       position: relative;
       height: clamp(56vh, 64vh, 72vh);
@@ -80,13 +102,16 @@
     .hero::before{
       content:"";
       position:absolute; inset:0; z-index:0;
-      background: linear-gradient(180deg, rgba(0,0,0,.36), rgba(0,0,0,.36)), url('/hero-orchard.jpg') center/cover no-repeat;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.36), rgba(0,0,0,.36)),
+        url('/hero-orchard.jpg') center/cover no-repeat;
     }
     .hero > * { position:relative; z-index:1; }
 
     .section { padding: 3.5rem 0; }
     @media (min-width:768px){ .section { padding: 4rem 0; } }
 
+    .section-with-bg { position: relative; }
     .section-with-bg .bg-layer{
       position: absolute; inset: 0; z-index: 0;
       background-size: cover; background-position: center; background-repeat: no-repeat;
@@ -96,6 +121,7 @@
     }
     .section-with-bg .content { position: relative; z-index: 1; }
 
+    /* Get Help Bar + Skiplink */
     .helpbar {
       position: sticky;
       top: 0;
@@ -259,10 +285,12 @@
     </div>
   </footer>
 
+  <!-- Auto-detect .jpg/.jpeg for background images -->
   <script>
     (function(){
       const layers = document.querySelectorAll('.bg-layer[data-bg]');
       const tryExts = ['jpg', 'jpeg'];
+
       layers.forEach(layer => {
         const base = layer.getAttribute('data-bg');
         function tryNext(i){
