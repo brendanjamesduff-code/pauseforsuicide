@@ -17,25 +17,24 @@
   <style>
     :root {
       --overlay: rgba(247,246,242,0.35);
-      --card-bg: rgba(249,246,238,0.75);
+      /* airy card style to match other pages */
+      --card-bg: rgba(249,246,238,0.15);
       --border: #e2ddd3;
+      --ink: #1d1d1d;
     }
+    html, body { overflow-x: clip; }
     body {
-      color: #1d1d1d;
+      color: var(--ink);
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial;
       background: #f7f6f2;
     }
     .bg-layer {
       position: fixed;
       inset: 0;
-      background: url('/grounding.jpg') center/cover no-repeat;
+      background:
+        linear-gradient(var(--overlay), var(--overlay)),
+        url('/grounding.jpg') center/cover no-repeat;
       z-index: -1;
-    }
-    .bg-layer::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: var(--overlay);
     }
     .card {
       background: var(--card-bg);
@@ -53,15 +52,16 @@
       border-radius:0.75rem;
       text-decoration:none;
       font-weight:600;
-      transition:background .15s ease;
+      transition:background .15s ease, transform .12s ease;
     }
-    .btn-back:hover { background:#000; }
+    .btn-back:hover { background:#000; transform: translateY(-1px); }
     textarea {
       width: 100%;
-      border: 1px solid #ddd;
+      border: 1px solid rgba(0,0,0,0.1);
       border-radius: 0.75rem;
       padding: 0.75rem;
       resize: vertical;
+      background: rgba(255,255,255,0.85);
     }
     #thanks-message {
       display: none;
@@ -77,33 +77,25 @@
     }
     #thanks-message.show { opacity: 1; }
 
-    /* --- Get Help Bar + Skiplink --- */
-  .helpbar {
-  position: sticky;
-  top: 0;
-  z-index: 60;
-  background: #f9f6ee; /* soft beige instead of black */
-  color: #1d1d1d;      /* dark text for good contrast */
-  padding: .55rem .9rem;
-  font-size: .95rem;
-  line-height: 1.4;
-  text-align: center;
-  border-bottom: 1px solid #e2ddd3; /* subtle divider */
-}
-.helpbar a {
-  color: #1d1d1d;
-  text-decoration: underline;
-}
-.helpbar a:focus {
-  outline: 2px solid #1d1d1d;
-  outline-offset: 2px;
-}
+    /* --- Get Help Bar + Skiplink (BEIGE) --- */
+    .helpbar {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      background: #f9f6ee; /* soft beige */
+      color: #1d1d1d;      /* dark text for contrast */
+      padding: .55rem .9rem;
+      font-size: .95rem;
+      line-height: 1.4;
+      text-align: center;
+      border-bottom: 1px solid #e2ddd3; /* subtle divider */
+    }
     .helpbar a {
-      color: #fff;
+      color: #1d1d1d;
       text-decoration: underline;
     }
     .helpbar a:focus {
-      outline: 2px solid #fff;
+      outline: 2px solid #1d1d1d;
       outline-offset: 2px;
     }
     .skiplink {
@@ -128,8 +120,10 @@
   </style>
 </head>
 <body>
+  <div class="bg-layer"></div>
+
   <!-- Get Help Banner -->
-  <a class="skiplink" href="#main">Skip to content</a>
+  <a class="skiplink" href="#content">Skip to content</a>
   <nav aria-label="Get help" class="helpbar">
     <p>
       In an emergency call <strong>999</strong> (UK/IE) or <strong>112</strong> (EU).
@@ -140,9 +134,7 @@
     </p>
   </nav>
 
-  <div class="bg-layer"></div>
-
-  <main id="main" class="mx-auto max-w-3xl px-4 py-10">
+  <div id="content" class="mx-auto max-w-3xl px-4 py-10">
     <a href="/" class="btn-back">← Back to Pause</a>
 
     <div class="card mt-8">
@@ -151,16 +143,16 @@
 
       <ul class="mt-4 list-disc list-inside space-y-3">
         <li>
-          <strong>Song:</strong> 
+          <strong>Song:</strong>
           <a href="https://open.spotify.com/track/1FEcYh7yeKjVcO57ZWsyp6?si=lsnZo5GRSWmrGec2NJGT2A"
-             target="_blank" rel="noopener" class="underline text-blue-700 hover:text-blue-900">
+             target="_blank" rel="noopener" class="underline">
             Listen on Spotify
           </a>
         </li>
         <li>
-          <strong>Book:</strong> 
+          <strong>Book:</strong>
           <a href="https://www.awesomebooks.com/book/9780804831864/zen-flesh-zen-bones"
-             target="_blank" rel="noopener" class="underline text-blue-700 hover:text-blue-900">
+             target="_blank" rel="noopener" class="underline">
             Zen Flesh, Zen Bones — Paul Reps & Nyogen Senzaki
           </a>
         </li>
@@ -181,7 +173,7 @@
         <strong>Thank you!</strong> Thanks for helping others.
       </div>
     </div>
-  </main>
+  </div>
 
   <script>
     const form = document.getElementById('grounding-form');
