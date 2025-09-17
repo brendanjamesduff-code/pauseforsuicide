@@ -52,9 +52,13 @@
     :root{
       --ink:#1d1d1d;
       --overlay: rgba(247,246,242,0.25);
-      --card-bg: rgba(249,246,238,0.78);
+      /* made cards more transparent: 0.78 → 0.65 */
+      --card-bg: rgba(249,246,238,0.65);
       --border:#e2ddd3;
     }
+
+    /* prevent accidental sideways scroll on mobile */
+    html, body { overflow-x: clip; }
 
     body { color: var(--ink); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
     .serif { font-family: "Crimson Text", Georgia, Cambria, "Times New Roman", Times, serif; }
@@ -116,35 +120,35 @@
     .section-with-bg .content { position: relative; z-index: 1; }
 
     /* --- Get Help Bar + Skiplink --- */
-  .helpbar {
-  position: sticky;
-  top: 0;
-  z-index: 60;
-  background: #f9f6ee; /* soft beige instead of black */
-  color: #1d1d1d;      /* dark text for good contrast */
-  padding: .55rem .9rem;
-  font-size: .95rem;
-  line-height: 1.4;
-  text-align: center;
-  border-bottom: 1px solid #e2ddd3; /* subtle divider */
-}
-.helpbar a {
-  color: #1d1d1d;
-  text-decoration: underline;
-}
-.helpbar a:focus {
-  outline: 2px solid #1d1d1d;
-  outline-offset: 2px;
-}
+    .helpbar {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      background: #f9f6ee; /* soft beige */
+      color: #1d1d1d;      /* dark text for contrast */
+      padding: .55rem .9rem;
+      font-size: .95rem;
+      line-height: 1.4;
+      text-align: center;
+      border-bottom: 1px solid #e2ddd3; /* subtle divider */
+    }
+    .helpbar a {
+      color: #1d1d1d;
+      text-decoration: underline;
+    }
+    .helpbar a:focus {
+      outline: 2px solid #1d1d1d;
+      outline-offset: 2px;
+    }
 
-.skiplink {
-  position: absolute;
-  left: -9999px;
-  top: auto;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-}
+    .skiplink {
+      position: absolute;
+      left: -9999px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
     .skiplink:focus {
       left: 12px;
       top: 12px;
@@ -172,18 +176,18 @@
     </p>
   </nav>
 
-<!-- Header -->
-<header class="sticky top-0 z-50 backdrop-blur border-b border-black/5" style="background-color:#f9f6eecc;">
-  <div class="mx-auto max-w-5xl px-4 py-3 flex items-center gap-3">
-    <a href="/" class="serif text-xl font-semibold">PAUSE</a>
-    <nav class="ml-auto flex items-center gap-2 text-sm flex-wrap" aria-label="Primary">
-      <a href="#booklet" class="btn-ghost">Booklet</a>
-      <a href="#audio" class="btn-ghost">Audio</a>
-      <a href="/grounding.html" class="btn-ghost">Grounding</a>
-      <!-- Reflection Board link removed from header -->
-    </nav>
-  </div>
-</header>
+  <!-- Header -->
+  <header class="sticky top-0 z-50 backdrop-blur border-b border-black/5" style="background-color:#f9f6eecc;">
+    <div class="mx-auto max-w-5xl px-4 py-3 flex items-center gap-3">
+      <a href="/" class="serif text-xl font-semibold">PAUSE</a>
+      <nav class="ml-auto flex items-center gap-2 text-sm flex-wrap" aria-label="Primary">
+        <a href="#booklet" class="btn-ghost">Booklet</a>
+        <a href="#audio" class="btn-ghost">Audio</a>
+        <a href="/grounding.html" class="btn-ghost">Grounding</a>
+        <!-- Reflection Board link removed from header -->
+      </nav>
+    </div>
+  </header>
 
   <!-- Hero -->
   <section id="home" class="hero">
@@ -235,10 +239,10 @@
             <a class="btn-ghost" href="/pause-audio.mp3" download>Download Audio</a>
           </div>
         </div>
-       <div class="card">
-  <p class="serif text-xl">“Just take a breath and listen, it might just help.”</p>
-  <p class="mt-2">Come back if you need to.</p>
-</div>
+        <div class="card">
+          <p class="serif text-xl">“Just take a breath and listen, it might just help.”</p>
+          <p class="mt-2">Come back if you need to.</p>
+        </div>
       </div>
     </div>
   </section>
