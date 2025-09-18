@@ -116,11 +116,10 @@
         <p class="text-lg mb-6">
           You are not alone. Others have left notes here — not for advice, but to be with you in this moment. Read gently.
         </p>
-        <ul class="space-y-3">
-          <li class="p-4 rounded-2xl bg-white/80 border border-black/5"><p>“I’m still here. One slow breath at a time.”</p></li>
-          <li class="p-4 rounded-2xl bg-white/80 border border-black/5"><p>“Called a friend today. It helped.”</p></li>
-          <li class="p-4 rounded-2xl bg-white/80 border border-black/5"><p>“I don’t know what tomorrow brings, but I’m willing to see it.”</p></li>
-        </ul>
+        <!-- Dynamic reflections will render here -->
+        <ul id="reflection-list" class="space-y-3" aria-live="polite"></ul>
+        <!-- Empty-state placeholder (hidden by default) -->
+        <p id="empty-state" class="text-black/70 italic mt-2 hidden">No reflections yet — be the first to share.</p>
       </section>
 
       <section class="card">
@@ -162,6 +161,7 @@
   </div>
 
   <script>
+    // ---- Form submit handling (unchanged) ----
     const ts = document.getElementById('timestamp_utc');
     const form = document.getElementById('reflection-form');
     const thanks = document.getElementById('thanks-message');
@@ -190,10 +190,62 @@
             alert('Sorry—there was a problem sending your reflection. Please try again.');
           }
         } catch {
-            alert('Network error—please try again in a moment.');
+          alert('Network error—please try again in a moment.');
         }
       });
     }
+
+    // ---- Reflections loader (JSON-driven) ----
+    function escapeHTML(s) {
+      return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+
+    async function loadReflections() {
+      const list = document.getElementById('reflection-list');
+      const empty = document.getElementById('empty-state');
+      if (!list) return;
+
+      try {
+        const res = await fetch('/reflections.json', { cache: 'no-store' });
+        if (!res.ok) throw new Error('Failed to fetch reflections.json');
+        const data = await res.json();
+
+        list.innerHTML = '';
+
+        if (!Array.isArray(data) || data.length === 0) {
+          if (empty) empty.classList.remove('hidden');
+          return;
+        } else {
+          if (empty) empty.classList.add('hidden');
+        }
+
+        // Optional: newest first by submitted date (fallback to id if no date)
+        data
+          .slice()
+          .sort((a, b) => {
+            const da = Date.parse(a.submitted || 0) || a.id || 0;
+            const db = Date.parse(b.submitted || 0) || b.id || 0;
+            return db - da;
+          })
+          .forEach(item => {
+            const li = document.createElement('li');
+            li.className = "p-4 rounded-2xl bg-white/80 border border-black/5";
+            const safe = escapeHTML(String(item.message || '').trim()).replace(/\n/g, '<br>');
+            li.innerHTML = `<p>${safe}</p>`;
+            list.appendChild(li);
+          });
+
+      } catch (err) {
+        console.error('Error loading reflections:', err);
+        // Soft fallback UI
+        if (empty) {
+          empty.textContent = 'Reflections are taking a moment to load — please refresh.';
+          empty.classList.remove('hidden');
+        }
+      }
+    }
+
+    loadReflections();
   </script>
 </body>
 </html>
