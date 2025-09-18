@@ -1,14 +1,10 @@
-// To add a new reflection, go to https://pauseforsuicide.com/tools/add-reflection.html
-// Paste message, generate code, and add it to this list.
-[
-  {
-    "id": 1,
-    "message": "An incredible site ... filled with hope. Remember you matter.",
-    "submitted": "2025-09-18T09:46:43.730Z"
-  }
-]
 {
-  "id": 1758201429527,
-  "message": "thank you for this place, i just found it.",
-  "submitted": "2025-09-18T13:17:09.527Z"
+  "_instructions": "To add a new reflection, go to https://pauseforsuicide.com/tools/add-reflection.html — Paste message, generate code, and add it below.",
+  "reflections": [
+    {
+      "id": 1758201429527,
+      "message": "thank you for this place, i just found it.",
+      "submitted": "2025-09-18T13:17:09.527Z"
+    }
+  ]
 }
