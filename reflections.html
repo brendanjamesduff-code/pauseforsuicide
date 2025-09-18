@@ -161,102 +161,114 @@
     </footer>
   </div>
 
-  <script>
-    // ---- Form submit handling (unchanged) ----
-    const ts = document.getElementById('timestamp_utc');
-    const form = document.getElementById('reflection-form');
-    const thanks = document.getElementById('thanks-message');
+ <script>
+  // ---- Form submit handling (unchanged) ----
+  const ts = document.getElementById('timestamp_utc');
+  const form = document.getElementById('reflection-form');
+  const thanks = document.getElementById('thanks-message');
 
-    if (form) {
+  if (form) {
+    if (ts) ts.value = new Date().toISOString();
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
       if (ts) ts.value = new Date().toISOString();
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        if (ts) ts.value = new Date().toISOString();
-
-        try {
-          const data = new FormData(form);
-          const res = await fetch(form.action, {
-            method: 'POST',
-            body: data,
-            headers: { 'Accept': 'application/json' }
-          });
-
-          if (res.ok) {
-            form.reset();
-            if (thanks) {
-              thanks.style.display = 'block';
-              requestAnimationFrame(() => thanks.style.opacity = '1');
-            }
-          } else {
-            alert('Sorry—there was a problem sending your reflection. Please try again.');
-          }
-        } catch {
-          alert('Network error—please try again in a moment.');
-        }
-      });
-    }
-
-    // ---- Reflections loader (supports both JSON shapes) ----
-    function escapeHTML(s) {
-      return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-    }
-    function formatDate(iso) {
-      const d = new Date(iso);
-      if (isNaN(d)) return '';
-      // e.g., "18 Sep 2025"
-      return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
-    }
-
-    async function loadReflections() {
-      const list = document.getElementById('reflection-list');
-      const empty = document.getElementById('empty-state');
-      if (!list) return;
 
       try {
-        const res = await fetch('/reflections.json', { cache: 'no-store' });
-        if (!res.ok) throw new Error('Failed to fetch reflections.json');
-        const raw = await res.json();
+        const data = new FormData(form);
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
 
-        // Accept either { reflections: [...] } or plain [...]
-        const data = Array.isArray(raw) ? raw : Array.isArray(raw?.reflections) ? raw.reflections : [];
-
-        list.innerHTML = '';
-
-        if (data.length === 0) {
-          if (empty) empty.classList.remove('hidden');
-          return;
+        if (res.ok) {
+          form.reset();
+          if (thanks) {
+            thanks.style.display = 'block';
+            requestAnimationFrame(() => thanks.style.opacity = '1');
+          }
         } else {
-          if (empty) empty.classList.add('hidden');
+          alert('Sorry—there was a problem sending your reflection. Please try again.');
         }
+      } catch {
+        alert('Network error—please try again in a moment.');
+      }
+    });
+  }
 
-        data
-          .slice()
-          .sort((a, b) => {
-            const da = Date.parse(a.submitted || 0) || a.id || 0;
-            const db = Date.parse(b.submitted || 0) || b.id || 0;
-            return db - da;
-          })
-          .forEach(item => {
-            const li = document.createElement('li');
-            li.className = "p-4 rounded-2xl bg-white/80 border border-black/5";
+  // ---- Reflections loader: tries multiple paths + both JSON shapes ----
+  function escapeHTML(s) {
+    return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+  function formatDate(iso) {
+    const d = new Date(iso);
+    if (isNaN(d)) return '';
+    return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+  }
 
-            const safeMsg = escapeHTML(String(item.message || '').trim()).replace(/\n/g, '<br>');
-            const date = item.submitted ? `<div class="mt-2 text-xs text-black/60">${formatDate(item.submitted)}</div>` : '';
-
-            li.innerHTML = `<p>${safeMsg}</p>${date}`;
-            list.appendChild(li);
-          });
-
-      } catch (err) {
-        console.error('Error loading reflections:', err);
-        if (empty) {
-          empty.textContent = 'Reflections are taking a moment to load — please refresh.';
-          empty.classList.remove('hidden');
-        }
+  async function fetchFirst(paths) {
+    let lastErr;
+    for (const p of paths) {
+      try {
+        const res = await fetch(p, { cache: 'no-store' });
+        if (!res.ok) throw new Error(`HTTP ${res.status} for ${p}`);
+        return await res.json();
+      } catch (e) {
+        lastErr = e;
       }
     }
+    throw lastErr || new Error('No reflections source found');
+  }
 
-    loadReflections();
-  </script>
+  async function loadReflections() {
+    const list = document.getElementById('reflection-list');
+    const empty = document.getElementById('empty-state');
+    if (!list) return;
+
+    try {
+      // Try root first, then /tools/ as a fallback
+      const raw = await fetchFirst(['/reflections.json', '/tools/reflections.json']);
+
+      // Accept either { reflections: [...] } or plain [...]
+      const data = Array.isArray(raw) ? raw : Array.isArray(raw?.reflections) ? raw.reflections : [];
+
+      list.innerHTML = '';
+
+      if (data.length === 0) {
+        if (empty) empty.classList.remove('hidden');
+        return;
+      } else {
+        if (empty) empty.classList.add('hidden');
+      }
+
+      data
+        .slice()
+        .sort((a, b) => {
+          const da = Date.parse(a.submitted || 0) || a.id || 0;
+          const db = Date.parse(b.submitted || 0) || b.id || 0;
+          return db - da;
+        })
+        .forEach(item => {
+          const li = document.createElement('li');
+          li.className = "p-4 rounded-2xl bg-white/80 border border-black/5";
+
+          const safeMsg = escapeHTML(String(item.message || '').trim()).replace(/\n/g, '<br>');
+          const date = item.submitted ? `<div class="mt-2 text-xs text-black/60">${formatDate(item.submitted)}</div>` : '';
+
+          li.innerHTML = `<p>${safeMsg}</p>${date}`;
+          list.appendChild(li);
+        });
+
+    } catch (err) {
+      console.error('Error loading reflections:', err);
+      if (empty) {
+        empty.textContent = 'Reflections are taking a moment to load — please refresh.';
+        empty.classList.remove('hidden');
+      }
+    }
+  }
+
+  loadReflections();
+</script>
 </body>
 </html>
