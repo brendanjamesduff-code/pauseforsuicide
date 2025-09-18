@@ -116,9 +116,10 @@
         <p class="text-lg mb-6">
           You are not alone. Others have left notes here — not for advice, but to be with you in this moment. Read gently.
         </p>
-        <!-- Dynamic reflections will render here -->
+
+        <!-- Dynamic reflections render here -->
         <ul id="reflection-list" class="space-y-3" aria-live="polite"></ul>
-        <!-- Empty-state placeholder (hidden by default) -->
+        <!-- Empty-state placeholder -->
         <p id="empty-state" class="text-black/70 italic mt-2 hidden">No reflections yet — be the first to share.</p>
       </section>
 
@@ -195,9 +196,15 @@
       });
     }
 
-    // ---- Reflections loader (JSON-driven) ----
+    // ---- Reflections loader (supports both JSON shapes) ----
     function escapeHTML(s) {
       return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+    function formatDate(iso) {
+      const d = new Date(iso);
+      if (isNaN(d)) return '';
+      // e.g., "18 Sep 2025"
+      return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
     }
 
     async function loadReflections() {
@@ -208,18 +215,20 @@
       try {
         const res = await fetch('/reflections.json', { cache: 'no-store' });
         if (!res.ok) throw new Error('Failed to fetch reflections.json');
-        const data = await res.json();
+        const raw = await res.json();
+
+        // Accept either { reflections: [...] } or plain [...]
+        const data = Array.isArray(raw) ? raw : Array.isArray(raw?.reflections) ? raw.reflections : [];
 
         list.innerHTML = '';
 
-        if (!Array.isArray(data) || data.length === 0) {
+        if (data.length === 0) {
           if (empty) empty.classList.remove('hidden');
           return;
         } else {
           if (empty) empty.classList.add('hidden');
         }
 
-        // Optional: newest first by submitted date (fallback to id if no date)
         data
           .slice()
           .sort((a, b) => {
@@ -230,14 +239,16 @@
           .forEach(item => {
             const li = document.createElement('li');
             li.className = "p-4 rounded-2xl bg-white/80 border border-black/5";
-            const safe = escapeHTML(String(item.message || '').trim()).replace(/\n/g, '<br>');
-            li.innerHTML = `<p>${safe}</p>`;
+
+            const safeMsg = escapeHTML(String(item.message || '').trim()).replace(/\n/g, '<br>');
+            const date = item.submitted ? `<div class="mt-2 text-xs text-black/60">${formatDate(item.submitted)}</div>` : '';
+
+            li.innerHTML = `<p>${safeMsg}</p>${date}`;
             list.appendChild(li);
           });
 
       } catch (err) {
         console.error('Error loading reflections:', err);
-        // Soft fallback UI
         if (empty) {
           empty.textContent = 'Reflections are taking a moment to load — please refresh.';
           empty.classList.remove('hidden');
