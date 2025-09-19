@@ -52,16 +52,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Performance -->
+  <!-- Performance Preloads -->
   <link rel="preload" as="image" href="/hero-orchard.jpg">
   <link rel="preload" as="image" href="/orchard-light.jpg">
   <link rel="preload" as="image" href="/orchard-soft.jpg">
   <link rel="preload" as="image" href="/helpful-places.jpg">
-  <!-- NEW: Preload the overlay icon -->
   <link rel="preload" as="image" href="/pause-icon.png">
 
   <style>
-    :root{
+    :root {
       --ink:#1d1d1d;
       --overlay: rgba(247,246,242,0.25);
       --card-bg: rgba(249,246,238,0.15);
@@ -105,7 +104,7 @@
       align-items: center; justify-content: center;
       text-align:center; color:white;
     }
-    .hero::before{
+    .hero::before {
       content:"";
       position:absolute; inset:0; z-index:0;
       background:
@@ -114,24 +113,23 @@
     }
     .hero > * { position:relative; z-index:1; }
 
-    /* NEW: allow an overlay element to be truly absolute over the hero */
     .hero .overlay {
       position: absolute; z-index: 2;
       top: 50%; left: 50%;
       transform: translate(-50%, -50%);
-      pointer-events: none; /* keep it non-interactive */
-      filter: drop-shadow(0 2px 6px rgba(0,0,0,.35)); /* subtle lift */
+      pointer-events: none;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,.35));
     }
 
     .section { padding: 3.5rem 0; }
     @media (min-width:768px){ .section { padding: 4rem 0; } }
 
     .section-with-bg { position: relative; }
-    .section-with-bg .bg-layer{
+    .section-with-bg .bg-layer {
       position: absolute; inset: 0; z-index: 0;
       background-size: cover; background-position: center; background-repeat: no-repeat;
     }
-    .section-with-bg .bg-layer::after{
+    .section-with-bg .bg-layer::after {
       content:""; position:absolute; inset:0; background: var(--overlay);
     }
     .section-with-bg .content { position: relative; z-index: 1; }
@@ -209,9 +207,7 @@
 
   <!-- Hero -->
   <section id="home" class="hero">
-    <!-- NEW: centered overlay pause icon (transparent PNG in root) -->
-    <img src="/pause-icon.png" alt="" aria-hidden="true"
-         class="overlay w-28 h-28 md:w-32 md:h-32 lg:w-36 lg:h-36"
+    <img src="/pause-icon.png" alt="" aria-hidden="true" class="overlay w-28 h-28 md:w-32 md:h-32 lg:w-36 lg:h-36">
     <h1 class="serif text-5xl md:text-6xl font-semibold drop-shadow-sm">Pause.</h1>
     <p class="mt-4 text-lg md:text-xl leading-relaxed drop-shadow">
       If you have come this far, come a little further. You are not alone. Stay a moment. Breathe. This is a quiet place.
@@ -278,20 +274,16 @@
           <p class="mt-3">If you’re feeling isolated or thinking about suicide, these may help. Pick one small step.</p>
           <ul class="mt-5 grid md:grid-cols-2 gap-4 text-[1.05rem]">
             <li class="p-4 rounded-2xl bg-white/70 border border-black/5">
-              <strong>Emergency (UK & Ireland)</strong><br/>
-              Call <u>999 / 112</u> for urgent help.
+              <strong>Emergency (UK & Ireland)</strong><br/>Call <u>999 / 112</u> for urgent help.
             </li>
             <li class="p-4 rounded-2xl bg-white/70 border border-black/5">
-              <strong>Emergency (Canada & USA)</strong><br/>
-              Call <u>911</u> for urgent help.
+              <strong>Emergency (Canada & USA)</strong><br/>Call <u>911</u> for urgent help.
             </li>
             <li class="p-4 rounded-2xl bg-white/70 border border-black/5">
-              <strong>Samaritans (UK & ROI)</strong><br/>
-              24/7 listening support. Call <u>116 123</u> or visit <a class="underline" target="_blank" rel="noopener" href="https://www.samaritans.org/">samaritans.org</a>.
+              <strong>Samaritans (UK & ROI)</strong><br/>24/7 listening support. Call <u>116 123</u> or visit <a class="underline" target="_blank" rel="noopener" href="https://www.samaritans.org/">samaritans.org</a>.
             </li>
             <li class="p-4 rounded-2xl bg-white/70 border border-black/5">
-              <strong>Befrienders Worldwide</strong><br/>
-              Find help in many countries: <a class="underline" target="_blank" rel="noopener" href="https://www.befrienders.org/">befrienders.org</a>.
+              <strong>Befrienders Worldwide</strong><br/>Find help in many countries: <a class="underline" target="_blank" rel="noopener" href="https://www.befrienders.org/">befrienders.org</a>.
             </li>
           </ul>
           <div class="mt-6">
@@ -316,7 +308,6 @@
     (function(){
       const layers = document.querySelectorAll('.bg-layer[data-bg]');
       const tryExts = ['jpg', 'jpeg'];
-
       layers.forEach(layer => {
         const base = layer.getAttribute('data-bg');
         function tryNext(i){
@@ -334,7 +325,5 @@
       });
     })();
   </script>
-</body>
-</html>
 </body>
 </html>
