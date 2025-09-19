@@ -57,6 +57,8 @@
   <link rel="preload" as="image" href="/orchard-light.jpg">
   <link rel="preload" as="image" href="/orchard-soft.jpg">
   <link rel="preload" as="image" href="/helpful-places.jpg">
+  <!-- NEW: Preload the overlay icon -->
+  <link rel="preload" as="image" href="/pause-icon.png">
 
   <style>
     :root{
@@ -111,6 +113,15 @@
         url('/hero-orchard.jpg') center/cover no-repeat;
     }
     .hero > * { position:relative; z-index:1; }
+
+    /* NEW: allow an overlay element to be truly absolute over the hero */
+    .hero .overlay {
+      position: absolute; z-index: 2;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none; /* keep it non-interactive */
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,.35)); /* subtle lift */
+    }
 
     .section { padding: 3.5rem 0; }
     @media (min-width:768px){ .section { padding: 4rem 0; } }
@@ -198,6 +209,10 @@
 
   <!-- Hero -->
   <section id="home" class="hero">
+    <!-- NEW: centered overlay pause icon (transparent PNG in root) -->
+    <img src="/pause-icon.png" alt="" aria-hidden="true"
+         class="overlay w-24 h-24 md:w-28 md:h-28 lg:w-32 lg:h-32" />
+
     <h1 class="serif text-5xl md:text-6xl font-semibold drop-shadow-sm">Pause.</h1>
     <p class="mt-4 text-lg md:text-xl leading-relaxed drop-shadow">
       If you have come this far, come a little further. You are not alone. Stay a moment. Breathe. This is a quiet place.
@@ -320,5 +335,7 @@
       });
     })();
   </script>
+</body>
+</html>
 </body>
 </html>
