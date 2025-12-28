@@ -1,88 +1,246 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Listen | Pause for Suicide</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PAUSE — Audio</title>
+  <meta name="description" content="Listen to Pause in different languages. Play online, or download audio and text." />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://pauseforsuicide.com/audio.html">
+
+  <!-- Robots + UI color -->
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#f7f6f2">
+
+  <!-- Favicons / App Icons -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="PAUSE — Audio">
+  <meta property="og:description" content="Listen to Pause in different languages. Play online, or download audio and text.">
+  <meta property="og:url" content="https://pauseforsuicide.com/audio.html">
+  <meta property="og:image" content="https://pauseforsuicide.com/hero-orchard.jpg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PAUSE — Audio">
+  <meta name="twitter:description" content="Listen to Pause in different languages. Play online, or download audio and text.">
+  <meta name="twitter:image" content="https://pauseforsuicide.com/hero-orchard.jpg">
+
+  <!-- Fonts + Tailwind -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Performance Preloads -->
+  <link rel="preload" as="image" href="/orchard-light.jpg">
 
   <style>
+    :root {
+      --ink:#1d1d1d;
+      --overlay: rgba(247,246,242,0.25);
+      --card-bg: rgba(249,246,238,0.15);
+      --border:#e2ddd3;
+    }
+
+    html, body { overflow-x: clip; }
+
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #0f1115;
-      color: #f2f2f2;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
+      color: var(--ink);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: #f7f6f2;
+    }
+    .serif { font-family: "Crimson Text", Georgia, Cambria, "Times New Roman", Times, serif; }
+
+    .btn {
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:0.75rem 1.25rem; border-radius:1rem; font-weight:600;
+      background:var(--ink); color:#fff; text-decoration:none; box-shadow:0 1px 2px rgba(0,0,0,.06);
+      transition:transform .12s ease, background .12s ease;
+    }
+    .btn:hover { background:#000; transform:translateY(-1px); }
+
+    .btn-ghost {
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:0.75rem 1.25rem; border-radius:1rem; font-weight:600;
+      color:var(--ink); text-decoration:none; border:1px solid var(--border); background:#fff;
+      transition:transform .12s ease, background .12s ease;
+    }
+    .btn-ghost:hover { background:#faf9f7; transform:translateY(-1px); }
+
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(3px);
+      border: 1px solid var(--border);
+      border-radius: 1.25rem;
+      padding: 1.25rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,.08);
     }
 
-    main {
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 40px 20px;
+    .helpbar {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      background: #f9f6ee;
+      color: #1d1d1d;
+      padding: .55rem .9rem;
+      font-size: .95rem;
+      line-height: 1.4;
+      text-align: center;
+      border-bottom: 1px solid #e2ddd3;
+    }
+    .helpbar a { color: #1d1d1d; text-decoration: underline; }
+    .helpbar a:focus { outline: 2px solid #1d1d1d; outline-offset: 2px; }
+
+    .skiplink {
+      position: absolute;
+      left: -9999px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+    .skiplink:focus {
+      left: 12px;
+      top: 12px;
+      width: auto;
+      height: auto;
+      background: #fff;
+      color: #000;
+      padding: .5rem .75rem;
+      border-radius: .5rem;
+      z-index: 70;
     }
 
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
+    .section { padding: 3.5rem 0; }
+    @media (min-width:768px){ .section { padding: 4rem 0; } }
 
-    p {
-      opacity: 0.9;
-      margin-bottom: 2rem;
+    .section-with-bg { position: relative; }
+    .section-with-bg .bg-layer {
+      position: absolute; inset: 0; z-index: 0;
+      background-size: cover; background-position: center; background-repeat: no-repeat;
     }
-
-    .language {
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 24px;
+    .section-with-bg .bg-layer::after {
+      content:""; position:absolute; inset:0; background: var(--overlay);
     }
-
-    .language h2 {
-      margin-top: 0;
-      font-size: 1.2rem;
-    }
-
-    audio {
-      width: 100%;
-      margin: 12px 0;
-    }
-
-    .links a {
-      color: #9ecbff;
-      text-decoration: none;
-      margin-right: 12px;
-      font-size: 0.95rem;
-    }
-
-    .links a:hover {
-      text-decoration: underline;
-    }
+    .section-with-bg .content { position: relative; z-index: 1; }
   </style>
+
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0L4CV61PZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-P0L4CV61PZ', { 'anonymize_ip': true });
+  </script>
 </head>
 
 <body>
-  <main>
-    <h1>Listen</h1>
+  <!-- Get Help Banner -->
+  <a class="skiplink" href="#languages">Skip to content</a>
+  <nav aria-label="Get help" class="helpbar">
     <p>
-      Choose a language. You can listen here, or download the audio to listen later.
+      In an emergency call <strong>999</strong> (UK/IE) or <strong>112</strong> (EU).
+      <span aria-hidden="true"> • </span>
+      Samaritans: <a href="tel:116123">116 123</a>
+      <span aria-hidden="true"> • </span>
+      Text <strong>SHOUT</strong> to <a href="sms:+4485258">85258</a>
     </p>
+  </nav>
 
-    <section class="language">
-      <h2>Español (LatAm)</h2>
+  <!-- Header -->
+  <header class="sticky top-0 z-50 backdrop-blur border-b border-black/5" style="background-color:#f9f6eecc;">
+    <div class="mx-auto max-w-5xl px-4 py-3 flex items-center gap-3">
+      <a href="/" class="serif text-xl font-semibold">PAUSE</a>
+      <nav class="ml-auto flex items-center gap-2 text-sm flex-wrap" aria-label="Primary">
+        <a href="/#booklet" class="btn-ghost">Booklet</a>
+        <a href="/audio.html" class="btn">Audio</a>
+        <a href="/grounding.html" class="btn-ghost">Grounding</a>
+      </nav>
+    </div>
+  </header>
 
-      <audio controls preload="none">
-        <source src="/audio/pause-latEsp.ogg" type="audio/ogg">
-        <source src="/audio/pause-latEsp.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
+  <!-- Page -->
+  <section class="section section-with-bg" id="languages">
+    <div class="bg-layer" style="background-image:url('/orchard-light.jpg');"></div>
 
-      <div class="links">
-        <a href="/audio/pause-latEsp.mp3" download>Download MP3</a>
-        <a href="/audio/pause-latEsp.ogg" download>Download OGG</a>
-        <!-- Later: <a href="/text/pause-latEsp.html">Read the text</a> -->
+    <div class="content">
+      <div class="mx-auto max-w-5xl px-4">
+        <div class="card">
+          <h1 class="serif text-4xl md:text-5xl">Audio</h1>
+          <p class="mt-3 text-[1.05rem]">
+            Choose a language. You can listen here, or download the audio and the text.
+          </p>
+          <div class="mt-5 flex flex-wrap gap-3">
+            <a class="btn-ghost" href="/">Back to Home</a>
+            <a class="btn" href="/reflections.html">Reflection Board</a>
+          </div>
+        </div>
+
+        <div class="mt-8 grid md:grid-cols-2 gap-8 items-start">
+          <!-- ENGLISH (existing) -->
+          <div class="card">
+            <h2 class="serif text-3xl">English</h2>
+            <p class="mt-2">Original audio.</p>
+
+            <audio controls preload="metadata" class="mt-4 w-full">
+              <source src="/pause-audio.mp3?v=1" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+
+            <div class="mt-5 flex flex-wrap gap-3">
+              <a class="btn-ghost" href="/pause-audio.mp3" download>Download MP3</a>
+              <a class="btn-ghost" href="/pause-for-website.pdf" download>Download Text (PDF)</a>
+            </div>
+          </div>
+
+          <!-- SPANISH (Latin) -->
+          <div class="card">
+            <h2 class="serif text-3xl">Spanish (Latin)</h2>
+            <p class="mt-2">Audio + downloads.</p>
+
+            <audio controls preload="metadata" class="mt-4 w-full">
+              <source src="/audio/pause-latEsp.ogg" type="audio/ogg">
+              <source src="/audio/pause-latEsp.mp3" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+
+            <div class="mt-5 flex flex-wrap gap-3">
+              <a class="btn-ghost" href="/audio/pause-latEsp.mp3" download>Download MP3</a>
+              <a class="btn-ghost" href="/audio/pause-latEsp.ogg" download>Download OGG</a>
+
+              <!-- Put your Spanish PDF path here when you add it -->
+              <!-- <a class="btn-ghost" href="/translations/pause-latEsp.pdf" download>Download Text (PDF)</a> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 card">
+          <h3 class="serif text-2xl">More languages</h3>
+          <p class="mt-2">
+            When you add new languages, copy one of the cards above and change the file names.
+            Keep each language inside <code>/audio/</code> so it stays clean.
+          </p>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-10 border-t border-black/5 text-center text-sm text-black/60">
+    <div class="mx-auto max-w-5xl px-4">
+      <p class="serif text-lg text-black/80">This place is for everyone. Linked to nothing and everything.</p>
+      <p class="mt-2">If you need urgent help, please use the banner at the top.</p>
+      <p class="mt-6">© 2024 PAUSE</p>
+    </div>
+  </footer>
+</body>
+</html>
 
   </main>
 </body>
