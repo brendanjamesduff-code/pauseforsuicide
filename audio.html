@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Listen | Pause for Suicide</title>
+
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #0f1115;
+      color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    main {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      opacity: 0.9;
+      margin-bottom: 2rem;
+    }
+
+    .language {
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+
+    .language h2 {
+      margin-top: 0;
+      font-size: 1.2rem;
+    }
+
+    audio {
+      width: 100%;
+      margin: 12px 0;
+    }
+
+    .links a {
+      color: #9ecbff;
+      text-decoration: none;
+      margin-right: 12px;
+      font-size: 0.95rem;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <h1>Listen</h1>
+    <p>
+      Choose a language. You can listen here, or download the audio to listen later.
+    </p>
+
+    <section class="language">
+      <h2>Español (LatAm)</h2>
+
+      <audio controls preload="none">
+        <source src="/audio/pause-latEsp.ogg" type="audio/ogg">
+        <source src="/audio/pause-latEsp.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+
+      <div class="links">
+        <a href="/audio/pause-latEsp.mp3" download>Download MP3</a>
+        <a href="/audio/pause-latEsp.ogg" download>Download OGG</a>
+        <!-- Later: <a href="/text/pause-latEsp.html">Read the text</a> -->
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>
