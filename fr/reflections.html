@@ -1,14 +1,17 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Reflections — PAUSE</title>
-  <meta name="description" content="A quiet space to read or share reflections left by others. You are not alone." />
+  <title>Réflexions — PAUSE</title>
+  <meta name="description" content="Un espace calme pour lire ou partager des réflexions laissées par d’autres. Tu n’es pas seul." />
   <meta name="robots" content="index,follow">
 
   <!-- Canonical -->
-  <link rel="canonical" href="https://pauseforsuicide.com/reflections.html">
+  <link rel="canonical" href="https://pauseforsuicide.com/fr/reflections.html">
+
+  <!-- Reduce Google Translate interference on FR pages -->
+  <meta name="google" content="notranslate">
 
   <!-- Fonts & Tailwind -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,7 +23,6 @@
     :root {
       --ink:#1d1d1d;
       --overlay: rgba(247, 246, 242, 0.25);
-      /* airy card style to match home page */
       --card-bg: rgba(249, 246, 238, 0.15);
       --border:#e2ddd3;
     }
@@ -30,7 +32,6 @@
       color: var(--ink);
       background: var(--overlay);
     }
-    /* Background layer with orchard-blossom image */
     .bg-layer {
       position: fixed;
       inset: 0;
@@ -68,13 +69,13 @@
       position: sticky;
       top: 0;
       z-index: 60;
-      background: #f9f6ee; /* soft beige */
-      color: #1d1d1d;      /* dark text for contrast */
+      background: #f9f6ee;
+      color: #1d1d1d;
       padding: .55rem .9rem;
       font-size: .95rem;
       line-height: 1.4;
       text-align: center;
-      border-bottom: 1px solid #e2ddd3; /* subtle divider */
+      border-bottom: 1px solid #e2ddd3;
     }
     .helpbar a {
       color: #1d1d1d;
@@ -102,16 +103,17 @@
     gtag('config', 'G-P0L4CV61PZ', { 'anonymize_ip': true });
   </script>
 </head>
+
 <body>
   <!-- Get Help Banner -->
-  <a class="skiplink" href="#main">Skip to content</a>
-  <nav aria-label="Get help" class="helpbar">
+  <a class="skiplink" href="#main">Aller au contenu</a>
+  <nav aria-label="Obtenir de l’aide" class="helpbar">
     <p>
-      In an emergency call <strong>999</strong> (UK/IE) or <strong>112</strong> (EU).
+      En cas d’urgence, appelle le <strong>999</strong> (UK/IE) ou le <strong>112</strong> (UE).
       <span aria-hidden="true"> • </span>
-      Samaritans: <a href="tel:116123">116 123</a>
+      Samaritans : <a href="tel:116123">116 123</a>
       <span aria-hidden="true"> • </span>
-      Text <strong>SHOUT</strong> to <a href="sms:+4485258">85258</a>
+      Envoie <strong>SHOUT</strong> au <a href="sms:+4485258">85258</a>
     </p>
   </nav>
 
@@ -120,51 +122,55 @@
 
   <div class="page">
     <header class="py-6 text-center">
-      <a href="/" class="serif text-2xl font-semibold hover:underline">← Back to Pause</a>
+      <a href="/fr/" class="serif text-2xl font-semibold hover:underline">← Retour à PAUSE</a>
     </header>
 
     <main id="main" class="flex-grow mx-auto max-w-4xl px-4 space-y-10">
       <section class="card">
-        <h1 class="serif text-4xl mb-4">Reflection Board</h1>
+        <h1 class="serif text-4xl mb-4">Mur de réflexions</h1>
         <p class="text-lg mb-6">
-          You are not alone. Others have left thoughts here — not for advice, but to be with you in this moment. Read gently.
+          Tu n’es pas seul. D’autres ont laissé des mots ici — pas pour donner des conseils, mais pour être avec toi, maintenant.
+          Lis doucement.
         </p>
 
         <!-- Dynamic reflections render here -->
         <ul id="reflection-list" class="space-y-3" aria-live="polite"></ul>
+
         <!-- Empty-state placeholder -->
-        <p id="empty-state" class="text-black/70 italic mt-2 hidden">No reflections yet — be the first to share.</p>
+        <p id="empty-state" class="text-black/70 italic mt-2 hidden">Aucune réflexion pour le moment — tu peux être le premier à partager.</p>
       </section>
 
       <section class="card">
-        <h2 class="serif text-3xl mb-4">Share a Reflection</h2>
+        <h2 class="serif text-3xl mb-4">Partager une réflexion</h2>
         <p class="mb-3">
-          Write whatever you want. It can be one line. It can be a page. No names or emails are needed.
+          Écris ce que tu veux. Une ligne suffit. Une page aussi. Aucun nom ni email n’est nécessaire.
         </p>
 
         <form id="reflection-form" class="space-y-4" action="https://formspree.io/f/xzzaqpoy" method="POST">
           <textarea id="message" name="message" rows="6" required
             class="w-full rounded-2xl border border-black/10 p-3 focus:outline-none focus:ring-2 focus:ring-black/20"
-            placeholder="Write freely… no names needed."></textarea>
+            placeholder="Écris librement… aucun nom nécessaire."></textarea>
 
           <label class="block text-sm font-medium" for="consent">
             <input id="consent" name="consent" type="checkbox" required class="align-middle mr-2">
-            I give permission for my words (without my name) to be published on the Reflection Board.
+            J’autorise la publication de mes mots (sans mon nom) sur le Mur de réflexions.
           </label>
 
           <!-- Honeypot + timestamp -->
           <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
           <input type="hidden" name="timestamp_utc" id="timestamp_utc" value="">
 
-          <button class="btn" type="submit">Send Reflection</button>
+          <button class="btn" type="submit">Envoyer</button>
+
           <p class="text-xs text-black/60">
-            Submissions aren’t monitored constantly. If you need immediate help, use the resources on the main page.
+            Les messages ne sont pas surveillés en continu. Si tu as besoin d’aide tout de suite, utilise les ressources de la page principale.
           </p>
         </form>
 
-        <div id="thanks-message" style="display:none; background:#f0fdf4; border:1px solid #bbf7d0; color:#065f46; padding:1rem; border-radius:0.75rem; margin-top:1rem; opacity:0; transition:opacity .35s ease; text-align:center;">
-          <strong>Thank you.</strong> Never underestimate the power your words have to help someone.
-          You’ve just taken a moment to help others feel less alone.
+        <div id="thanks-message"
+          style="display:none; background:#f0fdf4; border:1px solid #bbf7d0; color:#065f46; padding:1rem; border-radius:0.75rem; margin-top:1rem; opacity:0; transition:opacity .35s ease; text-align:center;">
+          <strong>Merci.</strong> Ne sous-estime jamais la force que tes mots peuvent avoir pour aider quelqu’un.
+          Tu viens d’offrir un instant qui peut faire sentir une personne moins seule.
         </div>
       </section>
     </main>
@@ -174,114 +180,113 @@
     </footer>
   </div>
 
- <script>
-  // ---- Form submit handling (unchanged) ----
-  const ts = document.getElementById('timestamp_utc');
-  const form = document.getElementById('reflection-form');
-  const thanks = document.getElementById('thanks-message');
+  <script>
+    // ---- Form submit handling (same logic) ----
+    const ts = document.getElementById('timestamp_utc');
+    const form = document.getElementById('reflection-form');
+    const thanks = document.getElementById('thanks-message');
 
-  if (form) {
-    if (ts) ts.value = new Date().toISOString();
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
+    if (form) {
       if (ts) ts.value = new Date().toISOString();
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (ts) ts.value = new Date().toISOString();
 
-      try {
-        const data = new FormData(form);
-        const res = await fetch(form.action, {
-          method: 'POST',
-          body: data,
-          headers: { 'Accept': 'application/json' }
-        });
+        try {
+          const data = new FormData(form);
+          const res = await fetch(form.action, {
+            method: 'POST',
+            body: data,
+            headers: { 'Accept': 'application/json' }
+          });
 
-        if (res.ok) {
-          form.reset();
-          if (thanks) {
-            thanks.style.display = 'block';
-            requestAnimationFrame(() => thanks.style.opacity = '1');
+          if (res.ok) {
+            form.reset();
+            if (thanks) {
+              thanks.style.display = 'block';
+              requestAnimationFrame(() => thanks.style.opacity = '1');
+            }
+          } else {
+            alert('Désolé — un problème est survenu lors de l’envoi. Réessaie, s’il te plaît.');
           }
-        } else {
-          alert('Sorry—there was a problem sending your reflection. Please try again.');
+        } catch {
+          alert('Erreur réseau — réessaie dans un instant.');
         }
-      } catch {
-        alert('Network error—please try again in a moment.');
+      });
+    }
+
+    // ---- Reflections loader: tries multiple paths + both JSON shapes ----
+    function escapeHTML(s) {
+      return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+
+    function formatDate(iso) {
+      const d = new Date(iso);
+      if (isNaN(d)) return '';
+      return d.toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric' });
+    }
+
+    async function fetchFirst(paths) {
+      let lastErr;
+      for (const p of paths) {
+        try {
+          const res = await fetch(p, { cache: 'no-store' });
+          if (!res.ok) throw new Error(`HTTP ${res.status} for ${p}`);
+          return await res.json();
+        } catch (e) {
+          lastErr = e;
+        }
       }
-    });
-  }
+      throw lastErr || new Error('No reflections source found');
+    }
 
-  // ---- Reflections loader: tries multiple paths + both JSON shapes ----
-  function escapeHTML(s) {
-    return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  }
-  function formatDate(iso) {
-    const d = new Date(iso);
-    if (isNaN(d)) return '';
-    return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
-  }
+    async function loadReflections() {
+      const list = document.getElementById('reflection-list');
+      const empty = document.getElementById('empty-state');
+      if (!list) return;
 
-  async function fetchFirst(paths) {
-    let lastErr;
-    for (const p of paths) {
       try {
-        const res = await fetch(p, { cache: 'no-store' });
-        if (!res.ok) throw new Error(`HTTP ${res.status} for ${p}`);
-        return await res.json();
-      } catch (e) {
-        lastErr = e;
+        const raw = await fetchFirst(['/reflections.json', '/tools/reflections.json']);
+
+        const data = Array.isArray(raw) ? raw : Array.isArray(raw?.reflections) ? raw.reflections : [];
+
+        list.innerHTML = '';
+
+        if (data.length === 0) {
+          if (empty) empty.classList.remove('hidden');
+          return;
+        } else {
+          if (empty) empty.classList.add('hidden');
+        }
+
+        data
+          .slice()
+          .sort((a, b) => {
+            const da = Date.parse(a.submitted || 0) || a.id || 0;
+            const db = Date.parse(b.submitted || 0) || b.id || 0;
+            return db - da;
+          })
+          .forEach(item => {
+            const li = document.createElement('li');
+            li.className = "p-4 rounded-2xl bg-white/80 border border-black/5";
+
+            const safeMsg = escapeHTML(String(item.message || '').trim()).replace(/\n/g, '<br>');
+            const date = item.submitted ? `<div class="mt-2 text-xs text-black/60">${formatDate(item.submitted)}</div>` : '';
+
+            li.innerHTML = `<p>${safeMsg}</p>${date}`;
+            list.appendChild(li);
+          });
+
+      } catch (err) {
+        console.error('Error loading reflections:', err);
+        if (empty) {
+          empty.textContent = 'Les réflexions prennent un moment à charger — actualise la page.';
+          empty.classList.remove('hidden');
+        }
       }
     }
-    throw lastErr || new Error('No reflections source found');
-  }
 
-  async function loadReflections() {
-    const list = document.getElementById('reflection-list');
-    const empty = document.getElementById('empty-state');
-    if (!list) return;
-
-    try {
-      // Try root first, then /tools/ as a fallback
-      const raw = await fetchFirst(['/reflections.json', '/tools/reflections.json']);
-
-      // Accept either { reflections: [...] } or plain [...]
-      const data = Array.isArray(raw) ? raw : Array.isArray(raw?.reflections) ? raw.reflections : [];
-
-      list.innerHTML = '';
-
-      if (data.length === 0) {
-        if (empty) empty.classList.remove('hidden');
-        return;
-      } else {
-        if (empty) empty.classList.add('hidden');
-      }
-
-      data
-        .slice()
-        .sort((a, b) => {
-          const da = Date.parse(a.submitted || 0) || a.id || 0;
-          const db = Date.parse(b.submitted || 0) || b.id || 0;
-          return db - da;
-        })
-        .forEach(item => {
-          const li = document.createElement('li');
-          li.className = "p-4 rounded-2xl bg-white/80 border border-black/5";
-
-          const safeMsg = escapeHTML(String(item.message || '').trim()).replace(/\n/g, '<br>');
-          const date = item.submitted ? `<div class="mt-2 text-xs text-black/60">${formatDate(item.submitted)}</div>` : '';
-
-          li.innerHTML = `<p>${safeMsg}</p>${date}`;
-          list.appendChild(li);
-        });
-
-    } catch (err) {
-      console.error('Error loading reflections:', err);
-      if (empty) {
-        empty.textContent = 'Reflections are taking a moment to load — please refresh.';
-        empty.classList.remove('hidden');
-      }
-    }
-  }
-
-  loadReflections();
-</script>
+    loadReflections();
+  </script>
 </body>
 </html>
