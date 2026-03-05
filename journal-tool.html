@@ -5,26 +5,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add Journal Entry (JSON Tool)</title>
+<title>Pause Journal – Entry Tool</title>
+<meta name="robots" content="noindex,nofollow">
 
 <style>
-
 body{
 font-family: Arial, sans-serif;
-max-width:800px;
+max-width:900px;
 margin:auto;
 padding:40px 20px;
 background:#f7f6f2;
 line-height:1.6;
+color:#1d1d1d;
 }
 
-h1{
-margin-bottom:10px;
-}
+h1{ margin-bottom:6px; }
+p{ margin-top:0; color:#333; }
 
 label{
 display:block;
-margin-top:20px;
+margin-top:18px;
 font-weight:bold;
 }
 
@@ -35,14 +35,23 @@ margin-top:6px;
 border:1px solid #ccc;
 border-radius:6px;
 font-size:16px;
+background:white;
 }
 
-textarea{
-height:160px;
+textarea{ min-height:140px; }
+
+.row{
+display:grid;
+grid-template-columns: 1fr 1fr;
+gap:14px;
+}
+
+@media (max-width:700px){
+.row{ grid-template-columns: 1fr; }
 }
 
 button{
-margin-top:20px;
+margin-top:16px;
 padding:12px 18px;
 font-size:16px;
 background:black;
@@ -52,64 +61,176 @@ border-radius:6px;
 cursor:pointer;
 }
 
-button:hover{
-opacity:0.9;
+button:hover{ opacity:0.9; }
+
+.secondary{
+background:#444;
+}
+
+.small{
+font-size:14px;
+color:#555;
 }
 
 .result{
-margin-top:30px;
+margin-top:18px;
 background:#eee;
-padding:20px;
+padding:16px;
 border-radius:6px;
-font-family:monospace;
+font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 white-space:pre-wrap;
+overflow:auto;
 }
 
+.notice{
+margin-top:12px;
+padding:12px 14px;
+background:#fff;
+border:1px solid rgba(0,0,0,.08);
+border-radius:8px;
+}
+
+hr{
+border:none;
+border-top:1px solid rgba(0,0,0,.12);
+margin:26px 0;
+}
 </style>
 
 </head>
 
 <body>
 
-<h1>Add Journal Entry (JSON Tool)</h1>
+<h1>Pause Journal – Entry Tool</h1>
+<p class="small">This tool helps you add a new journal entry safely and quickly. Nothing is uploaded anywhere.</p>
 
-<p>Fill in the fields and click <strong>Generate JSON</strong> to create a correctly formatted journal entry.</p>
+<div class="notice">
+<strong>How to use</strong><br>
+1) Copy your current <code>journal.json</code> into the box below.<br>
+2) Write the new entry and click <strong>Generate + Insert at Top</strong>.<br>
+3) Click <strong>Copy Updated journal.json</strong> and paste it back into GitHub (replace the file contents).<br>
+4) Commit.
+</div>
 
-<label>Title</label>
-<input id="title" placeholder="Example: Why Pause Matters">
+<label>Current journal.json (paste the whole file here)</label>
+<textarea id="existing" placeholder='Paste your current journal.json here (it should start with [ and end with ])'></textarea>
 
-<label>Date</label>
-<input id="date" placeholder="Example: 5 March 2026">
+<hr>
+
+<div class="row">
+  <div>
+    <label>Title</label>
+    <input id="title" placeholder="Example: Why Pause Matters">
+  </div>
+  <div>
+    <label>Date</label>
+    <input id="date" placeholder="Example: 6 March 2026">
+  </div>
+</div>
 
 <label>Content (one paragraph per line)</label>
-<textarea id="content" placeholder="Write the journal entry here. Press Enter for a new paragraph."></textarea>
+<textarea id="content" placeholder="Write the entry here. Press Enter for a new paragraph."></textarea>
 
-<button onclick="generate()">Generate JSON</button>
+<button onclick="insertAtTop()">Generate + Insert at Top</button>
+<button class="secondary" onclick="copyUpdated()">Copy Updated journal.json</button>
 
-<h2>Result</h2>
+<div class="notice" id="status" style="display:none;"></div>
 
-<div class="result" id="result">(Your JSON will appear here)</div>
+<h2 style="margin-top:22px;">Updated journal.json</h2>
+<div class="result" id="result">(It will appear here)</div>
 
 <script>
+let updatedJsonText = "";
 
-function generate(){
+function showStatus(msg, ok=true){
+const el = document.getElementById("status");
+el.style.display = "block";
+el.style.background = ok ? "#e7f6ea" : "#fde8e8";
+el.style.borderColor = ok ? "rgba(0,0,0,.12)" : "rgba(200,0,0,.25)";
+el.innerHTML = msg;
+}
 
-const title = document.getElementById("title").value;
-const date = document.getElementById("date").value;
-const content = document.getElementById("content").value;
+function safeParseJson(text){
+try{
+return JSON.parse(text);
+}catch(e){
+return null;
+}
+}
 
-const paragraphs = content.split("\n").filter(p => p.trim() !== "");
+function insertAtTop(){
+const existingText = document.getElementById("existing").value.trim();
+const title = document.getElementById("title").value.trim();
+const date = document.getElementById("date").value.trim();
+const contentRaw = document.getElementById("content").value;
 
-const json = {
+if(!existingText){
+showStatus("Please paste your current <code>journal.json</code> into the first box.", false);
+return;
+}
+
+const parsed = safeParseJson(existingText);
+if(!parsed || !Array.isArray(parsed)){
+showStatus("I couldn’t read that as a valid JSON array. Make sure you pasted the full <code>journal.json</code> (it should start with <code>[</code> and end with <code>]</code>).", false);
+return;
+}
+
+if(!title){
+showStatus("Please add a title.", false);
+return;
+}
+
+if(!date){
+showStatus("Please add a date.", false);
+return;
+}
+
+const paragraphs = contentRaw
+.split("\n")
+.map(p => p.trim())
+.filter(p => p !== "");
+
+if(paragraphs.length === 0){
+showStatus("Please add some content (one paragraph per line).", false);
+return;
+}
+
+const newEntry = {
 title: title,
 date: date,
 content: paragraphs
 };
 
-document.getElementById("result").textContent = JSON.stringify(json, null, 2);
+// Insert newest at the top
+parsed.unshift(newEntry);
 
+// Pretty-print JSON
+updatedJsonText = JSON.stringify(parsed, null, 2);
+document.getElementById("result").textContent = updatedJsonText;
+
+showStatus("Done. Your new entry has been added to the top. Now click <strong>Copy Updated journal.json</strong> and paste it into GitHub.", true);
 }
 
+async function copyUpdated(){
+if(!updatedJsonText){
+showStatus("Nothing to copy yet. Click <strong>Generate + Insert at Top</strong> first.", false);
+return;
+}
+
+try{
+await navigator.clipboard.writeText(updatedJsonText);
+showStatus("Copied to clipboard. Open <code>journal.json</code> in GitHub, replace the contents, and commit.", true);
+}catch(e){
+// Fallback: select the text for manual copy
+const range = document.createRange();
+const resultEl = document.getElementById("result");
+range.selectNodeContents(resultEl);
+const sel = window.getSelection();
+sel.removeAllRanges();
+sel.addRange(range);
+showStatus("Clipboard copy was blocked by your browser. I selected the text for you—now press <strong>Ctrl+C</strong> (or Cmd+C).", false);
+}
+}
 </script>
 
 </body>
