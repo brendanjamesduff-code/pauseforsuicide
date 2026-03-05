@@ -1,1 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reflections — PAUSE</title>
+  <meta name="description" content="A quiet space to read or share reflections left by others. You are not alone." />
+  <meta name="robots" content="index,follow">
 
+  <!-- Canonical -->
+  <link rel="canonical" href="https://pauseforsuicide.com/reflections.html">
+
+  <!-- Fonts & Tailwind -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root {
+      --ink:#1d1d1d;
+      --overlay: rgba(247, 246, 242, 0.25);
+      /* airy card style to match home page */
+      --card-bg: rgba(249, 246, 238, 0.15);
+      --border:#e2ddd3;
+    }
+    html, body { height: 100%; margin: 0; overflow-x: clip; }
+    body {
+      font-family: Inter, system-ui, sans-serif;
+      color: var(--ink);
+      background: var(--overlay);
+    }
+    /* Background layer with orchard-blossom image */
+    .bg-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background:
+        linear-gradient(var(--overlay), var(--overlay)),
+        url('/orchard-blossom.jpg?v=1') center/cover no-repeat;
+    }
+    .page {
+      position: relative;
+      z-index: 1;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+    }
+    .serif { font-family: "Crimson Text", serif; }
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(3px);
+      border: 1px solid var(--border);
+      border-radius: 1.25rem;
+      padding: 1.25rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,.08);
+    }
+    .btn {
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:0.75rem 1.25rem; border-radius:1rem; font-weight:600;
+      background:var(--ink); color:#fff; text-decoration:none;
+      transition:transform .12s ease, background .12s ease;
+    }
+    .btn:hover { background:#000; transform:translateY(-1px); }
+
+    /* --- Get Help Bar + Skiplink (BEIGE) --- */
+    .helpbar {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      background: #f9f6ee; /* soft beige */
+      color: #1d1d1d;      /* dark text for contrast */
+      padding: .55rem .9rem;
+      font-size: .95rem;
+      line-height: 1.4;
+      text-align: center;
+      border-bottom: 1px solid #e2ddd3; /* subtle divider */
+    }
+    .helpbar a {
+      color: #1d1d1d;
+      text-decoration: underline;
+    }
+    .helpbar a:focus {
+      outline: 2px solid #1d1d1d;
+      outline-offset: 2px;
+    }
+    .skiplink{
+      position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;
+    }
+    .skiplink:focus{
+      left:12px; top:12px; width:auto; height:auto; background:#fff; color:#000;
+      padding:.5rem .75rem; border-radius:.5rem; z-index:70;
+    }
+  </style>
+
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0L4CV61PZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-P0L4CV61PZ', { 'anonymize_ip': true });
+  </script>
+</head>
+<body>
+  <!-- Get Help Banner -->
+  <a class="skiplink" href="#main">Skip to content</a>
+  <nav aria-label="Get help" class="helpbar">
+    <p>
+      In an emergency call <strong>999</strong> (UK/IE) or <strong>112</strong> (EU).
+      <span aria-hidden="true"> • </span>
+      Samaritans: <a href="tel:116123">116 123</a>
+      <span aria-hidden="true"> • </span>
+      Text <strong>SHOUT</strong> to <a href="sms:+4485258">85258</a>
+    </p>
+  </nav>
+
+  <!-- Background image layer -->
+  <div class="bg-layer" aria-hidden="true"></div>
+
+  <div class="page">
+    <header class="py-6 text-center">
+      <a href="/" class="serif text-2xl font-semibold hover:underline">← Back to Pause</a>
+    </header>
+
+    <main id="main" class="flex-grow mx-auto max-w-4xl px-4 space-y-10">
+      <section class="card">
+        <h1 class="serif text-4xl mb-4">Reflection Board</h1>
+        <p class="text-lg mb-6">
+          You are not alone. Others have left thoughts here — not for advice, but to be with you in this moment. Read gently.
+        </p>
+
+        <!-- Dynamic reflections render here -->
+        <ul id="reflection-list" class="space-y-3" aria-live="polite"></ul>
+        <!-- Empty-state placeholder -->
+        <p id="empty-state" class="text-black/70 italic mt-2 hidden">No reflections yet — be the first to share.</p>
+      </section>
+
+      <section class="card">
+        <h2 class="serif text-3xl mb-4">Share a Reflection</h2>
+        <p class="mb-3">
+          Write whatever you want. It can be one line. It can be a page. No names or emails are needed.
+        </p>
+
+        <form id="reflection-form" class="space-y-4" action="https://formspree.io/f/xzzaqpoy" method="POST">
+          <textarea id="message" name="message" rows="6" required
+            class="w-full rounded-2xl border border-black/10 p-3 focus:outline-none focus:ring-2 focus:ring-black/20"
+            placeholder="Write freely… no names needed."></textarea>
+
+          <label class="block text-sm font-medium" for="consent">
+            <input id="consent" name="consent" type="checkbox" required class="align-middle mr-2">
+            I give permission for my words (without my name) to be published on the Reflection Board.
+          </label>
+
+          <!-- Honeypot + timestamp -->
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+          <input type="hidden" name="timestamp_utc" id="timestamp_utc" value="">
+
+          <button class="btn" type="submit">Send Reflection</button>
+          <p class="text-xs text-black/60">
+            Submissions aren’t monitored constantly. If you need immediate help, use the resources on the main page.
+          </p>
+        </form>
+
+        <div id="thanks-message" style="display:none; background:#f0fdf4; border:1px solid #bbf7d0; color:#065f46; padding:1rem; border-radius:0.75rem; margin-top:1rem; opacity:0; transition:opacity .35s ease; text-align:center;">
+          <strong>Thank you.</strong> Never underestimate the power your words have to help someone.
+          You’ve just taken a moment to help others feel less alone.
+        </div>
+      </section>
+    </main>
+
+    <footer class="py-6 text-center text-sm text-black/60">
+      <p>© 2024 PAUSE</p>
+    </footer>
+  </div>
+
+ <script>
+  // ---- Form submit handling (unchanged) ----
+  const ts = document.getElementById('timestamp_utc');
+  const form = document.getElementById('reflection-form');
+  const thanks = document.getElementById('thanks-message');
+
+  if (form) {
+    if (ts) ts.value = new Date().toISOString();
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (ts) ts.value = new Date().toISOString();
+
+      try {
+        const data = new FormData(form);
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (res.ok) {
+          form.reset();
+          if (thanks) {
+            thanks.style.display = 'block';
+            requestAnimationFrame(() => thanks.style.opacity = '1');
+          }
+        } else {
+          alert('Sorry—there was a problem sending your reflection. Please try again.');
+        }
+      } catch {
+        alert('Network error—please try again in a moment.');
+      }
+    });
+  }
+
+  // ---- Reflections loader: tries multiple paths + both JSON shapes ----
+  function escapeHTML(s) {
+    return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+  function formatDate(iso) {
+    const d = new Date(iso);
+    if (isNaN(d)) return '';
+    return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+  }
+
+  async function fetchFirst(paths) {
+    let lastErr;
+    for (const p of paths) {
+      try {
+        const res = await fetch(p, { cache: 'no-store' });
+        if (!res.ok) throw new Error(`HTTP ${res.status} for ${p}`);
+        return await res.json();
+      } catch (e) {
+        lastErr = e;
+      }
+    }
+    throw lastErr || new Error('No reflections source found');
+  }
+
+  async function loadReflections() {
+    const list = document.getElementById('reflection-list');
+    const empty = document.getElementById('empty-state');
+    if (!list) return;
+
+    try {
+      // Try root first, then /tools/ as a fallback
+      const raw = await fetchFirst(['/reflections.json', '/tools/reflections.json']);
+
+      // Accept either { reflections: [...] } or plain [...]
+      const data = Array.isArray(raw) ? raw : Array.isArray(raw?.reflections) ? raw.reflections : [];
+
+      list.innerHTML = '';
+
+      if (data.length === 0) {
+        if (empty) empty.classList.remove('hidden');
+        return;
+      } else {
+        if (empty) empty.classList.add('hidden');
+      }
+
+      data
+        .slice()
+        .sort((a, b) => {
+          const da = Date.parse(a.submitted || 0) || a.id || 0;
+          const db = Date.parse(b.submitted || 0) || b.id || 0;
+          return db - da;
+        })
+        .forEach(item => {
+          const li = document.createElement('li');
+          li.className = "p-4 rounded-2xl bg-white/80 border border-black/5";
+
+          const safeMsg = escapeHTML(String(item.message || '').trim()).replace(/\n/g, '<br>');
+          const date = item.submitted ? `<div class="mt-2 text-xs text-black/60">${formatDate(item.submitted)}</div>` : '';
+
+          li.innerHTML = `<p>${safeMsg}</p>${date}`;
+          list.appendChild(li);
+        });
+
+    } catch (err) {
+      console.error('Error loading reflections:', err);
+      if (empty) {
+        empty.textContent = 'Reflections are taking a moment to load — please refresh.';
+        empty.classList.remove('hidden');
+      }
+    }
+  }
+
+  loadReflections();
+</script>
+</body>
+</html>
