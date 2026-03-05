@@ -317,15 +317,61 @@ document.head.appendChild(script);
 }catch(e){}
 }
 
+/* NEW: BlogPosting JSON-LD for each entry (better indexing) */
+function injectBlogPostingJsonLd(post){
+try{
+if(!post || !post.title) return;
+
+var slug = post.slug ? post.slug : slugify(post.title);
+var url = "https://pauseforsuicide.com/journal.html#" + slug;
+
+var desc = "";
+if(Array.isArray(post.content) && post.content.length){
+desc = String(post.content[0] || "").slice(0, 180);
+}
+
+var data = {
+"@context":"https://schema.org",
+"@type":"BlogPosting",
+"headline": post.title || "",
+"description": desc,
+"url": url,
+"mainEntityOfPage": { "@type":"WebPage", "@id": url },
+"inLanguage":"en-GB",
+"datePublished": post.isoDate || "",
+"publisher":{
+"@type":"Organization",
+"name":"PAUSE",
+"url":"https://pauseforsuicide.com/"
+},
+"isPartOf":{
+"@type":"Blog",
+"name":"Pause Journal",
+"url":"https://pauseforsuicide.com/journal.html"
+}
+};
+
+var script = document.createElement("script");
+script.type = "application/ld+json";
+script.textContent = JSON.stringify(data);
+document.head.appendChild(script);
+}catch(e){}
+}
+
 function render(posts){
-const container = document.getElementById('journal');
+const container = document.getElementById("journal");
 if(!Array.isArray(posts) || posts.length === 0) return;
 
-// Replace fallback with real content
+/* Replace fallback with real content */
 container.innerHTML = "";
 
+/* NEW: Add BlogPosting schema for ALL posts */
 posts.forEach(post => {
+injectBlogPostingJsonLd(post);
+});
 
+/* Render HTML for ALL posts */
+posts.forEach(post => {
 const slug = post.slug ? post.slug : slugify(post.title);
 const title = escapeHtml(post.title || "");
 const date = escapeHtml(post.date || "");
@@ -344,9 +390,9 @@ html += `<p class="small"><a href="#${slug}">Link to this entry</a></p>`;
 html += `</article>`;
 
 container.innerHTML += html;
-
 });
 
+/* Keep your hash behaviour (title + Article schema for the selected entry) */
 function updateForHash(){
 const hash = (window.location.hash || "").replace("#","");
 if(!hash) return;
@@ -361,7 +407,7 @@ updateForHash();
 window.addEventListener("hashchange", updateForHash);
 }
 
-fetch('/journal.json', { cache: "no-store" })
+fetch("/journal.json", { cache: "no-store" })
 .then(r => r.json())
 .then(render)
 .catch(() => {
