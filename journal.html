@@ -6,57 +6,204 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Pause Journal</title>
+<meta name="description" content="Pause Journal is a simple space for thoughtful reflections around suicide, grief, hope, and the human experience. Read, breathe, and take one small step." />
 
-<link rel="icon" href="favicon.ico">
+<link rel="canonical" href="https://pauseforsuicide.com/journal.html">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#f7f6f2">
+
+<link rel="icon" href="/favicon.ico">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Pause Journal">
+<meta property="og:description" content="A simple space for thoughtful reflections around suicide, grief, hope, and the human experience.">
+<meta property="og:url" content="https://pauseforsuicide.com/journal.html">
+<meta property="og:image" content="https://pauseforsuicide.com/hero-orchard.jpg">
+<meta property="og:image:alt" content="Soft morning light over stone walls in an orchard">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Pause Journal">
+<meta name="twitter:description" content="A simple space for thoughtful reflections around suicide, grief, hope, and the human experience.">
+<meta name="twitter:image" content="https://pauseforsuicide.com/hero-orchard.jpg">
+
+<!-- JSON-LD structured data -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"CollectionPage",
+  "name":"Pause Journal",
+  "url":"https://pauseforsuicide.com/journal.html",
+  "isPartOf":{
+    "@type":"WebSite",
+    "name":"PAUSE",
+    "url":"https://pauseforsuicide.com/"
+  },
+  "about":[
+    {"@type":"Thing","name":"suicide prevention"},
+    {"@type":"Thing","name":"grief"},
+    {"@type":"Thing","name":"hope"},
+    {"@type":"Thing","name":"mental health"}
+  ],
+  "inLanguage":"en-GB",
+  "description":"A simple space for thoughtful reflections around suicide, grief, hope, and the human experience."
+}
+</script>
 
 <style>
-
 body{
-font-family: Arial, sans-serif;
-max-width:800px;
+font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+max-width:900px;
 margin:auto;
-padding:40px 20px;
-line-height:1.6;
-color:#333;
+padding:34px 18px;
+line-height:1.7;
+color:#1d1d1d;
+background:#f7f6f2;
+}
+
+a{ color:#1d1d1d; text-decoration:underline; }
+a.btnlink{ text-decoration:none; }
+a.btnlink:hover{ text-decoration:underline; }
+
+header{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:12px;
+margin-bottom:26px;
+}
+
+.nav{
+display:flex;
+flex-wrap:wrap;
+gap:12px;
+font-size:14px;
+color:#444;
+}
+
+.brand{
+font-weight:700;
+letter-spacing:.3px;
+text-decoration:none;
+color:#1d1d1d;
 }
 
 h1{
-margin-bottom:10px;
+margin:10px 0 8px;
+font-size:42px;
+line-height:1.15;
+}
+
+.intro{
+max-width:70ch;
+margin-bottom:22px;
+font-size:18px;
+color:#333;
 }
 
 .post{
-margin-bottom:60px;
+margin:44px 0 54px;
+padding-bottom:10px;
+border-bottom:1px solid rgba(0,0,0,.06);
+}
+
+.post:last-child{
+border-bottom:none;
+}
+
+.post h2{
+margin:0 0 10px;
+font-size:30px;
+line-height:1.2;
 }
 
 .date{
-color:#777;
+color:#666;
 font-size:14px;
-margin-bottom:15px;
+margin-bottom:14px;
 }
 
 .support{
-margin-top:60px;
-padding:20px;
+margin-top:56px;
+padding:18px 18px;
 background:#f5f5f5;
-border-radius:8px;
+border-radius:10px;
+border:1px solid rgba(0,0,0,.06);
+}
+
+.support h3{
+margin:0 0 8px;
+}
+
+.submissions{
+margin-top:18px;
+padding-top:18px;
+border-top:1px solid rgba(0,0,0,.08);
+}
+
+.small{
+font-size:14px;
+color:#555;
+}
+
+code{
+background:rgba(0,0,0,.05);
+padding:2px 6px;
+border-radius:6px;
 }
 
 </style>
 
 </head>
 
-  <body>
+<body>
 
-    <a href="/" style="display:inline-block;margin-bottom:20px;text-decoration:none;color:#666;">← Back to Pause</a>
+<header>
+  <a class="brand" href="/">PAUSE</a>
+  <nav class="nav" aria-label="Journal navigation">
+    <a class="btnlink" href="/reflections.html">Reflection Board</a>
+    <a class="btnlink" href="/audio.html">Audio</a>
+    <a class="btnlink" href="/grounding.html">Grounding</a>
+    <a class="btnlink" href="/#resources">Helpful Places</a>
+  </nav>
+</header>
 
-    <h1>Pause Journal</h1>
-<p>
+<main>
+
+<a href="/" style="display:inline-block;margin-bottom:10px;text-decoration:none;color:#666;">← Back to Pause</a>
+
+<h1>Pause Journal</h1>
+
+<p class="intro">
 A simple space for thoughts and reflections around suicide, grief, hope, and the human experience.
 </p>
 
-<div id="journal"></div>
+<div id="journal">
 
-<div class="support">
+  <!-- Fallback content (helps if JS is blocked and helps some crawlers) -->
+  <article class="post">
+    <h2>Why Pause Matters</h2>
+    <div class="date">5 March 2026</div>
+
+    <p>Sometimes the mind moves too quickly.</p>
+    <p>Thoughts stack on top of each other. Regret. Fear. Shame. Exhaustion.</p>
+    <p>Before long it can feel like everything is closing in.</p>
+    <p>When that happens the mind starts looking for a way out. Not because someone wants to die, but because they want the pain to stop.</p>
+    <p>That is where a pause can help.</p>
+    <p>A pause is not a solution.</p>
+    <p>It is simply a moment where the speed slows down.</p>
+
+    <p class="small">If JavaScript is enabled, the full Journal loads automatically.</p>
+  </article>
+
+  <noscript>
+    <p class="small">This page can load more entries when JavaScript is enabled.</p>
+  </noscript>
+
+</div>
+
+<section class="support" aria-label="Support resources">
 
 <h3>If you need someone to talk to</h3>
 
@@ -69,42 +216,83 @@ A simple space for thoughts and reflections around suicide, grief, hope, and the
 
 <p>
 <strong>Find a Helpline</strong><br>
-https://findahelpline.com
+<a href="https://findahelpline.com" target="_blank" rel="noopener">findahelpline.com</a>
 </p>
 
 <p>
 <strong>Befrienders Worldwide</strong><br>
-https://www.befrienders.org
+<a href="https://www.befrienders.org" target="_blank" rel="noopener">befrienders.org</a>
+</p>
+
+<div class="submissions">
+
+<h3>Share a reflection</h3>
+
+<p>
+If you would like to contribute a short reflection to the Pause Journal, you can send it for review.
+Selected pieces may be shared here.
+</p>
+
+<p class="small">
+We do not publish detailed accounts of suicide or content that may cause harm to others.
+</p>
+
+<p>
+Email: <a href="mailto:pausejournal@pauseforsuicide.com">pausejournal@pauseforsuicide.com</a>
 </p>
 
 </div>
 
+</section>
+
+</main>
+
 <script>
+(function(){
 
-fetch('journal.json')
-.then(response => response.json())
-.then(posts => {
+function escapeHtml(str){
+return String(str)
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
+}
 
+function render(posts){
 const container = document.getElementById('journal');
+if(!Array.isArray(posts) || posts.length === 0) return;
+
+// Replace fallback with real content
+container.innerHTML = "";
 
 posts.forEach(post => {
+const title = escapeHtml(post.title || "");
+const date = escapeHtml(post.date || "");
+const content = Array.isArray(post.content) ? post.content : [];
 
-let html = `<div class="post">
-<h2>${post.title}</h2>
-<div class="date">${post.date}</div>`;
+let html = `<article class="post">
+<h2>${title}</h2>
+<div class="date">${date}</div>`;
 
-post.content.forEach(p=>{
-html += `<p>${p}</p>`;
+content.forEach(p => {
+if(p === "") { html += `<p></p>`; return; }
+html += `<p>${escapeHtml(p)}</p>`;
 });
 
-html += `</div>`;
-
+html += `</article>`;
 container.innerHTML += html;
+});
+}
 
+fetch('/journal.json', { cache: "no-store" })
+.then(r => r.json())
+.then(render)
+.catch(() => {
+  // If fetch fails, keep fallback content.
 });
 
-});
-
+})();
 </script>
 
 </body>
