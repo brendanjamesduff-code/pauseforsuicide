@@ -1,42 +1,55 @@
 [
-{
-"title": "Why Pause Matters",
-"date": "5 March 2026",
-"content": [
-"Sometimes the mind moves too quickly.",
-"Thoughts stack on top of each other. Regret. Fear. Shame. Exhaustion.",
-"Before long it can feel like everything is closing in.",
-"",
-"When that happens the mind starts looking for a way out. Not because someone wants to die, but because they want the pain to stop.",
-"",
-"That is where a pause can help.",
-"",
-"A pause is not a solution.",
-"It is not therapy.",
-"It is not someone telling you what to do.",
-"",
-"It is simply a moment where the speed slows down."
-]
-},
-
-{
-"title": "You Don’t Need to Solve Your Whole Life Tonight",
-"date": "5 March 2026",
-"content": [
-"When things feel overwhelming, the mind often tries to solve everything at once.",
-"",
-"All the problems. All the regrets. All the fears about the future.",
-"",
-"The truth is that no human being can solve their entire life in one night.",
-"",
-"Sometimes the most powerful step is much smaller.",
-"",
-"Drink some water.",
-"Step outside.",
-"Send a message to someone you trust.",
-"",
-"Small steps create movement.",
-"And movement creates possibility."
-]
-}
+  {
+    "title": "a chance encounter with a remarkable person",
+    "date": "5 March 2026",
+    "isoDate": "2026-03-05",
+    "content": [
+      "Recently I had the opportunity to spend time with an extraordinary man, Philip O’Keefe from Northern Ireland. Philip is now 85 years old and the author of a book on suicide titled Analyzing Suicide.",
+      "Philip’s interest in the subject is deeply personal. He lost two of his brothers to suicide, and those losses stayed with him throughout his life. After a full career as a history teacher, Philip returned to the University of Ulster in retirement. There he undertook years of study which eventually led to the completion of his PhD. Out of more than a decade of research, reflection, and lived experience, Analyzing Suicide emerged.",
+      "The book is deeply personal. Anyone who reads it, particularly those from Northern Ireland, will likely recognise how close the subject feels. Many of the case studies involve people from Northern Ireland, some as recent as 2022. It is difficult to read the book without feeling affected by it.",
+      "What struck me most when speaking with Philip was the way he talks about suicide. His perspective spans generations. His language is thoughtful and reflective, sometimes using words and ideas that are not often heard in modern conversations about suicide. After more than sixty-five years of thinking about the subject through lived experience, teaching, research, and writing, his reflections carry a certain depth that is hard to ignore.",
+      "I deeply enjoyed my conversation with Philip, and I know it will stay with me for a long time. I now count him as a friend.",
+      "One thing that stayed with me afterwards was the idea of isolation. It is something many of us experience in different ways, and something we all need to work to overcome. Meeting people, forming connections, and taking the time to listen to one another can change how we see the world.",
+      "My conversation with Philip reminded me of that. It left me feeling reflective, and grateful that I had the chance to meet someone like him."
+    ]
+  },
+  {
+    "title": "Why Pause Matters",
+    "date": "5 March 2026",
+    "content": [
+      "Sometimes the mind moves too quickly.",
+      "Thoughts stack on top of each other. Regret. Fear. Shame. Exhaustion.",
+      "Before long it can feel like everything is closing in.",
+      "",
+      "When that happens the mind starts looking for a way out. Not because someone wants to die, but because they want the pain to stop.",
+      "",
+      "That is where a pause can help.",
+      "",
+      "A pause is not a solution.",
+      "It is not therapy.",
+      "It is not someone telling you what to do.",
+      "",
+      "It is simply a moment where the speed slows down."
+    ]
+  },
+  {
+    "title": "You Don’t Need to Solve Your Whole Life Tonight",
+    "date": "5 March 2026",
+    "content": [
+      "When things feel overwhelming, the mind often tries to solve everything at once.",
+      "",
+      "All the problems. All the regrets. All the fears about the future.",
+      "",
+      "The truth is that no human being can solve their entire life in one night.",
+      "",
+      "Sometimes the most powerful step is much smaller.",
+      "",
+      "Drink some water.",
+      "Step outside.",
+      "Send a message to someone you trust.",
+      "",
+      "Small steps create movement.",
+      "And movement creates possibility."
+    ]
+  }
 ]
