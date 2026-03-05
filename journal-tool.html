@@ -1,1 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Add Journal Entry (JSON Tool)</title>
+
+<style>
+
+body{
+font-family: Arial, sans-serif;
+max-width:800px;
+margin:auto;
+padding:40px 20px;
+background:#f7f6f2;
+line-height:1.6;
+}
+
+h1{
+margin-bottom:10px;
+}
+
+label{
+display:block;
+margin-top:20px;
+font-weight:bold;
+}
+
+input, textarea{
+width:100%;
+padding:10px;
+margin-top:6px;
+border:1px solid #ccc;
+border-radius:6px;
+font-size:16px;
+}
+
+textarea{
+height:160px;
+}
+
+button{
+margin-top:20px;
+padding:12px 18px;
+font-size:16px;
+background:black;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+button:hover{
+opacity:0.9;
+}
+
+.result{
+margin-top:30px;
+background:#eee;
+padding:20px;
+border-radius:6px;
+font-family:monospace;
+white-space:pre-wrap;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Add Journal Entry (JSON Tool)</h1>
+
+<p>Fill in the fields and click <strong>Generate JSON</strong> to create a correctly formatted journal entry.</p>
+
+<label>Title</label>
+<input id="title" placeholder="Example: Why Pause Matters">
+
+<label>Date</label>
+<input id="date" placeholder="Example: 5 March 2026">
+
+<label>Content (one paragraph per line)</label>
+<textarea id="content" placeholder="Write the journal entry here. Press Enter for a new paragraph."></textarea>
+
+<button onclick="generate()">Generate JSON</button>
+
+<h2>Result</h2>
+
+<div class="result" id="result">(Your JSON will appear here)</div>
+
+<script>
+
+function generate(){
+
+const title = document.getElementById("title").value;
+const date = document.getElementById("date").value;
+const content = document.getElementById("content").value;
+
+const paragraphs = content.split("\n").filter(p => p.trim() !== "");
+
+const json = {
+title: title,
+date: date,
+content: paragraphs
+};
+
+document.getElementById("result").textContent = JSON.stringify(json, null, 2);
+
+}
+
+</script>
+
+</body>
+</html>
