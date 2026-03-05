@@ -250,13 +250,53 @@ Email: <a href="mailto:pausejournal@pauseforsuicide.com">pausejournal@pauseforsu
 <script>
 (function(){
 
+function slugify(text){
+return String(text || "")
+.toLowerCase()
+.trim()
+.replace(/['"]/g, "")
+.replace(/[^a-z0-9]+/g, "-")
+.replace(/^-+|-+$/g, "");
+}
+
 function escapeHtml(str){
-return String(str)
+return String(str || "")
 .replaceAll("&","&amp;")
 .replaceAll("<","&lt;")
 .replaceAll(">","&gt;")
 .replaceAll('"',"&quot;")
 .replaceAll("'","&#039;");
+}
+
+function setMetaForPost(post){
+if(!post || !post.title) return;
+document.title = post.title + " — Pause Journal";
+}
+
+function injectArticleJsonLd(post){
+try{
+var script = document.createElement("script");
+script.type = "application/ld+json";
+
+var body = (Array.isArray(post.content) ? post.content.join("\n\n") : "");
+
+var data = {
+"@context":"https://schema.org",
+"@type":"Article",
+"headline": post.title || "",
+"inLanguage":"en-GB",
+"mainEntityOfPage": window.location.href,
+"publisher":{
+"@type":"Organization",
+"name":"PAUSE",
+"url":"https://pauseforsuicide.com/"
+},
+"articleBody": body
+};
+
+script.textContent = JSON.stringify(data);
+document.head.appendChild(script);
+}catch(e){}
 }
 
 function render(posts){
@@ -267,11 +307,13 @@ if(!Array.isArray(posts) || posts.length === 0) return;
 container.innerHTML = "";
 
 posts.forEach(post => {
+
+const slug = post.slug ? post.slug : slugify(post.title);
 const title = escapeHtml(post.title || "");
 const date = escapeHtml(post.date || "");
 const content = Array.isArray(post.content) ? post.content : [];
 
-let html = `<article class="post">
+let html = `<article class="post" id="${slug}">
 <h2>${title}</h2>
 <div class="date">${date}</div>`;
 
@@ -280,9 +322,25 @@ if(p === "") { html += `<p></p>`; return; }
 html += `<p>${escapeHtml(p)}</p>`;
 });
 
+html += `<p class="small"><a href="#${slug}">Link to this entry</a></p>`;
 html += `</article>`;
+
 container.innerHTML += html;
+
 });
+
+function updateForHash(){
+const hash = (window.location.hash || "").replace("#","");
+if(!hash) return;
+const matched = posts.find(p => (p.slug || slugify(p.title)) === hash);
+if(matched){
+setMetaForPost(matched);
+injectArticleJsonLd(matched);
+}
+}
+
+updateForHash();
+window.addEventListener("hashchange", updateForHash);
 }
 
 fetch('/journal.json', { cache: "no-store" })
