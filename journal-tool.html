@@ -195,9 +195,32 @@ showStatus("Please add some content (one paragraph per line).", false);
 return;
 }
 
+function toIsoDate(dateStr){
+const s = String(dateStr || "").trim();
+const m = s.match(/^(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})$/);
+if(!m) return "";
+
+const day = parseInt(m[1], 10);
+const monthName = m[2].toLowerCase();
+const year = parseInt(m[3], 10);
+
+const months = {
+  january:1, february:2, march:3, april:4, may:5, june:6,
+  july:7, august:8, september:9, october:10, november:11, december:12
+};
+
+const month = months[monthName];
+if(!month || !day || !year) return "";
+
+const dd = String(day).padStart(2, "0");
+const mm = String(month).padStart(2, "0");
+return `${year}-${mm}-${dd}`;
+}
+
 const newEntry = {
 title: title,
 date: date,
+isoDate: toIsoDate(date),
 content: paragraphs
 };
 
