@@ -49,9 +49,9 @@
   "inLanguage":"en-GB",
   "description":"A simple space for thoughtful reflections around suicide, grief, hope, and the human experience."
 }
-  </script>
-  <script type="application/ld+json">
-  
+</script>
+
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Blog",
@@ -102,6 +102,25 @@ font-weight:700;
 letter-spacing:.3px;
 text-decoration:none;
 color:#1d1d1d;
+}
+
+.back-link{
+display:inline-block;
+margin-bottom:10px;
+text-decoration:none;
+color:#666;
+}
+
+.journal-symbol{
+text-align:center;
+margin:10px 0 14px;
+}
+
+.journal-symbol img{
+width:58px;
+height:58px;
+opacity:.78;
+display:inline-block;
 }
 
 h1{
@@ -187,7 +206,11 @@ border-radius:6px;
 
 <main>
 
-<a href="/" style="display:inline-block;margin-bottom:10px;text-decoration:none;color:#666;">← Back to Pause</a>
+<a href="/" class="back-link">← Back to Pause</a>
+
+<div class="journal-symbol" aria-hidden="true">
+  <img src="/pause-icon.png" alt="Pause symbol">
+</div>
 
 <h1>Pause Journal</h1>
 
@@ -317,7 +340,6 @@ document.head.appendChild(script);
 }catch(e){}
 }
 
-/* NEW: BlogPosting JSON-LD for each entry (better indexing) */
 function injectBlogPostingJsonLd(post){
 try{
 if(!post || !post.title) return;
@@ -362,15 +384,12 @@ function render(posts){
 const container = document.getElementById("journal");
 if(!Array.isArray(posts) || posts.length === 0) return;
 
-/* Replace fallback with real content */
 container.innerHTML = "";
 
-/* NEW: Add BlogPosting schema for ALL posts */
 posts.forEach(post => {
 injectBlogPostingJsonLd(post);
 });
 
-/* Render HTML for ALL posts */
 posts.forEach(post => {
 const slug = post.slug ? post.slug : slugify(post.title);
 const title = escapeHtml(post.title || "");
@@ -392,7 +411,6 @@ html += `</article>`;
 container.innerHTML += html;
 });
 
-/* Keep your hash behaviour (title + Article schema for the selected entry) */
 function updateForHash(){
 const hash = (window.location.hash || "").replace("#","");
 if(!hash) return;
