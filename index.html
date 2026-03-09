@@ -6,7 +6,6 @@
   <title>PAUSE — A Quiet Place</title>
   <meta name="description" content="A quiet, human space for anyone feeling overwhelmed or thinking about suicide. Read, listen, reflect." />
 
-  <!-- Canonical -->
   <link rel="canonical" href="https://pauseforsuicide.com/">
   <meta name="google" content="notranslate">
 
@@ -16,15 +15,12 @@
   <link rel="alternate" hreflang="ga" href="https://pauseforsuicide.com/ga/">
   <link rel="alternate" hreflang="x-default" href="https://pauseforsuicide.com/">
 
-  <!-- Robots + UI color -->
   <meta name="robots" content="index,follow,max-image-preview:large">
   <meta name="theme-color" content="#f7f6f2">
 
-  <!-- Favicons / App Icons -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="PAUSE — A Quiet Place">
   <meta property="og:description" content="A quiet, human space for anyone feeling overwhelmed or thinking about suicide. Read, listen, reflect.">
@@ -34,13 +30,11 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="PAUSE — A Quiet Place">
   <meta name="twitter:description" content="A quiet, human space for anyone feeling overwhelmed or thinking about suicide. Read, listen, reflect.">
   <meta name="twitter:image" content="https://pauseforsuicide.com/hero-orchard.jpg">
 
-  <!-- JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -52,13 +46,11 @@
   }
   </script>
 
-  <!-- Fonts + Tailwind -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Performance Preloads -->
   <link rel="preload" as="image" href="/hero-orchard.jpg">
   <link rel="preload" as="image" href="/orchard-light.jpg">
   <link rel="preload" as="image" href="/orchard-soft.jpg">
@@ -121,26 +113,26 @@
       transform:translateY(-1px);
     }
 
-   .card {
-  background: rgba(249,246,238,0.88);
-  backdrop-filter: blur(4px);
-  border: 1px solid rgba(226,221,211,0.9);
-  border-radius: 1.5rem;
-  padding: 1.1rem;
-  box-shadow: 0 4px 14px rgba(0,0,0,.08);
-}
+    .card {
+      background: rgba(249,246,238,0.88);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(226,221,211,0.9);
+      border-radius: 1.5rem;
+      padding: 1.1rem;
+      box-shadow: 0 4px 14px rgba(0,0,0,.08);
+    }
 
-.hero {
-  position: relative;
-  height: clamp(70vh, 78vh, 86vh);
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:flex-start;
-  padding-top:3rem;
-  text-align:center;
-  color:white;
-}
+    .hero {
+      position: relative;
+      height: clamp(70vh, 78vh, 86vh);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:flex-start;
+      padding-top:3rem;
+      text-align:center;
+      color:white;
+    }
 
     .hero::before {
       content:"";
@@ -163,7 +155,7 @@
     .hero .overlay {
       position: absolute;
       z-index: 2;
-      top: 50%;
+      top: 42%;
       left: 50%;
       transform: translate(-50%, -50%);
       pointer-events: none;
@@ -250,7 +242,6 @@
     }
   </style>
 
-  <!-- Google Analytics (GA4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0L4CV61PZ"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -261,7 +252,6 @@
 </head>
 <body>
 
-  <!-- Get Help Banner -->
   <a class="skiplink" href="#booklet">Skip to content</a>
   <nav aria-label="Get help" class="helpbar">
     <p>
@@ -273,7 +263,6 @@
     </p>
   </nav>
 
-  <!-- Header -->
   <header class="sticky top-0 z-50 backdrop-blur border-b border-black/5" style="background-color:#f9f6eecc;">
     <div class="mx-auto max-w-5xl px-4 py-3 flex items-center gap-3">
       <a href="/" class="serif text-xl font-semibold">PAUSE</a>
@@ -298,9 +287,8 @@
 
   <div style="background: url('/hero-orchard.jpg') center/cover no-repeat;">
 
-    <!-- Hero -->
     <section id="home" class="hero">
-      <img src="/pause-icon.png" alt="" aria-hidden="true" class="overlay w-28 h-28 md:w-32 md:h-32 lg:w-36 lg:h-36">
+      <img src="/pause-icon.png" alt="" aria-hidden="true" class="overlay w-24 h-24 md:w-28 md:h-28 lg:w-32 lg:h-32">
 
       <div class="hero-content">
         <h1 class="serif text-5xl md:text-6xl font-semibold drop-shadow-sm">Pause.</h1>
@@ -309,51 +297,47 @@
           If you have come this far, come a little further. You are not alone. Stay a moment. Breathe. This is a quiet place.
         </p>
 
-    <div class="mt-24 md:mt-32 lg:mt-36 mb-6 flex flex-wrap items-center justify-center gap-3">
+        <div class="mt-16 md:mt-20 lg:mt-24 mb-6 flex flex-wrap items-center justify-center gap-3">
           <a href="#booklet" class="btn">Read the Booklet</a>
           <a href="#audio" class="btn">Listen</a>
           <a href="/reflections.html" class="btn">Reflection Board</a>
           <a href="/journal.html" class="btn">Pause Journal</a>
         </div>
-
-        
       </div>
     </section>
 
-    <!-- Where to Begin -->
-  <section class="section">
-  <div class="mx-auto max-w-4xl px-4 text-center">
-    <div class="card max-w-2xl mx-auto">
-      <h2 class="serif text-2xl md:text-3xl">Where to begin</h2>
+    <section class="section">
+      <div class="mx-auto max-w-4xl px-4 text-center">
+        <div class="card max-w-2xl mx-auto">
+          <h2 class="serif text-2xl md:text-3xl">Where to begin</h2>
 
-      <div class="mt-5 space-y-4 text-base md:text-lg">
-        <p class="leading-relaxed">
-          If your mind feels busy<br>
-          <a class="underline underline-offset-4" href="#audio">Listen to the audio</a>
-        </p>
+          <div class="mt-5 space-y-4 text-base md:text-lg">
+            <p class="leading-relaxed">
+              If your mind feels busy<br>
+              <a class="underline underline-offset-4" href="#audio">Listen to the audio</a>
+            </p>
 
-        <p class="leading-relaxed">
-          If you feel alone<br>
-          <a class="underline underline-offset-4" href="/reflections.html">Read a reflection</a>
-        </p>
+            <p class="leading-relaxed">
+              If you feel alone<br>
+              <a class="underline underline-offset-4" href="/reflections.html">Read a reflection</a>
+            </p>
 
-        <p class="leading-relaxed">
-          If you need to settle your body<br>
-          <a class="underline underline-offset-4" href="/grounding.html">Try grounding</a>
-        </p>
+            <p class="leading-relaxed">
+              If you need to settle your body<br>
+              <a class="underline underline-offset-4" href="/grounding.html">Try grounding</a>
+            </p>
 
-        <p class="leading-relaxed">
-          If you need to talk to someone<br>
-          <a class="underline underline-offset-4" href="#resources">Helpful places</a>
-        </p>
+            <p class="leading-relaxed">
+              If you need to talk to someone<br>
+              <a class="underline underline-offset-4" href="#resources">Helpful places</a>
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
   </div>
 
-  <!-- Booklet Section -->
   <section id="booklet" class="section section-with-bg">
     <div class="bg-layer" data-bg="orchard-soft"></div>
     <div class="content">
@@ -374,7 +358,6 @@
     </div>
   </section>
 
-  <!-- Audio Section -->
   <section id="audio" class="section section-with-bg">
     <div class="bg-layer" data-bg="orchard-light"></div>
     <div class="content">
@@ -398,7 +381,6 @@
     </div>
   </section>
 
-  <!-- Helpful Places -->
   <section id="resources" class="section section-with-bg">
     <div class="bg-layer" data-bg="helpful-places"></div>
     <div class="content">
@@ -434,7 +416,6 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer class="py-10 border-t border-black/5 text-center text-sm text-black/60">
     <div class="mx-auto max-w-5xl px-4">
       <p class="serif text-lg text-black/80">This place is for everyone. Linked to nothing and everything.</p>
@@ -443,7 +424,6 @@
     </div>
   </footer>
 
-  <!-- Auto detect .jpg/.jpeg for background images -->
   <script>
     (function(){
       const layers = document.querySelectorAll('.bg-layer[data-bg]');
