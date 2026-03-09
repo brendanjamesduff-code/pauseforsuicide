@@ -7,26 +7,21 @@
   <title>PAUSE — Un lugar tranquilo</title>
   <meta name="description" content="Un espacio tranquilo y humano para cualquiera que se sienta desbordado o piense en el suicidio. Lee, escucha, reflexiona." />
 
-  <!-- Canonical -->
   <link rel="canonical" href="https://pauseforsuicide.com/es/">
   <meta name="google" content="notranslate">
 
-  <!-- hreflang -->
   <link rel="alternate" hreflang="en" href="https://pauseforsuicide.com/">
   <link rel="alternate" hreflang="fr" href="https://pauseforsuicide.com/fr/">
   <link rel="alternate" hreflang="es" href="https://pauseforsuicide.com/es/">
   <link rel="alternate" hreflang="ga" href="https://pauseforsuicide.com/ga/">
   <link rel="alternate" hreflang="x-default" href="https://pauseforsuicide.com/">
 
-  <!-- Robots + UI color -->
   <meta name="robots" content="index,follow,max-image-preview:large">
   <meta name="theme-color" content="#f7f6f2">
 
-  <!-- Favicons / App Icons -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="PAUSE — Un lugar tranquilo">
   <meta property="og:description" content="Un espacio tranquilo y humano para cualquiera que se sienta desbordado o piense en el suicidio. Lee, escucha, reflexiona.">
@@ -36,13 +31,11 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="PAUSE — Un lugar tranquilo">
   <meta name="twitter:description" content="Un espacio tranquilo y humano para cualquiera que se sienta desbordado o piense en el suicidio. Lee, escucha, reflexiona.">
   <meta name="twitter:image" content="https://pauseforsuicide.com/hero-orchard.jpg">
 
-  <!-- JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -54,13 +47,11 @@
   }
   </script>
 
-  <!-- Fonts + Tailwind -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Performance Preloads -->
   <link rel="preload" as="image" href="/hero-orchard.jpg">
   <link rel="preload" as="image" href="/orchard-light.jpg">
   <link rel="preload" as="image" href="/orchard-soft.jpg">
@@ -71,7 +62,6 @@
     :root {
       --ink:#1d1d1d;
       --overlay: rgba(247,246,242,0.25);
-      --card-bg: rgba(249,246,238,0.15);
       --border:#e2ddd3;
     }
 
@@ -80,71 +70,134 @@
     body {
       color: var(--ink);
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      background: #f7f6f2;
     }
-    .serif { font-family: "Crimson Text", Georgia, Cambria, "Times New Roman", Times, serif; }
+
+    .serif {
+      font-family: "Crimson Text", Georgia, Cambria, "Times New Roman", Times, serif;
+    }
 
     .btn {
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:0.75rem 1.25rem; border-radius:1rem; font-weight:600;
-      background:var(--ink); color:#fff; text-decoration:none; box-shadow:0 1px 2px rgba(0,0,0,.06);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:0.75rem 1.25rem;
+      border-radius:1rem;
+      font-weight:600;
+      background:var(--ink);
+      color:#fff;
+      text-decoration:none;
+      box-shadow:0 1px 2px rgba(0,0,0,.06);
       transition:transform .12s ease, background .12s ease;
     }
-    .btn:hover { background:#000; transform:translateY(-1px); }
+
+    .btn:hover {
+      background:#000;
+      transform:translateY(-1px);
+    }
 
     .btn-ghost {
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:0.75rem 1.25rem; border-radius:1rem; font-weight:600;
-      color:var(--ink); text-decoration:none; border:1px solid var(--border); background:#fff;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:0.75rem 1.25rem;
+      border-radius:1rem;
+      font-weight:600;
+      color:var(--ink);
+      text-decoration:none;
+      border:1px solid var(--border);
+      background:#fff;
       transition:transform .12s ease, background .12s ease;
     }
-    .btn-ghost:hover { background:#faf9f7; transform:translateY(-1px); }
+
+    .btn-ghost:hover {
+      background:#faf9f7;
+      transform:translateY(-1px);
+    }
 
     .card {
-      background: var(--card-bg);
-      backdrop-filter: blur(3px);
-      border: 1px solid var(--border);
-      border-radius: 1.25rem;
-      padding: 1.25rem;
-      box-shadow: 0 2px 4px rgba(0,0,0,.08);
+      background: rgba(249,246,238,0.88);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(226,221,211,0.9);
+      border-radius: 1.5rem;
+      padding: 1.1rem;
+      box-shadow: 0 4px 14px rgba(0,0,0,.08);
     }
 
     .hero {
       position: relative;
-      height: clamp(56vh, 64vh, 72vh);
-      display:flex; flex-direction:column;
-      align-items: center; justify-content: center;
-      text-align:center; color:white;
+      height: clamp(82vh, 90vh, 98vh);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:flex-start;
+      padding-top:3rem;
+      text-align:center;
+      color:white;
     }
+
     .hero::before {
       content:"";
-      position:absolute; inset:0; z-index:0;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.36), rgba(0,0,0,.36)),
-        url('/hero-orchard.jpg') center/cover no-repeat;
+      position:absolute;
+      inset:0;
+      z-index:0;
+      background: linear-gradient(180deg, rgba(0,0,0,.16), rgba(0,0,0,.16));
+      pointer-events:none;
     }
-    .hero > * { position:relative; z-index:1; }
+
+    .hero-content {
+      position: relative;
+      z-index: 5;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100%;
+    }
 
     .hero .overlay {
-      position: absolute; z-index: 2;
-      top: 50%; left: 50%;
+      position: absolute;
+      z-index: 2;
+      top: 52%;
+      left: 50%;
       transform: translate(-50%, -50%);
       pointer-events: none;
       filter: drop-shadow(0 2px 6px rgba(0,0,0,.35));
     }
 
-    .section { padding: 3.5rem 0; }
-    @media (min-width:768px){ .section { padding: 4rem 0; } }
+    .section {
+      padding: 3.5rem 0;
+    }
 
-    .section-with-bg { position: relative; }
+    @media (min-width:768px){
+      .section {
+        padding: 4rem 0;
+      }
+    }
+
+    .section-with-bg {
+      position: relative;
+    }
+
     .section-with-bg .bg-layer {
-      position: absolute; inset: 0; z-index: 0;
-      background-size: cover; background-position: center; background-repeat: no-repeat;
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
+
     .section-with-bg .bg-layer::after {
-      content:""; position:absolute; inset:0; background: var(--overlay);
+      content:"";
+      position:absolute;
+      inset:0;
+      background: var(--overlay);
     }
-    .section-with-bg .content { position: relative; z-index: 1; }
+
+    .section-with-bg .content {
+      position: relative;
+      z-index: 1;
+    }
 
     .helpbar {
       position: sticky;
@@ -158,8 +211,16 @@
       text-align: center;
       border-bottom: 1px solid #e2ddd3;
     }
-    .helpbar a { color: #1d1d1d; text-decoration: underline; }
-    .helpbar a:focus { outline: 2px solid #1d1d1d; outline-offset: 2px; }
+
+    .helpbar a {
+      color: #1d1d1d;
+      text-decoration: underline;
+    }
+
+    .helpbar a:focus {
+      outline: 2px solid #1d1d1d;
+      outline-offset: 2px;
+    }
 
     .skiplink {
       position: absolute;
@@ -169,6 +230,7 @@
       height: 1px;
       overflow: hidden;
     }
+
     .skiplink:focus {
       left: 12px;
       top: 12px;
@@ -182,7 +244,6 @@
     }
   </style>
 
-  <!-- Google Analytics (GA4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0L4CV61PZ"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -193,7 +254,6 @@
 </head>
 
 <body>
-  <!-- Get Help Banner -->
   <a class="skiplink" href="#booklet">Saltar al contenido</a>
   <nav aria-label="Buscar ayuda" class="helpbar">
     <p>
@@ -205,7 +265,6 @@
     </p>
   </nav>
 
-  <!-- Header -->
   <header class="sticky top-0 z-50 backdrop-blur border-b border-black/5" style="background-color:#f9f6eecc;">
     <div class="mx-auto max-w-5xl px-4 py-3 flex items-center gap-3">
       <a href="/es/" class="serif text-xl font-semibold">PAUSE</a>
@@ -227,27 +286,59 @@
     </div>
   </header>
 
-  <!-- Hero -->
-  <section id="home" class="hero">
-    <img src="/pause-icon.png" alt="" aria-hidden="true" class="overlay w-28 h-28 md:w-32 md:h-32 lg:w-36 lg:h-36">
-    <h1 class="serif text-5xl md:text-6xl font-semibold drop-shadow-sm">Pause.</h1>
-    <p class="mt-4 text-lg md:text-xl leading-relaxed drop-shadow">
-      Si has llegado hasta aquí, avanza un poco más. No estás solo. Quédate un momento. Respira. Este es un lugar tranquilo.
-    </p>
+  <div style="background: url('/hero-orchard.jpg') center/cover no-repeat;">
 
-    <div class="mt-auto mb-6 flex flex-wrap items-center justify-center gap-3">
-      <a href="#booklet" class="btn">Leer el folleto</a>
-      <a href="#audio" class="btn">Escuchar</a>
-      <a href="/es/reflections.html" class="btn">Tablón de reflexiones</a>
-      <a href="/es/journal.html" class="btn">Diario de Pause</a>
-    </div>
+    <section id="home" class="hero">
+      <img src="/pause-icon.png" alt="" aria-hidden="true" class="overlay w-24 h-24 md:w-28 md:h-28 lg:w-32 lg:h-32">
 
-    <p class="text-white/90 text-sm mt-2 text-center">
-      <a class="underline" href="/es/reflections.html">Leer reflexiones y entradas del diario</a>
-    </p>
-  </section>
+      <div class="hero-content">
+        <h1 class="serif text-5xl md:text-6xl font-semibold drop-shadow-sm">Pause.</h1>
 
-  <!-- Booklet Section -->
+        <p class="mt-4 text-lg md:text-xl leading-relaxed drop-shadow max-w-6xl px-4">
+          Si has llegado hasta aquí, ven un poco más lejos. No estás solo. Quédate un momento. Respira. Este es un lugar tranquilo.
+        </p>
+
+        <div class="mt-auto pb-8 md:pb-10 lg:pb-12 px-4 flex flex-wrap items-center justify-center gap-3">
+          <a href="#booklet" class="btn">Leer el folleto</a>
+          <a href="/es/audio.html" class="btn">Escuchar</a>
+          <a href="/es/reflections.html" class="btn">Tablón de reflexiones</a>
+          <a href="/es/journal.html" class="btn">Diario de Pause</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="mx-auto max-w-4xl px-4 text-center">
+        <div class="card max-w-2xl mx-auto">
+          <h2 class="serif text-2xl md:text-3xl">Dónde empezar</h2>
+
+          <div class="mt-5 space-y-4 text-base md:text-lg">
+            <p class="leading-relaxed">
+              Si tu mente se siente agitada<br>
+              <a class="underline underline-offset-4" href="/es/audio.html">Escucha el audio</a>
+            </p>
+
+            <p class="leading-relaxed">
+              Si te sientes solo<br>
+              <a class="underline underline-offset-4" href="/es/reflections.html">Lee una reflexión</a>
+            </p>
+
+            <p class="leading-relaxed">
+              Si necesitas calmar tu cuerpo<br>
+              <a class="underline underline-offset-4" href="/es/grounding.html">Prueba calma</a>
+            </p>
+
+            <p class="leading-relaxed">
+              Si necesitas hablar con alguien<br>
+              <a class="underline underline-offset-4" href="#helpful">Lugares útiles</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
   <section id="booklet" class="section section-with-bg">
     <div class="bg-layer" data-bg="orchard-soft"></div>
     <div class="content">
@@ -255,7 +346,7 @@
         <div class="card">
           <h2 class="serif text-3xl">El folleto Pause</h2>
           <p class="mt-3 text-[1.05rem]">
-            Una invitación pequeña y honesta para parar, sentir, y recordar que sigues aquí. Hay tiempo. Hay opciones. Hay ayuda.
+            Una invitación pequeña y honesta para parar, sentir y recordar que sigues aquí. Hay tiempo. Hay opciones. Hay ayuda.
           </p>
           <div class="mt-5 flex gap-3 flex-wrap">
             <a class="btn" href="/pause-for-website.pdf" target="_blank" rel="noopener">Leer aquí</a>
@@ -263,16 +354,15 @@
           </div>
         </div>
         <div class="card">
-          <p class="serif text-xl">“Si has llegado hasta aquí, avanza un poco más.”</p>
+          <p class="serif text-xl">“Si has llegado hasta aquí, ven un poco más lejos.”</p>
           <p class="mt-2">
-            El folleto es pequeño a propósito. Está hecho para llevarlo, leerlo despacio, y volver a él cuando necesites una mano.
+            El folleto es pequeño a propósito. Está hecho para llevarlo, leerlo despacio y volver a él cuando necesites una mano.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Audio Section -->
   <section id="audio" class="section section-with-bg">
     <div class="bg-layer" data-bg="orchard-light"></div>
     <div class="content">
@@ -280,32 +370,24 @@
         <div class="card">
           <h2 class="serif text-3xl">Escuchar</h2>
           <p class="mt-3">
-            Reproduce aquí la versión en audio de <em>Pause</em>. Llévala a un paseo. Déjala estar de fondo. Vuelve cuando lo necesites.
+            Reproduce aquí la versión en audio de <em>Pause</em>. Llévala a un paseo. Déjala acompañarte un rato.
           </p>
-
+          <audio controls preload="metadata" class="mt-4 w-full">
+            <source src="/pause-audio.mp3?v=1" type="audio/mpeg">
+            Tu navegador no soporta el elemento de audio.
+          </audio>
           <div class="mt-5">
-            <audio controls class="w-full">
-              <source src="/pause-audio.mp3" type="audio/mpeg">
-              Tu navegador no soporta audio HTML5.
-            </audio>
-          </div>
-
-          <div class="mt-4">
-            <a class="btn-ghost" href="/es/audio.html">Abrir la página de audio</a>
+            <a class="btn-ghost" href="/pause-audio.mp3" download>Descargar audio</a>
           </div>
         </div>
-
         <div class="card">
-          <h3 class="serif text-2xl">Una forma de estar acompañado</h3>
-          <p class="mt-2">
-            Si te cuesta leer ahora mismo, el audio puede ayudarte a quedarte un poco más. Un paso cada vez.
-          </p>
+          <p class="serif text-xl">“Solo respira y escucha. Puede que eso ya ayude.”</p>
+          <p class="mt-2">Vuelve cuando lo necesites.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Grounding Section -->
   <section id="grounding" class="section section-with-bg">
     <div class="bg-layer" data-bg="orchard-soft"></div>
     <div class="content">
@@ -313,12 +395,12 @@
         <div class="card">
           <h2 class="serif text-3xl">Calma</h2>
           <p class="mt-3">
-            Si tu mente va demasiado rápido, vuelve al cuerpo. No tienes que arreglarlo todo ahora. Solo vuelve aquí, a este momento.
+            Si tu mente va demasiado rápido, vuelve al cuerpo. No tienes que resolverlo todo ahora. Solo vuelve a este momento.
           </p>
           <ul class="mt-4 space-y-3">
             <li class="p-4 rounded-2xl bg-white/70 border border-black/5">
               <strong>Respiración</strong><br/>
-              Inhala lento. Exhala un poco más largo.
+              Inhala despacio. Exhala un poco más largo.
             </li>
             <li class="p-4 rounded-2xl bg-white/70 border border-black/5">
               <strong>5 4 3 2 1</strong><br/>
@@ -344,64 +426,53 @@
     </div>
   </section>
 
-  <!-- Helpful Places -->
   <section id="helpful" class="section section-with-bg">
     <div class="bg-layer" data-bg="helpful-places"></div>
     <div class="content">
-      <div class="mx-auto max-w-5xl px-4 grid md:grid-cols-2 gap-8 items-start">
+      <div class="mx-auto max-w-5xl px-4">
         <div class="card">
           <h2 class="serif text-3xl">Lugares útiles</h2>
           <p class="mt-3">
             Si necesitas hablar con alguien hoy, aquí tienes opciones sencillas y directas.
           </p>
 
-          <ul class="mt-4 space-y-3">
+          <ul class="mt-5 grid md:grid-cols-2 gap-4 text-[1.05rem]">
             <li class="p-4 rounded-2xl bg-white/70 border border-black/5">
-              <strong>Emergencia</strong><br/>
-              UK e Irlanda: <strong>999</strong> | UE: <strong>112</strong>
+              <strong>Emergencia (UK e Irlanda)</strong><br/>Llama al <u>999 / 112</u> para ayuda urgente.
             </li>
-
             <li class="p-4 rounded-2xl bg-white/70 border border-black/5">
-              <strong>Samaritans</strong><br/>
-              Tel: <a class="underline" href="tel:116123">116 123</a>
+              <strong>Emergencia (Canadá y EE. UU.)</strong><br/>Llama al <u>911</u> para ayuda urgente.
             </li>
-
             <li class="p-4 rounded-2xl bg-white/70 border border-black/5">
-              <strong>SHOUT (texto)</strong><br/>
-              Envía <strong>SHOUT</strong> al <a class="underline" href="sms:+4485258">85258</a>
+              <strong>Samaritans</strong><br/>Ayuda 24/7. Llama al <u>116 123</u> o visita <a class="underline" target="_blank" rel="noopener" href="https://www.samaritans.org/">samaritans.org</a>.
             </li>
-
+            <li class="p-4 rounded-2xl bg-white/70 border border-black/5">
+              <strong>Befrienders Worldwide</strong><br/>Encuentra ayuda en muchos países:
+              <a class="underline" target="_blank" rel="noopener" href="https://www.befrienders.org/">befrienders.org</a>.
+            </li>
             <li class="p-4 rounded-2xl bg-white/70 border border-black/5">
               <strong>Find a Helpline</strong><br/>
               Busca apoyo en tu país:
               <a class="underline" target="_blank" rel="noopener" href="https://findahelpline.com">findahelpline.com</a>
             </li>
           </ul>
-        </div>
 
-        <div class="card">
-          <h3 class="serif text-2xl">Si ahora mismo estás al límite</h3>
-          <p class="mt-2">
-            No lo lleves solo. Llama. Envía un mensaje. Ve a urgencias. Pide a alguien cercano que se quede contigo.
-          </p>
-          <p class="mt-3">
-            No hace falta explicarlo perfecto. Basta con decir: “No estoy bien. Necesito ayuda.”
-          </p>
+          <div class="mt-6">
+            <a href="/es/grounding.html" class="btn">Explorar recursos de calma</a>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
   <footer class="py-10 border-t border-black/5 text-center text-sm text-black/60">
     <div class="mx-auto max-w-5xl px-4">
       <p class="serif text-lg text-black/80">Este lugar es para todos. Conectado con nada y con todo.</p>
-      <p class="mt-2">Si necesitas ayuda urgente, usa los recursos de arriba.</p>
+      <p class="mt-2">Si necesitas ayuda urgente, utiliza los recursos de arriba.</p>
       <p class="mt-6">© 2024 PAUSE</p>
     </div>
   </footer>
 
-  <!-- Auto-detect .jpg/.jpeg for background images -->
   <script>
     (function(){
       const layers = document.querySelectorAll('.bg-layer[data-bg]');
