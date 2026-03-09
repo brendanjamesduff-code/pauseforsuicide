@@ -124,7 +124,7 @@
 
     .hero {
       position: relative;
-      height: clamp(70vh, 78vh, 86vh);
+      height: clamp(82vh, 90vh, 98vh);
       display:flex;
       flex-direction:column;
       align-items:center;
@@ -150,12 +150,13 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      min-height: 100%;
     }
 
     .hero .overlay {
       position: absolute;
       z-index: 2;
-      top: 42%;
+      top: 34%;
       left: 50%;
       transform: translate(-50%, -50%);
       pointer-events: none;
@@ -293,11 +294,11 @@
       <div class="hero-content">
         <h1 class="serif text-5xl md:text-6xl font-semibold drop-shadow-sm">Pause.</h1>
 
-        <p class="mt-4 text-lg md:text-xl leading-relaxed drop-shadow">
+        <p class="mt-4 text-lg md:text-xl leading-relaxed drop-shadow max-w-6xl px-4">
           If you have come this far, come a little further. You are not alone. Stay a moment. Breathe. This is a quiet place.
         </p>
 
-        <div class="mt-16 md:mt-20 lg:mt-24 mb-6 flex flex-wrap items-center justify-center gap-3">
+        <div class="mt-auto pb-8 md:pb-10 lg:pb-12 px-4 flex flex-wrap items-center justify-center gap-3">
           <a href="#booklet" class="btn">Read the Booklet</a>
           <a href="#audio" class="btn">Listen</a>
           <a href="/reflections.html" class="btn">Reflection Board</a>
