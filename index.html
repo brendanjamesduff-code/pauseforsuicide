@@ -153,15 +153,16 @@
       min-height: 100%;
     }
 
-  .hero .overlay {
-  position: absolute;
-  z-index: 2;
-  top: 52%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  filter: drop-shadow(0 2px 6px rgba(0,0,0,.35));
-}
+    .hero .overlay {
+      position: absolute;
+      z-index: 2;
+      top: 52%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,.35));
+    }
+
     .section {
       padding: 3.5rem 0;
     }
@@ -276,7 +277,7 @@
         </div>
 
         <a href="#booklet" class="btn-ghost">Booklet</a>
-        <a href="/audio.html" class="btn-ghost">Audio</a>
+        <a href="#audio" class="btn-ghost">Audio</a>
         <a href="/grounding.html" class="btn-ghost">Grounding</a>
         <a href="/journal.html" class="btn-ghost">Journal</a>
         <a href="/reflections.html" class="btn-ghost">Reflections</a>
@@ -366,7 +367,8 @@
           <h2 class="serif text-3xl">Listen</h2>
           <p class="mt-3">Play the audio version of <em>Pause</em> here. Take it for a walk. Let it keep you company for a while.</p>
           <audio controls preload="metadata" class="mt-4 w-full">
-            <source src="/pause-audio.mp3?v=1" type="audio/mpeg">
+            <source src="/pause-audio.mp3" type="audio/mpeg">
+            <source src="/pause-audio.ogg" type="audio/ogg">
             Your browser does not support the audio element.
           </audio>
           <div class="mt-5">
