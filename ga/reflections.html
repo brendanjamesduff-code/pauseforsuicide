@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Reflections — PAUSE</title>
-  <meta name="description" content="A quiet space to read or share reflections left by others. You are not alone." />
+  <title>Machnaimh — PAUSE</title>
+  <meta name="description" content="Áit chiúin chun machnaimh a d’fhág daoine eile a léamh nó do chuid féin a roinnt. Níl tú i d’aonar." />
   <meta name="robots" content="index,follow">
 
   <!-- Canonical -->
@@ -104,14 +104,14 @@
 </head>
 <body>
   <!-- Get Help Banner -->
-  <a class="skiplink" href="#main">Skip to content</a>
-  <nav aria-label="Get help" class="helpbar">
+  <a class="skiplink" href="#main">Léim chuig an ábhar</a>
+  <nav aria-label="Faigh cabhair" class="helpbar">
     <p>
-      In an emergency call <strong>999</strong> (UK/IE) or <strong>112</strong> (EU).
+      I gcás éigeandála glaoigh ar <strong>999</strong> (RA/Éire) nó <strong>112</strong> (AE).
       <span aria-hidden="true"> • </span>
       Samaritans: <a href="tel:116123">116 123</a>
       <span aria-hidden="true"> • </span>
-      Text <strong>SHOUT</strong> to <a href="sms:+4485258">85258</a>
+      Cuir téacs <strong>SHOUT</strong> chuig <a href="sms:+4485258">85258</a>
     </p>
   </nav>
 
@@ -120,51 +120,51 @@
 
   <div class="page">
     <header class="py-6 text-center">
-      <a href="/" class="serif text-2xl font-semibold hover:underline">← Back to Pause</a>
+      <a href="/ga/" class="serif text-2xl font-semibold hover:underline">← Ar ais go Pause</a>
     </header>
 
     <main id="main" class="flex-grow mx-auto max-w-4xl px-4 space-y-10">
       <section class="card">
-        <h1 class="serif text-4xl mb-4">Reflection Board</h1>
+        <h1 class="serif text-4xl mb-4">Clár Machnaimh</h1>
         <p class="text-lg mb-6">
-          You are not alone. Others have left thoughts here — not for advice, but to be with you in this moment. Read gently.
+          Níl tú i d’aonar. D’fhág daoine eile smaointe anseo — ní chun comhairle a thabhairt, ach chun a bheith leat sa nóiméad seo. Léigh go mall, go cineálta.
         </p>
 
         <!-- Dynamic reflections render here -->
         <ul id="reflection-list" class="space-y-3" aria-live="polite"></ul>
         <!-- Empty-state placeholder -->
-        <p id="empty-state" class="text-black/70 italic mt-2 hidden">No reflections yet — be the first to share.</p>
+        <p id="empty-state" class="text-black/70 italic mt-2 hidden">Níl aon mhachnamh anseo fós — bí ar an gcéad duine le ceann a roinnt.</p>
       </section>
 
       <section class="card">
-        <h2 class="serif text-3xl mb-4">Share a Reflection</h2>
+        <h2 class="serif text-3xl mb-4">Roinn Machnamh</h2>
         <p class="mb-3">
-          Write whatever you want. It can be one line. It can be a page. No names or emails are needed.
+          Scríobh cibé rud is mian leat. D’fhéadfadh sé a bheith ina líne amháin. D’fhéadfadh sé a bheith ina leathanach. Níl ainmneacha ná ríomhphoist de dhíth.
         </p>
 
         <form id="reflection-form" class="space-y-4" action="https://formspree.io/f/xzzaqpoy" method="POST">
           <textarea id="message" name="message" rows="6" required
             class="w-full rounded-2xl border border-black/10 p-3 focus:outline-none focus:ring-2 focus:ring-black/20"
-            placeholder="Write freely… no names needed."></textarea>
+            placeholder="Scríobh go saor… ní gá ainm a chur leis."></textarea>
 
           <label class="block text-sm font-medium" for="consent">
             <input id="consent" name="consent" type="checkbox" required class="align-middle mr-2">
-            I give permission for my words (without my name) to be published on the Reflection Board.
+            Tugaim cead go bhfoilseofar mo chuid focal ar an gClár Machnaimh, gan m’ainm.
           </label>
 
           <!-- Honeypot + timestamp -->
           <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
           <input type="hidden" name="timestamp_utc" id="timestamp_utc" value="">
 
-          <button class="btn" type="submit">Send Reflection</button>
+          <button class="btn" type="submit">Seol Machnamh</button>
           <p class="text-xs text-black/60">
-            Submissions aren’t monitored constantly. If you need immediate help, use the resources on the main page.
+            Ní dhéantar monatóireacht leanúnach ar aighneachtaí. Má tá cabhair láithreach uait, bain úsáid as na hacmhainní ar an bpríomhleathanach.
           </p>
         </form>
 
         <div id="thanks-message" style="display:none; background:#f0fdf4; border:1px solid #bbf7d0; color:#065f46; padding:1rem; border-radius:0.75rem; margin-top:1rem; opacity:0; transition:opacity .35s ease; text-align:center;">
-          <strong>Thank you.</strong> Never underestimate the power your words have to help someone.
-          You’ve just taken a moment to help others feel less alone.
+          <strong>Go raibh maith agat.</strong> Ná déan beag is fiú den chumhacht atá ag do chuid focal cuidiú le duine eile.
+          Tá nóiméad glactha agat anois chun cabhrú le daoine eile mothú nach bhfuil siad leo féin.
         </div>
       </section>
     </main>
@@ -201,10 +201,10 @@
             requestAnimationFrame(() => thanks.style.opacity = '1');
           }
         } else {
-          alert('Sorry—there was a problem sending your reflection. Please try again.');
+          alert('Tá brón orm — bhí fadhb ann agus do mhachnamh á sheoladh. Bain triail eile as, le do thoil.');
         }
       } catch {
-        alert('Network error—please try again in a moment.');
+        alert('Earráid líonra — bain triail eile as i gceann nóiméid.');
       }
     });
   }
@@ -216,7 +216,7 @@
   function formatDate(iso) {
     const d = new Date(iso);
     if (isNaN(d)) return '';
-    return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+    return d.toLocaleDateString('ga-IE', { day: '2-digit', month: 'short', year: 'numeric' });
   }
 
   async function fetchFirst(paths) {
@@ -275,7 +275,7 @@
     } catch (err) {
       console.error('Error loading reflections:', err);
       if (empty) {
-        empty.textContent = 'Reflections are taking a moment to load — please refresh.';
+        empty.textContent = 'Tá na machnaimh ag glacadh beagán ama le lódáil — athnuaigh an leathanach, le do thoil.';
         empty.classList.remove('hidden');
       }
     }
