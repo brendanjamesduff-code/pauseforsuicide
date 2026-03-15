@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PAUSE — Riflessioni</title>
-  <meta name="description" content="Leggi riflessioni condivise da altre persone. Pensieri umani, semplici e sinceri." />
+  <meta name="description" content="Leggi riflessioni condivise da altre persone oppure condividi le tue. Pensieri umani, semplici e sinceri." />
 
   <link rel="canonical" href="https://pauseforsuicide.com/it/reflections.html">
   <meta name="google" content="notranslate">
@@ -24,17 +24,17 @@
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="PAUSE — Riflessioni">
-  <meta property="og:description" content="Leggi riflessioni condivise da altre persone. Pensieri umani, semplici e sinceri.">
+  <meta property="og:description" content="Leggi riflessioni condivise da altre persone oppure condividi le tue. Pensieri umani, semplici e sinceri.">
   <meta property="og:url" content="https://pauseforsuicide.com/it/reflections.html">
-  <meta property="og:image" content="https://pauseforsuicide.com/orchard-soft.jpg">
-  <meta property="og:image:alt" content="Sfondo morbido di frutteto">
+  <meta property="og:image" content="https://pauseforsuicide.com/orchard-blossom.jpg?v=1">
+  <meta property="og:image:alt" content="Rami di melo in fiore in luce soffusa">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="PAUSE — Riflessioni">
-  <meta name="twitter:description" content="Leggi riflessioni condivise da altre persone. Pensieri umani, semplici e sinceri.">
-  <meta name="twitter:image" content="https://pauseforsuicide.com/orchard-soft.jpg">
+  <meta name="twitter:description" content="Leggi riflessioni condivise da altre persone oppure condividi le tue. Pensieri umani, semplici e sinceri.">
+  <meta name="twitter:image" content="https://pauseforsuicide.com/orchard-blossom.jpg?v=1">
 
   <script type="application/ld+json">
   {
@@ -43,7 +43,7 @@
     "name": "PAUSE — Riflessioni",
     "url": "https://pauseforsuicide.com/it/reflections.html",
     "inLanguage": "it",
-    "description": "Leggi riflessioni condivise da altre persone. Pensieri umani, semplici e sinceri."
+    "description": "Leggi riflessioni condivise da altre persone oppure condividi le tue. Pensieri umani, semplici e sinceri."
   }
   </script>
 
@@ -55,20 +55,47 @@
   <style>
     :root {
       --ink:#1d1d1d;
-      --paper:#f9f6ee;
+      --overlay: rgba(247, 246, 242, 0.25);
+      --card-bg: rgba(249, 246, 238, 0.15);
       --border:#e2ddd3;
     }
 
-    html, body { overflow-x: clip; }
+    html, body { height: 100%; margin: 0; overflow-x: clip; }
 
     body {
+      font-family: Inter, system-ui, sans-serif;
       color: var(--ink);
-      background: var(--paper);
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, sans-serif;
+      background: var(--overlay);
+    }
+
+    .bg-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background:
+        linear-gradient(var(--overlay), var(--overlay)),
+        url('/orchard-blossom.jpg?v=1') center/cover no-repeat;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
     }
 
     .serif {
-      font-family: "Crimson Text", Georgia, serif;
+      font-family: "Crimson Text", serif;
+    }
+
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(3px);
+      border: 1px solid var(--border);
+      border-radius: 1.25rem;
+      padding: 1.25rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,.08);
     }
 
     .btn {
@@ -78,10 +105,9 @@
       padding:0.75rem 1.25rem;
       border-radius:1rem;
       font-weight:600;
-      background:#1d1d1d;
+      background:var(--ink);
       color:#fff;
       text-decoration:none;
-      box-shadow:0 1px 2px rgba(0,0,0,.06);
       transition:transform .12s ease, background .12s ease;
     }
 
@@ -97,7 +123,7 @@
       padding:0.75rem 1.25rem;
       border-radius:1rem;
       font-weight:600;
-      color:#1d1d1d;
+      color:var(--ink);
       text-decoration:none;
       border:1px solid var(--border);
       background:#fff;
@@ -107,14 +133,6 @@
     .btn-ghost:hover {
       background:#faf9f7;
       transform:translateY(-1px);
-    }
-
-    .card {
-      background: rgba(249,246,238,0.92);
-      border: 1px solid rgba(226,221,211,0.9);
-      border-radius: 1.5rem;
-      padding: 1.3rem;
-      box-shadow: 0 4px 14px rgba(0,0,0,.08);
     }
 
     .helpbar {
@@ -140,29 +158,29 @@
       outline-offset: 2px;
     }
 
-    .hero {
-      position: relative;
-      min-height: 38vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      color:white;
-      background: linear-gradient(180deg, rgba(0,0,0,.20), rgba(0,0,0,.20)), url('/orchard-soft.jpg') center/cover no-repeat;
-      padding: 4rem 1rem;
+    .skiplink {
+      position: absolute;
+      left: -9999px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
     }
 
-    .section {
-      padding: 3.5rem 0;
-    }
-
-    .reflection-text {
-      white-space: pre-wrap;
-      line-height: 1.7;
+    .skiplink:focus {
+      left: 12px;
+      top: 12px;
+      width: auto;
+      height: auto;
+      background: #fff;
+      color: #000;
+      padding: .5rem .75rem;
+      border-radius: .5rem;
+      z-index: 70;
     }
 
     .hidden {
-      display:none;
+      display: none;
     }
   </style>
 
@@ -175,6 +193,7 @@
   </script>
 </head>
 <body>
+  <a class="skiplink" href="#main">Vai al contenuto</a>
 
   <nav aria-label="Trova aiuto" class="helpbar">
     <p>
@@ -186,141 +205,195 @@
     </p>
   </nav>
 
-  <header class="sticky top-0 z-50 backdrop-blur border-b border-black/5" style="background-color:#f9f6eecc;">
-    <div class="mx-auto max-w-5xl px-4 py-3 flex items-center gap-3">
-      <a href="/it/" class="serif text-xl font-semibold">PAUSE</a>
+  <div class="bg-layer" aria-hidden="true"></div>
 
-      <nav class="ml-auto flex items-center gap-3 text-sm flex-wrap" aria-label="Navigazione principale">
-        <div class="flex items-center gap-1 mr-3">
-          <a href="/" class="opacity-60 hover:opacity-100">EN</a> |
-          <a href="/es/" class="opacity-60 hover:opacity-100">ES</a> |
-          <a href="/fr/" class="opacity-60 hover:opacity-100">FR</a> |
-          <a href="/ga/" class="opacity-60 hover:opacity-100">GA</a> |
-          <a href="/it/" class="font-semibold">IT</a>
-        </div>
+  <div class="page">
+    <header class="py-6">
+      <div class="mx-auto max-w-5xl px-4 flex items-center gap-3">
+        <a href="/it/" class="serif text-2xl font-semibold">PAUSE</a>
 
-        <a href="/it/#booklet" class="btn-ghost">Libretto</a>
-        <a href="/it/audio.html" class="btn-ghost">Audio</a>
-        <a href="/it/grounding.html" class="btn-ghost">Radicamento</a>
-        <a href="/it/journal.html" class="btn-ghost">Diario</a>
-        <a href="/it/reflections.html" class="btn-ghost">Riflessioni</a>
-      </nav>
-    </div>
-  </header>
+        <nav class="ml-auto flex items-center gap-3 text-sm flex-wrap" aria-label="Navigazione principale">
+          <div class="flex items-center gap-1 mr-3">
+            <a href="/" class="opacity-60 hover:opacity-100">EN</a> |
+            <a href="/es/" class="opacity-60 hover:opacity-100">ES</a> |
+            <a href="/fr/" class="opacity-60 hover:opacity-100">FR</a> |
+            <a href="/ga/" class="opacity-60 hover:opacity-100">GA</a> |
+            <a href="/it/" class="font-semibold">IT</a>
+          </div>
 
-  <section class="hero">
-    <div class="max-w-3xl">
-      <h1 class="serif text-5xl md:text-6xl font-semibold drop-shadow-sm">Riflessioni</h1>
-      <p class="mt-4 text-lg md:text-xl leading-relaxed drop-shadow px-4">
-        Pensieri condivisi da persone reali. Puoi fermarti qui un momento e leggere lentamente.
-      </p>
-    </div>
-  </section>
-
-  <main class="section">
-    <div class="mx-auto max-w-4xl px-4 space-y-6">
-
-      <div class="card">
-        <h2 class="serif text-3xl">Un luogo per leggere</h2>
-        <p class="mt-3 text-[1.05rem]">
-          Le riflessioni qui sotto arrivano da persone diverse, in momenti diversi. Non devono essere perfette. Devono solo essere umane.
-        </p>
+          <a href="/it/#booklet" class="btn-ghost">Libretto</a>
+          <a href="/it/audio.html" class="btn-ghost">Audio</a>
+          <a href="/it/grounding.html" class="btn-ghost">Radicamento</a>
+          <a href="/it/journal.html" class="btn-ghost">Diario</a>
+          <a href="/it/reflections.html" class="btn-ghost">Riflessioni</a>
+        </nav>
       </div>
+    </header>
 
-      <div id="reflections-list" class="space-y-5"></div>
-
-      <div id="reflections-empty" class="card hidden">
-        <h2 class="serif text-3xl">In preparazione</h2>
-        <p class="mt-3 text-[1.05rem]">
-          Le riflessioni italiane non sono ancora disponibili.
-        </p>
-        <p class="mt-3 text-[1.05rem]">
-          Nel frattempo puoi leggere le riflessioni principali oppure tornare alla home italiana.
+    <main id="main" class="flex-grow mx-auto max-w-4xl px-4 space-y-10">
+      <section class="card">
+        <h1 class="serif text-4xl mb-4">Riflessioni</h1>
+        <p class="text-lg mb-6">
+          Non sei solo. Altri hanno lasciato qui dei pensieri, non per dare consigli, ma per stare con te in questo momento. Leggi con delicatezza.
         </p>
 
-        <div class="mt-5 flex flex-wrap gap-3">
-          <a href="/reflections.html" class="btn">Riflessioni principali</a>
-          <a href="/it/" class="btn-ghost">Torna alla home</a>
+        <ul id="reflection-list" class="space-y-3" aria-live="polite"></ul>
+        <p id="empty-state" class="text-black/70 italic mt-2 hidden">Non ci sono ancora riflessioni. Puoi essere il primo a condividere.</p>
+      </section>
+
+      <section class="card">
+        <h2 class="serif text-3xl mb-4">Condividi una riflessione</h2>
+        <p class="mb-3">
+          Scrivi quello che vuoi. Può essere una riga. Può essere una pagina. Non servono nomi né email.
+        </p>
+
+        <form id="reflection-form" class="space-y-4" action="https://formspree.io/f/xzzaqpoy" method="POST">
+          <textarea
+            id="message"
+            name="message"
+            rows="6"
+            required
+            class="w-full rounded-2xl border border-black/10 p-3 focus:outline-none focus:ring-2 focus:ring-black/20"
+            placeholder="Scrivi liberamente... non servono nomi."
+          ></textarea>
+
+          <label class="block text-sm font-medium" for="consent">
+            <input id="consent" name="consent" type="checkbox" required class="align-middle mr-2">
+            Do il permesso che le mie parole, senza il mio nome, possano essere pubblicate sulla Bacheca delle Riflessioni.
+          </label>
+
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+          <input type="hidden" name="timestamp_utc" id="timestamp_utc" value="">
+
+          <button class="btn" type="submit">Invia riflessione</button>
+          <p class="text-xs text-black/60">
+            I messaggi non vengono controllati costantemente. Se hai bisogno di aiuto immediato, usa le risorse nella pagina principale.
+          </p>
+        </form>
+
+        <div id="thanks-message" style="display:none; background:#f0fdf4; border:1px solid #bbf7d0; color:#065f46; padding:1rem; border-radius:0.75rem; margin-top:1rem; opacity:0; transition:opacity .35s ease; text-align:center;">
+          <strong>Grazie.</strong> Non sottovalutare mai il potere che le tue parole possono avere nell’aiutare qualcuno.
+          Hai appena dedicato un momento per aiutare altri a sentirsi meno soli.
         </div>
-      </div>
+      </section>
+    </main>
 
-    </div>
-  </main>
-
-  <footer class="py-10 border-t border-black/5 text-center text-sm text-black/60">
-    <div class="mx-auto max-w-5xl px-4">
-      <p class="serif text-lg text-black/80">Questo luogo è per tutti. Collegato a niente e a tutto.</p>
-      <p class="mt-2">Se hai bisogno di aiuto urgente, usa le risorse disponibili.</p>
-      <p class="mt-6">© 2024 PAUSE</p>
-    </div>
-  </footer>
+    <footer class="py-6 text-center text-sm text-black/60">
+      <p>© 2024 PAUSE</p>
+    </footer>
+  </div>
 
   <script>
-    async function fetchFirst(urls) {
-      for (const url of urls) {
-        try {
-          const res = await fetch(url, { cache: 'no-store' });
-          if (res.ok) return await res.json();
-        } catch (e) {}
-      }
-      throw new Error('No reflections source found');
-    }
+    const ts = document.getElementById('timestamp_utc');
+    const form = document.getElementById('reflection-form');
+    const thanks = document.getElementById('thanks-message');
 
-    function formatDate(value) {
-      if (!value) return '';
-      const d = new Date(value);
-      if (isNaN(d.getTime())) return value;
-      return d.toLocaleDateString('it-IT', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
+    if (form) {
+      if (ts) ts.value = new Date().toISOString();
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (ts) ts.value = new Date().toISOString();
+
+        try {
+          const data = new FormData(form);
+          const res = await fetch(form.action, {
+            method: 'POST',
+            body: data,
+            headers: { 'Accept': 'application/json' }
+          });
+
+          if (res.ok) {
+            form.reset();
+            if (thanks) {
+              thanks.style.display = 'block';
+              requestAnimationFrame(() => thanks.style.opacity = '1');
+            }
+          } else {
+            alert('Spiacente, c’è stato un problema nell’invio della tua riflessione. Riprova.');
+          }
+        } catch {
+          alert('Errore di rete. Riprova tra un momento.');
+        }
       });
     }
 
+    function escapeHTML(s) {
+      return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+
+    function formatDate(iso) {
+      const d = new Date(iso);
+      if (isNaN(d)) return '';
+      return d.toLocaleDateString('it-IT', { day: '2-digit', month: 'short', year: 'numeric' });
+    }
+
+    async function fetchFirst(paths) {
+      let lastErr;
+      for (const p of paths) {
+        try {
+          const res = await fetch(p, { cache: 'no-store' });
+          if (!res.ok) throw new Error(`HTTP ${res.status} for ${p}`);
+          return await res.json();
+        } catch (e) {
+          lastErr = e;
+        }
+      }
+      throw lastErr || new Error('No reflections source found');
+    }
+
     async function loadReflections() {
-      const list = document.getElementById('reflections-list');
-      const empty = document.getElementById('reflections-empty');
+      const list = document.getElementById('reflection-list');
+      const empty = document.getElementById('empty-state');
+      if (!list) return;
 
       try {
         const raw = await fetchFirst(['/reflections.json', '/tools/reflections.json']);
         const data = Array.isArray(raw) ? raw : Array.isArray(raw?.reflections) ? raw.reflections : [];
 
-        const validItems = data.filter(item =>
-          item &&
-          typeof item.message === 'string' &&
-          item.message.trim() !== ''
-        );
+        list.innerHTML = '';
 
-        if (!validItems.length) {
-          empty.classList.remove('hidden');
+        if (data.length === 0) {
+          if (empty) empty.classList.remove('hidden');
           return;
+        } else {
+          if (empty) empty.classList.add('hidden');
         }
 
-        validItems.forEach(item => {
-          const card = document.createElement('article');
-          card.className = 'card';
+        data
+          .slice()
+          .sort((a, b) => {
+            const da = Date.parse(a.submitted || 0) || a.id || 0;
+            const db = Date.parse(b.submitted || 0) || b.id || 0;
+            return db - da;
+          })
+          .forEach(item => {
+            const message = String(item.message || '').trim();
+            if (!message) return;
 
-          const body = document.createElement('p');
-          body.className = 'text-[1.05rem] reflection-text';
-          body.textContent = item.message.trim();
-          card.appendChild(body);
+            const li = document.createElement('li');
+            li.className = "p-4 rounded-2xl bg-white/80 border border-black/5";
 
-          if (item.submitted) {
-            const meta = document.createElement('p');
-            meta.className = 'mt-4 text-sm text-black/60';
-            meta.textContent = formatDate(item.submitted);
-            card.appendChild(meta);
-          }
+            const safeMsg = escapeHTML(message).replace(/\n/g, '<br>');
+            const date = item.submitted ? `<div class="mt-2 text-xs text-black/60">${formatDate(item.submitted)}</div>` : '';
 
-          list.appendChild(card);
-        });
+            li.innerHTML = `<p>${safeMsg}</p>${date}`;
+            list.appendChild(li);
+          });
+
+        if (!list.children.length && empty) {
+          empty.classList.remove('hidden');
+        }
+
       } catch (err) {
-        empty.classList.remove('hidden');
+        console.error('Error loading reflections:', err);
+        if (empty) {
+          empty.textContent = 'Le riflessioni stanno impiegando un momento a caricarsi. Prova ad aggiornare la pagina.';
+          empty.classList.remove('hidden');
+        }
       }
     }
 
     loadReflections();
   </script>
-
 </body>
 </html>
