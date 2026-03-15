@@ -1,14 +1,14 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Reflections — PAUSE</title>
-  <meta name="description" content="A quiet space to read or share reflections left by others. You are not alone." />
+  <title>Reflexiones — PAUSE</title>
+  <meta name="description" content="Un espacio tranquilo para leer o compartir reflexiones dejadas por otras personas. No estás solo." />
   <meta name="robots" content="index,follow">
 
   <!-- Canonical -->
-  <link rel="canonical" href="https://pauseforsuicide.com/reflections.html">
+  <link rel="canonical" href="https://pauseforsuicide.com/es/reflections.html">
 
   <!-- Fonts & Tailwind -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,7 +20,6 @@
     :root {
       --ink:#1d1d1d;
       --overlay: rgba(247, 246, 242, 0.25);
-      /* airy card style to match home page */
       --card-bg: rgba(249, 246, 238, 0.15);
       --border:#e2ddd3;
     }
@@ -30,7 +29,6 @@
       color: var(--ink);
       background: var(--overlay);
     }
-    /* Background layer with orchard-blossom image */
     .bg-layer {
       position: fixed;
       inset: 0;
@@ -63,18 +61,17 @@
     }
     .btn:hover { background:#000; transform:translateY(-1px); }
 
-    /* --- Get Help Bar + Skiplink (BEIGE) --- */
     .helpbar {
       position: sticky;
       top: 0;
       z-index: 60;
-      background: #f9f6ee; /* soft beige */
-      color: #1d1d1d;      /* dark text for contrast */
+      background: #f9f6ee;
+      color: #1d1d1d;
       padding: .55rem .9rem;
       font-size: .95rem;
       line-height: 1.4;
       text-align: center;
-      border-bottom: 1px solid #e2ddd3; /* subtle divider */
+      border-bottom: 1px solid #e2ddd3;
     }
     .helpbar a {
       color: #1d1d1d;
@@ -104,14 +101,14 @@
 </head>
 <body>
   <!-- Get Help Banner -->
-  <a class="skiplink" href="#main">Skip to content</a>
-  <nav aria-label="Get help" class="helpbar">
+  <a class="skiplink" href="#main">Ir al contenido</a>
+  <nav aria-label="Obtener ayuda" class="helpbar">
     <p>
-      In an emergency call <strong>999</strong> (UK/IE) or <strong>112</strong> (EU).
+      En caso de emergencia llama al <strong>999</strong> (Reino Unido / Irlanda) o al <strong>112</strong> (UE).
       <span aria-hidden="true"> • </span>
       Samaritans: <a href="tel:116123">116 123</a>
       <span aria-hidden="true"> • </span>
-      Text <strong>SHOUT</strong> to <a href="sms:+4485258">85258</a>
+      Envía <strong>SHOUT</strong> al <a href="sms:+4485258">85258</a>
     </p>
   </nav>
 
@@ -120,51 +117,51 @@
 
   <div class="page">
     <header class="py-6 text-center">
-      <a href="/" class="serif text-2xl font-semibold hover:underline">← Back to Pause</a>
+      <a href="/es/" class="serif text-2xl font-semibold hover:underline">← Volver a Pause</a>
     </header>
 
     <main id="main" class="flex-grow mx-auto max-w-4xl px-4 space-y-10">
       <section class="card">
-        <h1 class="serif text-4xl mb-4">Reflection Board</h1>
+        <h1 class="serif text-4xl mb-4">Panel de reflexiones</h1>
         <p class="text-lg mb-6">
-          You are not alone. Others have left thoughts here — not for advice, but to be with you in this moment. Read gently.
+          No estás solo. Otras personas han dejado aquí sus pensamientos, no para dar consejos, sino para acompañarte en este momento. Lee con suavidad.
         </p>
 
         <!-- Dynamic reflections render here -->
         <ul id="reflection-list" class="space-y-3" aria-live="polite"></ul>
         <!-- Empty-state placeholder -->
-        <p id="empty-state" class="text-black/70 italic mt-2 hidden">No reflections yet — be the first to share.</p>
+        <p id="empty-state" class="text-black/70 italic mt-2 hidden">Todavía no hay reflexiones. Sé el primero en compartir.</p>
       </section>
 
       <section class="card">
-        <h2 class="serif text-3xl mb-4">Share a Reflection</h2>
+        <h2 class="serif text-3xl mb-4">Comparte una reflexión</h2>
         <p class="mb-3">
-          Write whatever you want. It can be one line. It can be a page. No names or emails are needed.
+          Escribe lo que quieras. Puede ser una sola línea. Puede ser una página. No hacen falta nombres ni correos electrónicos.
         </p>
 
         <form id="reflection-form" class="space-y-4" action="https://formspree.io/f/xzzaqpoy" method="POST">
           <textarea id="message" name="message" rows="6" required
             class="w-full rounded-2xl border border-black/10 p-3 focus:outline-none focus:ring-2 focus:ring-black/20"
-            placeholder="Write freely… no names needed."></textarea>
+            placeholder="Escribe libremente… no hacen falta nombres."></textarea>
 
           <label class="block text-sm font-medium" for="consent">
             <input id="consent" name="consent" type="checkbox" required class="align-middle mr-2">
-            I give permission for my words (without my name) to be published on the Reflection Board.
+            Doy permiso para que mis palabras, sin mi nombre, se publiquen en el Panel de reflexiones.
           </label>
 
           <!-- Honeypot + timestamp -->
           <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
           <input type="hidden" name="timestamp_utc" id="timestamp_utc" value="">
 
-          <button class="btn" type="submit">Send Reflection</button>
+          <button class="btn" type="submit">Enviar reflexión</button>
           <p class="text-xs text-black/60">
-            Submissions aren’t monitored constantly. If you need immediate help, use the resources on the main page.
+            Los envíos no se supervisan constantemente. Si necesitas ayuda inmediata, usa los recursos de la página principal.
           </p>
         </form>
 
         <div id="thanks-message" style="display:none; background:#f0fdf4; border:1px solid #bbf7d0; color:#065f46; padding:1rem; border-radius:0.75rem; margin-top:1rem; opacity:0; transition:opacity .35s ease; text-align:center;">
-          <strong>Thank you.</strong> Never underestimate the power your words have to help someone.
-          You’ve just taken a moment to help others feel less alone.
+          <strong>Gracias.</strong> Nunca subestimes el poder que tus palabras pueden tener para ayudar a alguien.
+          Acabas de dedicar un momento a ayudar a otros a sentirse menos solos.
         </div>
       </section>
     </main>
@@ -175,7 +172,7 @@
   </div>
 
  <script>
-  // ---- Form submit handling (unchanged) ----
+  // ---- Form submit handling ----
   const ts = document.getElementById('timestamp_utc');
   const form = document.getElementById('reflection-form');
   const thanks = document.getElementById('thanks-message');
@@ -201,22 +198,22 @@
             requestAnimationFrame(() => thanks.style.opacity = '1');
           }
         } else {
-          alert('Sorry—there was a problem sending your reflection. Please try again.');
+          alert('Lo sentimos. Hubo un problema al enviar tu reflexión. Por favor, inténtalo de nuevo.');
         }
       } catch {
-        alert('Network error—please try again in a moment.');
+        alert('Error de red. Por favor, inténtalo de nuevo en un momento.');
       }
     });
   }
 
-  // ---- Reflections loader: tries multiple paths + both JSON shapes ----
+  // ---- Reflections loader ----
   function escapeHTML(s) {
     return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   }
   function formatDate(iso) {
     const d = new Date(iso);
     if (isNaN(d)) return '';
-    return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+    return d.toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' });
   }
 
   async function fetchFirst(paths) {
@@ -239,10 +236,7 @@
     if (!list) return;
 
     try {
-      // Try root first, then /tools/ as a fallback
       const raw = await fetchFirst(['/reflections.json', '/tools/reflections.json']);
-
-      // Accept either { reflections: [...] } or plain [...]
       const data = Array.isArray(raw) ? raw : Array.isArray(raw?.reflections) ? raw.reflections : [];
 
       list.innerHTML = '';
@@ -275,7 +269,7 @@
     } catch (err) {
       console.error('Error loading reflections:', err);
       if (empty) {
-        empty.textContent = 'Reflections are taking a moment to load — please refresh.';
+        empty.textContent = 'Las reflexiones están tardando un momento en cargarse. Por favor, actualiza la página.';
         empty.classList.remove('hidden');
       }
     }
