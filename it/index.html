@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PAUSE — Un Luogo Tranquillo</title>
+  <meta name="description" content="Uno spazio tranquillo e umano per chi si sente sopraffatto o sta pensando al suicidio. Leggi, ascolta, rifletti." />
+
+  <link rel="canonical" href="https://pauseforsuicide.com/it/">
+  <meta name="google" content="notranslate">
+
+  <link rel="alternate" hreflang="en" href="https://pauseforsuicide.com/">
+  <link rel="alternate" hreflang="fr" href="https://pauseforsuicide.com/fr/">
+  <link rel="alternate" hreflang="es" href="https://pauseforsuicide.com/es/">
+  <link rel="alternate" hreflang="ga" href="https://pauseforsuicide.com/ga/">
+  <link rel="alternate" hreflang="it" href="https://pauseforsuicide.com/it/">
+  <link rel="alternate" hreflang="x-default" href="https://pauseforsuicide.com/">
+
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#f7f6f2">
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="PAUSE — Un Luogo Tranquillo">
+  <meta property="og:description" content="Uno spazio tranquillo e umano per chi si sente sopraffatto o sta pensando al suicidio. Leggi, ascolta, rifletti.">
+  <meta property="og:url" content="https://pauseforsuicide.com/it/">
+  <meta property="og:image" content="https://pauseforsuicide.com/hero-orchard.jpg">
+  <meta property="og:image:alt" content="Luce morbida del mattino sui muri di pietra in un frutteto">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PAUSE — Un Luogo Tranquillo">
+  <meta name="twitter:description" content="Uno spazio tranquillo e umano per chi si sente sopraffatto o sta pensando al suicidio. Leggi, ascolta, rifletti.">
+  <meta name="twitter:image" content="https://pauseforsuicide.com/hero-orchard.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "PAUSE",
+    "url": "https://pauseforsuicide.com/it/",
+    "inLanguage": "it-IT",
+    "description": "Uno spazio tranquillo e umano per chi si sente sopraffatto o sta pensando al suicidio. Leggi, ascolta, rifletti."
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preload" as="image" href="/hero-orchard.jpg">
+  <link rel="preload" as="image" href="/orchard-light.jpg">
+  <link rel="preload" as="image" href="/orchard-soft.jpg">
+  <link rel="preload" as="image" href="/helpful-places.jpg">
+  <link rel="preload" as="image" href="/pause-icon.png">
+
+  <style>
+    :root {
+      --ink:#1d1d1d;
+      --overlay: rgba(247,246,242,0.25);
+      --border:#e2ddd3;
+    }
+
+    html, body { overflow-x: clip; }
+
+    body {
+      color: var(--ink);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+
+    .serif {
+      font-family: "Crimson Text", Georgia, Cambria, "Times New Roman", Times, serif;
+    }
+
+    .btn {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:0.75rem 1.25rem;
+      border-radius:1rem;
+      font-weight:600;
+      background:var(--ink);
+      color:#fff;
+      text-decoration:none;
+      box-shadow:0 1px 2px rgba(0,0,0,.06);
+      transition:transform .12s ease, background .12s ease;
+    }
+
+    .btn:hover {
+      background:#000;
+      transform:translateY(-1px);
+    }
+
+    .btn-ghost {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:0.75rem 1.25rem;
+      border-radius:1rem;
+      font-weight:600;
+      color:var(--ink);
+      text-decoration:none;
+      border:1px solid var(--border);
+      background:#fff;
+      transition:transform .12s ease, background .12s ease;
+    }
+
+    .btn-ghost:hover {
+      background:#faf9f7;
+      transform:translateY(-1px);
+    }
+
+    .card {
+      background: rgba(249,246,238,0.88);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(226,221,211,0.9);
+      border-radius: 1.5rem;
+      padding: 1.1rem;
+      box-shadow: 0 4px 14px rgba(0,0,0,.08);
+    }
+
+    .hero {
+      position: relative;
+      height: clamp(82vh, 90vh, 98vh);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:flex-start;
+      padding-top:3rem;
+      text-align:center;
+      color:white;
+    }
+
+    .hero::before {
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:0;
+      background: linear-gradient(180deg, rgba(0,0,0,.16), rgba(0,0,0,.16));
+      pointer-events:none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 5;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100%;
+    }
+
+    .hero .overlay {
+      position: absolute;
+      z-index: 2;
+      top: 52%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,.35));
+    }
+
+    .section {
+      padding: 3.5rem 0;
+    }
+
+    @media (min-width:768px){
+      .section {
+        padding: 4rem 0;
+      }
+    }
+
+    .section-with-bg {
+      position: relative;
+    }
+
+    .section-with-bg .bg-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .section-with-bg .bg-layer::after {
+      content:"";
+      position:absolute;
+      inset:0;
+      background: var(--overlay);
+    }
+
+    .section-with-bg .content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .helpbar {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      background: #f9f6ee;
+      color: #1d1d1d;
+      padding: .55rem .9rem;
+      font-size: .95rem;
+      line-height: 1.4;
+      text-align: center;
+      border-bottom: 1px solid #e2ddd3;
+    }
+
+    .helpbar a {
+      color: #1d1d1d;
+      text-decoration: underline;
+    }
+
+    .helpbar a:focus {
+      outline: 2px solid #1d1d1d;
+      outline-offset: 2px;
+    }
+
+    .skiplink {
+      position: absolute;
+      left: -9999px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+
+    .skiplink:focus {
+      left: 12px;
+      top: 12px;
+      width: auto;
+      height: auto;
+      background: #fff;
+      color: #000;
+      padding: .5rem .75rem;
+      border-radius: .5rem;
+      z-index: 70;
+    }
+  </style>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0L4CV61PZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-P0L4CV61PZ', { 'anonymize_ip': true });
+  </script>
+</head>
+
+<body>
+  <a class="skiplink" href="#booklet">Vai al contenuto</a>
+  <nav aria-label="Trova aiuto" class="helpbar">
+    <p>
+      In caso di emergenza chiama il <strong>999</strong> (UK/IE) oppure il <strong>112</strong> (UE).
+      <span aria-hidden="true"> • </span>
+      Samaritans: <a href="tel:116123">116 123</a>
+      <span aria-hidden="true"> • </span>
+      Invia <strong>SHOUT</strong> al <a href="sms:+4485258">85258</a>
+    </p>
+  </nav>
+
+  <header class="sticky top-0 z-50 backdrop-blur border-b border-black/5" style="background-color:#f9f6eecc;">
+    <div class="mx-auto max-w-5xl px-4 py-3 flex items-center gap-3">
+      <a href="/it/" class="serif text-xl font-semibold">PAUSE</a>
+
+      <nav class="ml-auto flex items-center gap-3 text-sm flex-wrap" aria-label="Navigazione principale">
+        <div class="flex items-center gap-1 mr-3">
+          <a href="/" class="opacity-60 hover:opacity-100">EN</a> |
+          <a href="/es/" class="opacity-60 hover:opacity-100">ES</a> |
+          <a href="/fr/" class="opacity-60 hover:opacity-100">FR</a> |
+          <a href="/ga/" class="opacity-60 hover:opacity-100">GA</a> |
+          <a href="/it/" class="font-semibold">IT</a>
+        </div>
+
+        <a href="#booklet" class="btn-ghost">Libretto</a>
+        <a href="/it/audio.html" class="btn-ghost">Audio</a>
+        <a href="/it/grounding.html" class="btn-ghost">Radicamento</a>
+        <a href="/it/journal.html" class="btn-ghost">Diario</a>
+        <a href="/it/reflections.html" class="btn-ghost">Riflessioni</a>
+      </nav>
+    </div>
+  </header>
+
+  <div style="background: url('/hero-orchard.jpg') center/cover no-repeat;">
+
+    <section id="home" class="hero">
+      <img src="/pause-icon.png" alt="" aria-hidden="true" class="overlay w-24 h-24 md:w-28 md:h-28 lg:w-32 lg:h-32">
+
+      <div class="hero-content">
+        <h1 class="serif text-5xl md:text-6xl font-semibold drop-shadow-sm">Pause.</h1>
+
+        <p class="mt-4 text-lg md:text-xl leading-relaxed drop-shadow max-w-6xl px-4">
+          Se sei arrivato fin qui, fai un piccolo passo ancora. Non sei solo. Fermati un momento. Respira. Questo è un luogo tranquillo.
+        </p>
+
+        <div class="mt-auto pb-8 md:pb-10 lg:pb-12 px-4 flex flex-wrap items-center justify-center gap-3">
+          <a href="#booklet" class="btn">Leggi il libretto</a>
+          <a href="#audio" class="btn">Ascolta</a>
+          <a href="/it/reflections.html" class="btn">Bacheca delle Riflessioni</a>
+          <a href="/it/journal.html" class="btn">Diario Pause</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="mx-auto max-w-4xl px-4 text-center">
+        <div class="card max-w-2xl mx-auto">
+          <h2 class="serif text-2xl md:text-3xl">Da dove cominciare</h2>
+
+          <div class="mt-5 space-y-4 text-base md:text-lg">
+            <p class="leading-relaxed">
+              Se la tua mente è agitata<br>
+              <a class="underline underline-offset-4" href="#audio">Ascolta l’audio</a>
+            </p>
+
+            <p class="leading-relaxed">
+              Se ti senti solo<br>
+              <a class="underline underline-offset-4" href="/it/reflections.html">Leggi una riflessione</a>
+            </p>
+
+            <p class="leading-relaxed">
+              Se hai bisogno di ritrovare il tuo corpo<br>
+              <a class="underline underline-offset-4" href="/it/grounding.html">Prova il radicamento</a>
+            </p>
+
+            <p class="leading-relaxed">
+              Se hai bisogno di parlare con qualcuno<br>
+              <a class="underline underline-offset-4" href="#resources">Luoghi utili</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <section id="booklet" class="section section-with-bg">
+    <div class="bg-layer" data-bg="orchard-soft"></div>
+    <div class="content">
+      <div class="mx-auto max-w-5xl px-4 grid md:grid-cols-2 gap-8 items-center">
+        <div class="card">
+          <h2 class="serif text-3xl">Libretto Pause</h2>
+          <p class="mt-3 text-[1.05rem]">Un piccolo invito sincero a fermarti, sentire e ricordare che sei qui. C’è tempo. Ci sono scelte. C’è aiuto.</p>
+          <div class="mt-5 flex gap-3 flex-wrap">
+            <a class="btn" href="/it/pause-it.pdf" target="_blank" rel="noopener">Leggi qui</a>
+            <a class="btn-ghost" href="/it/pause-it.pdf" download>Portalo con te</a>
+          </div>
+        </div>
+        <div class="card">
+          <p class="serif text-xl">“Se sei arrivato fin qui, fai un piccolo passo ancora.”</p>
+          <p class="mt-2">Il libretto è volutamente piccolo. È pensato per essere portato con sé, letto lentamente e ripreso quando hai bisogno di una mano da tenere.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="audio" class="section section-with-bg">
+    <div class="bg-layer" data-bg="orchard-light"></div>
+    <div class="content">
+      <div class="mx-auto max-w-5xl px-4 grid md:grid-cols-2 gap-8 items-center">
+        <div class="card">
+          <h2 class="serif text-3xl">Ascolta</h2>
+          <p class="mt-3">
+            La versione audio in italiano è attualmente in preparazione. Nel frattempo, puoi leggere il testo oppure usare le risorse di supporto.
+          </p>
+        </div>
+        <div class="card">
+          <p class="serif text-xl">“Fai un respiro e resta qui ancora un momento.”</p>
+          <p class="mt-2">La versione audio italiana è in corso di preparazione.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="resources" class="section section-with-bg">
+    <div class="bg-layer" data-bg="helpful-places"></div>
+    <div class="content">
+      <div class="mx-auto max-w-5xl px-4">
+        <div class="card">
+          <h2 class="serif text-3xl">Luoghi Utili</h2>
+          <p class="mt-3">Se ti senti isolato o stai pensando al suicidio, questi luoghi possono aiutarti. Scegli un piccolo passo.</p>
+          <ul class="mt-5 grid md:grid-cols-2 gap-4 text-[1.05rem]">
+            <li class="p-4 rounded-2xl bg-white/70 border border-black/5">
+              <strong>Emergenza (UK e Irlanda)</strong><br/>Chiama il <u>999 / 112</u> per aiuto urgente.
+            </li>
+            <li class="p-4 rounded-2xl bg-white/70 border border-black/5">
+              <strong>Emergenza (Canada e USA)</strong><br/>Chiama il <u>911</u> per aiuto urgente.
+            </li>
+            <li class="p-4 rounded-2xl bg-white/70 border border-black/5">
+              <strong>Samaritans (UK e ROI)</strong><br/>Ascolto 24 ore su 24, 7 giorni su 7. Chiama il <u>116 123</u> oppure visita <a class="underline" target="_blank" rel="noopener" href="https://www.samaritans.org/">samaritans.org</a>.
+            </li>
+            <li class="p-4 rounded-2xl bg-white/70 border border-black/5">
+              <strong>Befrienders Worldwide</strong><br/>Trova aiuto in molti paesi:
+              <a class="underline" target="_blank" rel="noopener" href="https://www.befrienders.org/">befrienders.org</a>.
+            </li>
+            <li class="p-4 rounded-2xl bg-white/70 border border-black/5">
+              <strong>Find a Helpline</strong><br/>
+              Trova supporto nel tuo paese:
+              <a class="underline" target="_blank" rel="noopener" href="https://findahelpline.com">findahelpline.com</a>
+            </li>
+          </ul>
+          <div class="mt-6">
+            <a href="/it/grounding.html" class="btn">Risorse di Radicamento</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-10 border-t border-black/5 text-center text-sm text-black/60">
+    <div class="mx-auto max-w-5xl px-4">
+      <p class="serif text-lg text-black/80">Questo luogo è per tutti. Collegato a niente e a tutto.</p>
+      <p class="mt-2">Se hai bisogno di aiuto urgente, usa le risorse qui sopra.</p>
+      <p class="mt-6">© 2024 PAUSE</p>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      const layers = document.querySelectorAll('.bg-layer[data-bg]');
+      const tryExts = ['jpg', 'jpeg'];
+      layers.forEach(layer => {
+        const base = layer.getAttribute('data-bg');
+        function tryNext(i){
+          if (i >= tryExts.length) return;
+          const src = `/${base}.${tryExts[i]}`;
+          const img = new Image();
+          img.onload = () => layer.style.backgroundImage = `url('${src}')`;
+          img.onerror = () => tryNext(i+1);
+          img.src = src;
+        }
+        layer.style.backgroundSize = 'cover';
+        layer.style.backgroundPosition = 'center';
+        layer.style.backgroundRepeat = 'no-repeat';
+        tryNext(0);
+      });
+    })();
+  </script>
+</body>
+</html>
