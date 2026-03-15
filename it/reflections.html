@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PAUSE — Riflessioni</title>
-  <meta name="description" content="Leggi le riflessioni condivise da altre persone. Pensieri umani, semplici e sinceri." />
+  <meta name="description" content="Leggi riflessioni condivise da altre persone. Pensieri umani, semplici e sinceri." />
 
   <link rel="canonical" href="https://pauseforsuicide.com/it/reflections.html">
   <meta name="google" content="notranslate">
@@ -24,7 +24,7 @@
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="PAUSE — Riflessioni">
-  <meta property="og:description" content="Leggi le riflessioni condivise da altre persone. Pensieri umani, semplici e sinceri.">
+  <meta property="og:description" content="Leggi riflessioni condivise da altre persone. Pensieri umani, semplici e sinceri.">
   <meta property="og:url" content="https://pauseforsuicide.com/it/reflections.html">
   <meta property="og:image" content="https://pauseforsuicide.com/orchard-soft.jpg">
   <meta property="og:image:alt" content="Sfondo morbido di frutteto">
@@ -33,7 +33,7 @@
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="PAUSE — Riflessioni">
-  <meta name="twitter:description" content="Leggi le riflessioni condivise da altre persone. Pensieri umani, semplici e sinceri.">
+  <meta name="twitter:description" content="Leggi riflessioni condivise da altre persone. Pensieri umani, semplici e sinceri.">
   <meta name="twitter:image" content="https://pauseforsuicide.com/orchard-soft.jpg">
 
   <script type="application/ld+json">
@@ -42,8 +42,8 @@
     "@type": "CollectionPage",
     "name": "PAUSE — Riflessioni",
     "url": "https://pauseforsuicide.com/it/reflections.html",
-    "inLanguage": "it-IT",
-    "description": "Leggi le riflessioni condivise da altre persone. Pensieri umani, semplici e sinceri."
+    "inLanguage": "it",
+    "description": "Leggi riflessioni condivise da altre persone. Pensieri umani, semplici e sinceri."
   }
   </script>
 
@@ -81,6 +81,13 @@
       background:#1d1d1d;
       color:#fff;
       text-decoration:none;
+      box-shadow:0 1px 2px rgba(0,0,0,.06);
+      transition:transform .12s ease, background .12s ease;
+    }
+
+    .btn:hover {
+      background:#000;
+      transform:translateY(-1px);
     }
 
     .btn-ghost {
@@ -94,6 +101,12 @@
       text-decoration:none;
       border:1px solid var(--border);
       background:#fff;
+      transition:transform .12s ease, background .12s ease;
+    }
+
+    .btn-ghost:hover {
+      background:#faf9f7;
+      transform:translateY(-1px);
     }
 
     .card {
@@ -122,6 +135,11 @@
       text-decoration: underline;
     }
 
+    .helpbar a:focus {
+      outline: 2px solid #1d1d1d;
+      outline-offset: 2px;
+    }
+
     .hero {
       position: relative;
       min-height: 38vh;
@@ -138,9 +156,13 @@
       padding: 3.5rem 0;
     }
 
-    .reflection {
+    .reflection-text {
       white-space: pre-wrap;
       line-height: 1.7;
+    }
+
+    .hidden {
+      display:none;
     }
   </style>
 
@@ -178,7 +200,7 @@
         </div>
 
         <a href="/it/#booklet" class="btn-ghost">Libretto</a>
-        <a href="/it/#audio" class="btn-ghost">Audio</a>
+        <a href="/it/audio.html" class="btn-ghost">Audio</a>
         <a href="/it/grounding.html" class="btn-ghost">Radicamento</a>
         <a href="/it/journal.html" class="btn-ghost">Diario</a>
         <a href="/it/reflections.html" class="btn-ghost">Riflessioni</a>
@@ -213,7 +235,7 @@
           Le riflessioni italiane non sono ancora disponibili.
         </p>
         <p class="mt-3 text-[1.05rem]">
-          Nel frattempo puoi leggere le riflessioni esistenti oppure tornare alla home.
+          Nel frattempo puoi leggere le riflessioni principali oppure tornare alla home italiana.
         </p>
 
         <div class="mt-5 flex flex-wrap gap-3">
@@ -234,47 +256,66 @@
   </footer>
 
   <script>
+    async function fetchFirst(urls) {
+      for (const url of urls) {
+        try {
+          const res = await fetch(url, { cache: 'no-store' });
+          if (res.ok) return await res.json();
+        } catch (e) {}
+      }
+      throw new Error('No reflections source found');
+    }
+
+    function formatDate(value) {
+      if (!value) return '';
+      const d = new Date(value);
+      if (isNaN(d.getTime())) return value;
+      return d.toLocaleDateString('it-IT', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+    }
+
     async function loadReflections() {
+      const list = document.getElementById('reflections-list');
+      const empty = document.getElementById('reflections-empty');
+
       try {
-        const response = await fetch('/reflections.json', { cache: 'no-store' });
-        if (!response.ok) throw new Error('No reflections file found');
+        const raw = await fetchFirst(['/reflections.json', '/tools/reflections.json']);
+        const data = Array.isArray(raw) ? raw : Array.isArray(raw?.reflections) ? raw.reflections : [];
 
-        const data = await response.json();
-        const reflections = Array.isArray(data) ? data : (data.reflections || []);
-        const list = document.getElementById('reflections-list');
-        const empty = document.getElementById('reflections-empty');
+        const validItems = data.filter(item =>
+          item &&
+          typeof item.message === 'string' &&
+          item.message.trim() !== ''
+        );
 
-        if (!reflections.length) {
+        if (!validItems.length) {
           empty.classList.remove('hidden');
           return;
         }
 
-        reflections.forEach(item => {
+        validItems.forEach(item => {
           const card = document.createElement('article');
           card.className = 'card';
 
-          const title = document.createElement('h2');
-          title.className = 'serif text-3xl';
-          title.textContent = item.title || 'Riflessione';
-
           const body = document.createElement('p');
-          body.className = 'mt-3 text-[1.05rem] reflection';
-          body.textContent = item.text || item.body || '';
-
-          card.appendChild(title);
+          body.className = 'text-[1.05rem] reflection-text';
+          body.textContent = item.message.trim();
           card.appendChild(body);
 
-          if (item.name || item.author) {
-            const by = document.createElement('p');
-            by.className = 'mt-4 text-sm text-black/60';
-            by.textContent = 'Condivisa da ' + (item.name || item.author);
-            card.appendChild(by);
+          if (item.submitted) {
+            const meta = document.createElement('p');
+            meta.className = 'mt-4 text-sm text-black/60';
+            meta.textContent = formatDate(item.submitted);
+            card.appendChild(meta);
           }
 
           list.appendChild(card);
         });
-      } catch (error) {
-        document.getElementById('reflections-empty').classList.remove('hidden');
+      } catch (err) {
+        empty.classList.remove('hidden');
       }
     }
 
