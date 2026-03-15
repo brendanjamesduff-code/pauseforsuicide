@@ -128,6 +128,7 @@
       border:1px solid var(--border);
       background:#fff;
       transition:transform .12s ease, background .12s ease;
+      white-space: nowrap;
     }
 
     .btn-ghost:hover {
@@ -182,6 +183,73 @@
     .hidden {
       display: none;
     }
+
+    .site-header {
+      padding: 1.5rem 0;
+    }
+
+    .site-header-inner {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 0 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .brand-link {
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 1.5rem;
+      font-weight: 600;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .lang-switch {
+      display: flex;
+      align-items: center;
+      gap: .15rem;
+      font-size: .95rem;
+      flex-wrap: wrap;
+    }
+
+    .lang-switch a {
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .lang-switch a:hover {
+      text-decoration: underline;
+    }
+
+    .top-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+      justify-content: flex-end;
+    }
+
+    @media (max-width: 920px) {
+      .site-header-inner {
+        justify-content: center;
+      }
+
+      .brand-link {
+        width: 100%;
+        text-align: center;
+      }
+
+      .lang-switch {
+        justify-content: center;
+      }
+
+      .top-actions {
+        justify-content: center;
+      }
+    }
   </style>
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0L4CV61PZ"></script>
@@ -208,19 +276,19 @@
   <div class="bg-layer" aria-hidden="true"></div>
 
   <div class="page">
-    <header class="py-6">
-      <div class="mx-auto max-w-5xl px-4 flex items-center gap-3">
-        <a href="/it/" class="serif text-2xl font-semibold">PAUSE</a>
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a href="/it/" class="serif brand-link">PAUSE</a>
 
-        <nav class="ml-auto flex items-center gap-3 text-sm flex-wrap" aria-label="Navigazione principale">
-          <div class="flex items-center gap-1 mr-3">
-            <a href="/" class="opacity-60 hover:opacity-100">EN</a> |
-            <a href="/es/" class="opacity-60 hover:opacity-100">ES</a> |
-            <a href="/fr/" class="opacity-60 hover:opacity-100">FR</a> |
-            <a href="/ga/" class="opacity-60 hover:opacity-100">GA</a> |
-            <a href="/it/" class="font-semibold">IT</a>
-          </div>
+        <div class="lang-switch" aria-label="Selettore lingua">
+          <a href="/" class="opacity-60 hover:opacity-100">EN</a> |
+          <a href="/es/" class="opacity-60 hover:opacity-100">ES</a> |
+          <a href="/fr/" class="opacity-60 hover:opacity-100">FR</a> |
+          <a href="/ga/" class="opacity-60 hover:opacity-100">GA</a> |
+          <a href="/it/" class="font-semibold">IT</a>
+        </div>
 
+        <nav class="top-actions" aria-label="Navigazione principale">
           <a href="/it/#booklet" class="btn-ghost">Libretto</a>
           <a href="/it/audio.html" class="btn-ghost">Audio</a>
           <a href="/it/grounding.html" class="btn-ghost">Radicamento</a>
