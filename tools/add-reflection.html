@@ -1,76 +1,248 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Add Reflection — Tool</title>
-  <meta name="description" content="Helper tool to format new reflections into JSON format for Pause." />
-  <style>
-    body {
-      font-family: sans-serif;
-      max-width: 600px;
-      margin: 2rem auto;
-      padding: 1rem;
-      line-height: 1.6;
-    }
-    textarea {
-      width: 100%;
-      height: 120px;
-      padding: 0.5rem;
-      font-family: inherit;
-      font-size: 1rem;
-    }
-    pre {
-      background: #f4f4f4;
-      padding: 1rem;
-      border-radius: 6px;
-      white-space: pre-wrap;
-      word-break: break-word;
-    }
-    button {
-      margin-top: 1rem;
-      padding: 0.6rem 1.2rem;
-      font-size: 1rem;
-      background: black;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #333;
-    }
-  </style>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pause Reflections JSON Tool</title>
+<meta name="robots" content="noindex,nofollow">
+
+<style>
+body{
+font-family: Arial, sans-serif;
+max-width:900px;
+margin:auto;
+padding:40px 20px;
+background:#f7f6f2;
+line-height:1.6;
+color:#1d1d1d;
+}
+
+h1{ margin-bottom:6px; }
+p{ margin-top:0; color:#333; }
+
+label{
+display:block;
+margin-top:18px;
+font-weight:bold;
+}
+
+input, textarea{
+width:100%;
+padding:10px;
+margin-top:6px;
+border:1px solid #ccc;
+border-radius:6px;
+font-size:16px;
+background:white;
+box-sizing:border-box;
+}
+
+textarea{ min-height:140px; }
+
+button{
+margin-top:16px;
+padding:12px 18px;
+font-size:16px;
+background:black;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+button:hover{ opacity:0.9; }
+
+.secondary{
+background:#444;
+}
+
+.small{
+font-size:14px;
+color:#555;
+}
+
+.result{
+margin-top:18px;
+background:#eee;
+padding:16px;
+border-radius:6px;
+font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+white-space:pre-wrap;
+overflow:auto;
+}
+
+.notice{
+margin-top:12px;
+padding:12px 14px;
+background:#fff;
+border:1px solid rgba(0,0,0,.08);
+border-radius:8px;
+}
+
+.preview{
+margin-top:18px;
+padding:16px;
+background:#fff;
+border:1px solid rgba(0,0,0,.08);
+border-radius:8px;
+}
+
+.preview-message{
+font-size:16px;
+color:#1d1d1d;
+white-space:pre-wrap;
+}
+
+.preview-date{
+margin-top:10px;
+font-size:13px;
+color:#666;
+}
+
+hr{
+border:none;
+border-top:1px solid rgba(0,0,0,.12);
+margin:26px 0;
+}
+</style>
+
 </head>
+
 <body>
-  <h1>Add Reflection (JSON Tool)</h1>
-  <p>Paste the reflection message below. Click "Generate JSON" to format it for <code>reflections.json</code>.</p>
 
-  <textarea id="message" placeholder="Paste message here..."></textarea>
-  <button onclick="generateJSON()">Generate JSON</button>
+<h1>Pause Reflections JSON Tool</h1>
+<p class="small">This tool helps you add a new reflection safely and quickly. Nothing is uploaded anywhere.</p>
 
-  <h2>Result</h2>
-  <pre id="output">(Your JSON will appear here)</pre>
+<div class="notice">
+<strong>How to use</strong><br>
+1) Copy your current <code>reflections.json</code> into the box below.<br>
+2) Paste the new reflection and click <strong>Generate + Insert at Top</strong>.<br>
+3) Click <strong>Copy Updated reflections.json</strong> and paste it back into GitHub.<br>
+4) Commit.
+</div>
 
-  <script>
-    function generateJSON() {
-      const message = document.getElementById("message").value.trim();
-      if (!message) {
-        alert("Please paste a message first.");
-        return;
-      }
+<label>Current reflections.json (paste the whole file here)</label>
+<textarea id="existing" placeholder='Paste your current reflections.json here'></textarea>
 
-      // Generate a new ID using timestamp to avoid duplicates
-      const id = Date.now();
+<hr>
 
-      const data = {
-        id: id,
-        message: message,
-        submitted: new Date().toISOString()
-      };
+<label>New reflection</label>
+<textarea id="message" placeholder="Paste the new reflection here."></textarea>
 
-      document.getElementById("output").textContent = JSON.stringify(data, null, 2);
-    }
-  </script>
+<button onclick="insertReflection()">Generate + Insert at Top</button>
+<button class="secondary" onclick="copyUpdated()">Copy Updated reflections.json</button>
+
+<div class="notice" id="status" style="display:none;"></div>
+
+<h2 style="margin-top:22px;">Preview</h2>
+<div class="preview">
+  <div class="preview-message" id="previewMessage">(Preview will appear here)</div>
+  <div class="preview-date" id="previewDate"></div>
+</div>
+
+<h2 style="margin-top:22px;">Updated reflections.json</h2>
+<div class="result" id="result">(It will appear here)</div>
+
+<script>
+let updatedJsonText = "";
+
+function showStatus(msg, ok = true){
+  const el = document.getElementById("status");
+  el.style.display = "block";
+  el.style.background = ok ? "#e7f6ea" : "#fde8e8";
+  el.style.borderColor = ok ? "rgba(0,0,0,.12)" : "rgba(200,0,0,.25)";
+  el.innerHTML = msg;
+}
+
+function safeParseJson(text){
+  try{
+    return JSON.parse(text);
+  }catch(e){
+    return null;
+  }
+}
+
+function formatDisplayDate(iso){
+  const d = new Date(iso);
+  if (isNaN(d)) return "";
+  return d.toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric"
+  });
+}
+
+function makeReflectionObject(message){
+  return {
+    id: Date.now(),
+    message: message,
+    submitted: new Date().toISOString()
+  };
+}
+
+function insertReflection(){
+  const existingText = document.getElementById("existing").value.trim();
+  const message = document.getElementById("message").value.trim();
+
+  if(!existingText){
+    showStatus("Please paste your current <code>reflections.json</code> into the first box.", false);
+    return;
+  }
+
+  if(!message){
+    showStatus("Please paste a new reflection.", false);
+    return;
+  }
+
+  const parsed = safeParseJson(existingText);
+  if(!parsed){
+    showStatus("I couldn’t read that as valid JSON. Make sure you pasted the full <code>reflections.json</code>.", false);
+    return;
+  }
+
+  const newReflection = makeReflectionObject(message);
+
+  document.getElementById("previewMessage").textContent = newReflection.message;
+  document.getElementById("previewDate").textContent = "Submitted: " + formatDisplayDate(newReflection.submitted);
+
+  if(Array.isArray(parsed)){
+    parsed.unshift(newReflection);
+    updatedJsonText = JSON.stringify(parsed, null, 2);
+  } else if (parsed && Array.isArray(parsed.reflections)) {
+    parsed.reflections.unshift(newReflection);
+    updatedJsonText = JSON.stringify(parsed, null, 2);
+  } else {
+    showStatus("This JSON does not look like a valid reflections file. I expected either a JSON array or an object with a <code>reflections</code> array inside it.", false);
+    return;
+  }
+
+  document.getElementById("result").textContent = updatedJsonText;
+
+  showStatus("Done. Your new reflection has been added to the top. Now click <strong>Copy Updated reflections.json</strong> and paste it into GitHub.", true);
+}
+
+async function copyUpdated(){
+  if(!updatedJsonText){
+    showStatus("Nothing to copy yet. Click <strong>Generate + Insert at Top</strong> first.", false);
+    return;
+  }
+
+  try{
+    await navigator.clipboard.writeText(updatedJsonText);
+    showStatus("Copied to clipboard. Open <code>reflections.json</code> in GitHub, replace the contents, and commit.", true);
+  }catch(e){
+    const range = document.createRange();
+    const resultEl = document.getElementById("result");
+    range.selectNodeContents(resultEl);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    showStatus("Clipboard copy was blocked by your browser. I selected the text for you. Now press <strong>Ctrl+C</strong> or <strong>Cmd+C</strong>.", false);
+  }
+}
+</script>
+
 </body>
 </html>
