@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About SDZ | PAUSE</title>
+  <meta name="description" content="About Suicide Down to Zero, a Northern Ireland charity working to prevent suicide, reduce stigma, support safer communities, and encourage open conversation." />
+
+  <link rel="canonical" href="https://pauseforsuicide.com/sdz-about.html">
+  <meta name="google" content="notranslate">
+
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#f7f6f2">
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="About SDZ | PAUSE">
+  <meta property="og:description" content="Suicide Down to Zero works to prevent suicide through awareness, training, community support, postvention, and a belief that the only acceptable target is zero.">
+  <meta property="og:url" content="https://pauseforsuicide.com/sdz-about.html">
+  <meta property="og:image" content="https://pauseforsuicide.com/hero-orchard.jpg">
+  <meta property="og:image:alt" content="Soft morning light over stone walls in an orchard">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="About SDZ | PAUSE">
+  <meta name="twitter:description" content="Suicide Down to Zero works to prevent suicide through awareness, training, community support, postvention, and a belief that the only acceptable target is zero.">
+  <meta name="twitter:image" content="https://pauseforsuicide.com/hero-orchard.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About Suicide Down to Zero",
+    "url": "https://pauseforsuicide.com/sdz-about.html",
+    "inLanguage": "en-GB",
+    "description": "About Suicide Down to Zero and how its suicide prevention work connects with Pause."
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preload" as="image" href="/hero-orchard.jpg">
+  <link rel="preload" as="image" href="/orchard-light.jpg">
+  <link rel="preload" as="image" href="/orchard-soft.jpg">
+  <link rel="preload" as="image" href="/helpful-places.jpg">
+  <link rel="preload" as="image" href="/pause-icon.png">
+
+  <style>
+    :root {
+      --ink:#1d1d1d;
+      --overlay: rgba(247,246,242,0.25);
+      --border:#e2ddd3;
+    }
+
+    html, body { overflow-x: clip; }
+
+    body {
+      color: var(--ink);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background:#f9f6ee;
+    }
+
+    .serif {
+      font-family: "Crimson Text", Georgia, Cambria, "Times New Roman", Times, serif;
+    }
+
+    .btn {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:0.75rem 1.25rem;
+      border-radius:1rem;
+      font-weight:600;
+      background:var(--ink);
+      color:#fff;
+      text-decoration:none;
+      box-shadow:0 1px 2px rgba(0,0,0,.06);
+      transition:transform .12s ease, background .12s ease;
+    }
+
+    .btn:hover {
+      background:#000;
+      transform:translateY(-1px);
+    }
+
+    .btn-ghost {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:0.75rem 1.25rem;
+      border-radius:1rem;
+      font-weight:600;
+      color:var(--ink);
+      text-decoration:none;
+      border:1px solid var(--border);
+      background:#fff;
+      transition:transform .12s ease, background .12s ease;
+    }
+
+    .btn-ghost:hover {
+      background:#faf9f7;
+      transform:translateY(-1px);
+    }
+
+    .card {
+      background: rgba(249,246,238,0.9);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(226,221,211,0.9);
+      border-radius: 1.5rem;
+      padding: 1.25rem;
+      box-shadow: 0 4px 14px rgba(0,0,0,.08);
+    }
+
+    .hero {
+      position: relative;
+      min-height: 56vh;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      color:white;
+      overflow:hidden;
+    }
+
+    .hero::before {
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:0;
+      background: linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.24));
+      pointer-events:none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 5;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 4rem 1rem;
+    }
+
+    .section {
+      padding: 3.5rem 0;
+    }
+
+    @media (min-width:768px){
+      .section {
+        padding: 4rem 0;
+      }
+    }
+
+    .section-with-bg {
+      position: relative;
+    }
+
+    .section-with-bg .bg-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .section-with-bg .bg-layer::after {
+      content:"";
+      position:absolute;
+      inset:0;
+      background: var(--overlay);
+    }
+
+    .section-with-bg .content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .helpbar {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      background: #f9f6ee;
+      color: #1d1d1d;
+      padding: .55rem .9rem;
+      font-size: .95rem;
+      line-height: 1.4;
+      text-align: center;
+      border-bottom: 1px solid #e2ddd3;
+    }
+
+    .helpbar a {
+      color: #1d1d1d;
+      text-decoration: underline;
+    }
+
+    .helpbar a:focus {
+      outline: 2px solid #1d1d1d;
+      outline-offset: 2px;
+    }
+
+    .skiplink {
+      position: absolute;
+      left: -9999px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+
+    .skiplink:focus {
+      left: 12px;
+      top: 12px;
+      width: auto;
+      height: auto;
+      background: #fff;
+      color: #000;
+      padding: .5rem .75rem;
+      border-radius: .5rem;
+      z-index: 70;
+    }
+
+    .prose-pause p {
+      margin-top: 1rem;
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+
+    .prose-pause h2 {
+      font-family: "Crimson Text", Georgia, Cambria, "Times New Roman", Times, serif;
+      font-size: clamp(1.9rem, 4vw, 2.4rem);
+      font-weight: 600;
+      margin-top: 2.2rem;
+      margin-bottom: .75rem;
+    }
+
+    .prose-pause ul {
+      margin-top: 1rem;
+      padding-left: 1.25rem;
+      list-style: disc;
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+
+    .soft-rule {
+      height:1px;
+      background:rgba(29,29,29,.12);
+      margin:2rem 0;
+    }
+  </style>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0L4CV61PZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-P0L4CV61PZ', { 'anonymize_ip': true });
+  </script>
+</head>
+<body>
+
+  <a class="skiplink" href="#main">Skip to content</a>
+  <nav aria-label="Get help" class="helpbar">
+    <p>
+      In an emergency call <strong>999</strong> (UK/IE) or <strong>112</strong> (EU).
+      <span aria-hidden="true"> • </span>
+      Samaritans: <a href="tel:116123">116 123</a>
+      <span aria-hidden="true"> • </span>
+      Text <strong>SHOUT</strong> to <a href="sms:+4485258">85258</a>
+    </p>
+  </nav>
+
+  <header class="sticky top-0 z-50 backdrop-blur border-b border-black/5" style="background-color:#f9f6eecc;">
+    <div class="mx-auto max-w-5xl px-4 py-3 flex items-center gap-3">
+      <a href="/" class="serif text-xl font-semibold">PAUSE</a>
+      <nav class="ml-auto flex items-center gap-2 text-xs sm:text-sm flex-wrap" aria-label="Primary">
+
+        <div class="flex items-center gap-1 mr-3">
+          <a href="/" class="font-semibold">EN</a> |
+          <a href="/es/" class="opacity-60 hover:opacity-100">ES</a> |
+          <a href="/fr/" class="opacity-60 hover:opacity-100">FR</a> |
+          <a href="/ga/" class="opacity-60 hover:opacity-100">GA</a> |
+          <a href="/it/" class="opacity-60 hover:opacity-100">IT</a>
+        </div>
+
+        <a href="/" class="btn-ghost">Home</a>
+        <a href="/audio.html" class="btn-ghost">Audio</a>
+        <a href="/grounding.html" class="btn-ghost">Grounding</a>
+        <a href="/journal.html" class="btn-ghost">Journal</a>
+        <a href="/reflections.html" class="btn-ghost">Reflections</a>
+        <a href="/sdz-about.html" class="btn">About SDZ</a>
+
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" style="background: url('/hero-orchard.jpg') center/cover no-repeat;">
+    <div class="hero-content">
+      <img src="/pause-icon.png" alt="" aria-hidden="true" class="w-20 h-20 md:w-24 md:h-24 mb-5 drop-shadow">
+      <p class="uppercase tracking-[0.25em] text-sm md:text-base font-semibold drop-shadow">Suicide Down to Zero</p>
+      <h1 class="serif text-5xl md:text-6xl font-semibold drop-shadow-sm mt-3">About SDZ</h1>
+      <p class="mt-4 text-lg md:text-xl leading-relaxed drop-shadow max-w-3xl">
+        Working toward safer communities, open conversation, and the belief that the only acceptable target for suicide is zero.
+      </p>
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+        <a href="#main" class="btn">Read About SDZ</a>
+        <a href="https://www.sdz.org.uk/" target="_blank" rel="noopener" class="btn-ghost">Visit SDZ</a>
+      </div>
+    </div>
+  </section>
+
+  <main id="main" class="section section-with-bg">
+    <div class="bg-layer" data-bg="orchard-soft"></div>
+    <div class="content">
+      <div class="mx-auto max-w-5xl px-4">
+        <article class="card prose-pause">
+          <h2>About Suicide Down to Zero</h2>
+
+          <p>
+            Suicide Down to Zero, known as SDZ, is a Northern Ireland charity working to prevent suicide, reduce stigma, support safer communities, and encourage people to talk more openly about suicide.
+          </p>
+
+          <p>
+            SDZ was set up in April 2014 as an independent organisation to campaign for an end to suicide in the Down District. Since then, its work has grown across Northern Ireland. The charity became a recognised charity in May 2015 and continues to work from the belief that the only acceptable target for suicide deaths is zero.
+          </p>
+
+          <p>
+            That belief sits at the heart of SDZ. Suicide is not viewed as inevitable. It is understood as a serious public health issue that can be prevented when communities, organisations, families, services, and individuals work together with honesty, courage, and care.
+          </p>
+
+          <h2>What SDZ does</h2>
+
+          <p>
+            SDZ works at community level to help make people, groups, schools, clubs, workplaces, and organisations more suicide aware and suicide safe. The charity encourages a practical, grounded approach to suicide prevention, where people are helped to notice risk, talk more directly about suicide, and connect those who are struggling with the right support.
+          </p>
+
+          <p>
+            A central part of the SDZ approach is education and awareness. The charity has helped distribute suicide prevention resources, deliver awareness sessions, and provide recognised training such as safeTALK and ASIST. These programmes help people become more alert to the possibility of suicide, more confident in asking direct questions, and better prepared to connect someone in distress to support.
+          </p>
+
+          <p>
+            SDZ also recognises the importance of support after suicide. Suicide does not only affect the person who has died. It affects families, friends, colleagues, schools, clubs, workplaces, and whole communities. SDZ’s work includes a strong focus on postvention, which means support and healing after a suicide death.
+          </p>
+
+          <h2>The SDZ approach</h2>
+
+          <p>
+            SDZ believes that every organisation, large or small, can play a part in reducing suicide. Its approach includes leadership and governance, mental health and wellbeing promotion, suicide awareness and prevention, training, suicide intervention and ongoing community support, postvention, and evaluation.
+          </p>
+
+          <p>
+            This approach can be applied in different settings, including schools, sports clubs, workplaces, and wider communities. The aim is not simply to react to suicide after it happens, but to build safer systems, stronger awareness, and more connected communities before people reach crisis point.
+          </p>
+
+          <p>
+            SDZ’s work is rooted in the idea that everyone can make a contribution. Some people may raise awareness. Some may complete suicide prevention training. Some may support someone who is struggling. Others may help a family or community after a suicide death. SDZ seeks to bring those contributions together in a coherent and compassionate way.
+          </p>
+
+          <h2>Why SDZ matters</h2>
+
+          <p>
+            Suicide prevention cannot sit only with professionals or services. It also belongs in the ordinary places where people live, work, learn, volunteer, worship, play sport, and spend time together.
+          </p>
+
+          <p>
+            Many people who experience suicidal thoughts do not ask for help clearly. Some hide their pain. Some appear to be coping. Some do not know how to explain what is happening inside them. This is why awareness, direct conversation, and community connection matter.
+          </p>
+
+          <p>
+            SDZ helps challenge silence and stigma. It encourages people to talk about suicide in a clear, safe, and human way. It supports the belief that asking about suicide does not put the idea into someone’s head. Instead, asking directly and compassionately can open a door to help.
+          </p>
+
+          <p>
+            At its core, SDZ is about community responsibility. It is about refusing to accept suicide as unavoidable. It is about helping people become more prepared, more aware, and more willing to act when someone may be in distress.
+          </p>
+
+          <h2>SDZ and Pause</h2>
+
+          <p>
+            Pause and SDZ are closely aligned in purpose. SDZ works to prevent suicide through awareness, training, community development, support, and postvention. Pause offers a quiet online space where someone can stop, breathe, listen, reflect, and possibly take a first step toward connection.
+          </p>
+
+          <p>
+            Pause is not a replacement for SDZ’s wider work, and it is not a crisis service. It is a supportive digital resource that can sit alongside suicide prevention activity. It can be shared with someone who is struggling, used by someone who needs a moment, or offered gently when words are difficult.
+          </p>
+
+          <p>
+            Together, SDZ and Pause carry a simple message: suicide is not inevitable, connection matters, and one moment can make a difference.
+          </p>
+
+          <div class="soft-rule"></div>
+
+          <h2>A quiet note</h2>
+
+          <p>
+            SDZ is not a direct crisis service. If you or someone else is in immediate danger, please contact emergency services now.
+          </p>
+
+          <p>
+            If you are struggling but not in immediate danger, please speak to someone you trust, contact your GP, reach out to a local support service, or call a crisis helpline in your area.
+          </p>
+
+          <p>
+            You do not have to do this alone.
+          </p>
+
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a class="btn" href="/">Return to Pause</a>
+            <a class="btn-ghost" href="https://www.sdz.org.uk/" target="_blank" rel="noopener">Visit Suicide Down to Zero</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <footer class="py-10 border-t border-black/5 text-center text-sm text-black/60">
+    <div class="mx-auto max-w-5xl px-4">
+      <p class="serif text-lg text-black/80">This place is for everyone. Linked to nothing and everything.</p>
+      <p class="mt-2">If you need urgent help, please use the resources above.</p>
+      <p class="mt-6">© 2024 PAUSE</p>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      const layers = document.querySelectorAll('.bg-layer[data-bg]');
+      const tryExts = ['jpg', 'jpeg'];
+      layers.forEach(layer => {
+        const base = layer.getAttribute('data-bg');
+        function tryNext(i){
+          if (i >= tryExts.length) return;
+          const src = `/${base}.${tryExts[i]}`;
+          const img = new Image();
+          img.onload = () => layer.style.backgroundImage = `url('${src}')`;
+          img.onerror = () => tryNext(i+1);
+          img.src = src;
+        }
+        layer.style.backgroundSize = 'cover';
+        layer.style.backgroundPosition = 'center';
+        layer.style.backgroundRepeat = 'no-repeat';
+        tryNext(0);
+      });
+    })();
+  </script>
+</body>
+</html>
